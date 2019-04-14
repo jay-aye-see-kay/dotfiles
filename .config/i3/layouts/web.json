@@ -1,0 +1,14 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "name": "Firefox",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^Firefox$"
+       }
+    ],
+    "type": "con"
+}

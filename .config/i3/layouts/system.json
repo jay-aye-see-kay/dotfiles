@@ -1,0 +1,134 @@
+// vim:ts=4:sw=4:et
+{
+    // splitv split container with 3 children
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.333333333333333,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Networks",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Networks$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Battery and Brightness",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Battery\\ and\\ Brightness$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.333333333333333,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Clipboard",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Clipboard$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Notifications",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Notifications$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            // splith split container with 2 children
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.333333333333333,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Media Player",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Media\\ Player$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "normal",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "name": "Audio Volume",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                       "title": "^Audio\\ Volume$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "name": "System Monitor",
+    "percent": 0.5,
+    "swallows": [
+       {
+       "class": "^ksysguard$"
+       }
+    ],
+    "type": "con"
+}
+
