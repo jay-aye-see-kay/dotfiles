@@ -1,19 +1,35 @@
+" core setup
 set nocompatible
+set lazyredraw
 
+" enable plugins
+filetype plugin on
+runtime macros/matchit.vim
+
+" jk to escape
+inoremap jk <Esc>
+vnoremap jk <Esc>
+
+" visual improvements
+syntax on
+set relativenumber
+filetype indent on
+
+" tabs vs spaces
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-set number 
-set showcmd  
-set cursorline
-filetype indent on
-set wildmenu 
-set lazyredraw 
-set showmatch    
+" %% to %:h to get active file dir in ex mode
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" change cursor shape when in insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" search
+set wildmenu
+set showmatch
 set incsearch
 set hlsearch
-
-inoremap jk <esc>
-
