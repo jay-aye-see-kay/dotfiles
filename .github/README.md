@@ -16,7 +16,7 @@ config push
 
 Clone the repo and add the config command to current shell
 ```
-git clone --bare https://github.com/jay-aye-see-kay/dotfiles $HOME/.cfg
+git clone --bare git@github.com:jay-aye-see-kay/dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 ```
 
