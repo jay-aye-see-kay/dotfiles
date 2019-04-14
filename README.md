@@ -29,3 +29,6 @@ Turn off show untracked so setup is nicer to use
 ```
 config config --local status.showUntrackedFiles no
 ```
+
+## Source
+This setup is based on: https://www.atlassian.com/git/tutorials/dotfiles
