@@ -9,11 +9,17 @@ font pango:Fira Sans 10
 floating_modifier $mod
 focus_follows_mouse no
 
-# start a terminal
+# start a terminal or browser
 bindsym $mod+Return exec konsole
+bindsym $mod+b exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# reload, restart, logout
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -100,10 +106,6 @@ bindsym $mod+Right move workspace to output right
 bindsym $mod+Down move workspace to output down
 bindsym $mod+Left move workspace to output left
 bindsym $mod+c move workspace to output current
-
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
