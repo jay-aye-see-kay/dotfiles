@@ -11,7 +11,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
-alias config='/usr/bin/git --git-dir=/home/jack/.cfg/ -:-work-tree=/home/jack'
+alias config='/usr/bin/git --git-dir=/home/jack/.cfg/ --work-tree=/home/jack'
 
 # useful image resize/optimise function
 smartresize() {
