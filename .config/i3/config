@@ -20,8 +20,9 @@ bindsym $mod+d exec dmenu_run
 bindsym Mod1+space exec dmenu_run
 
 # lock screen
-exec --no-startup-id xautolock -time 10 -locker 'i3lock -c 000000'
-bindsym Mod1+Control+l exec i3lock -c 000000
+set $lock "i3lock -c 000000"
+exec --no-startup-id xautolock -time 10 -locker $lock 
+bindsym Mod1+Control+l exec $lock
 
 # change focus
 bindsym $mod+h focus left
