@@ -8,8 +8,9 @@ order += "disk /"
 order += "run_watch DHCP"
 order += "wireless wlp2s0"
 order += "ethernet eth0"
-order += "battery 0"
 order += "load"
+order += "battery 0"
+order += "volume master"
 order += "tztime local"
 
 wireless wlp2s0 {
@@ -43,9 +44,15 @@ tztime local {
 }
 
 load {
-        format = "%5min"
+        format = "Load: %5min"
 }
 
 disk "/" {
         format = "%free"
+}
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "pulse"
 }
