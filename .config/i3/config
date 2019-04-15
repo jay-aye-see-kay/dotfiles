@@ -59,9 +59,9 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 set $ws1 "1: editor "
-set $ws2 "2: web "
-set $ws3 "3: comms "
-set $ws4 "4"
+set $ws2 "2: vcs: "
+set $ws3 "3: web "
+set $ws4 "4: comms "
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
