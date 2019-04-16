@@ -69,7 +69,7 @@ set $ws1 "1: editor "
 set $ws2 "2: vcs: "
 set $ws3 "3: web "
 set $ws4 "4: comms "
-set $ws5 "5"
+set $ws5 "5: docs "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -147,6 +147,9 @@ exec xmodmap ~/.Xmodmap
 # exec notifications-plasmoid
 # exec volume-plasmoid
 # exec ksysguard
+
+exec i3-msg 'workspace $ws5; append_layout ~/.config/i3/layouts/docs.json'
+exec qutebrowser devdocs.io
 
 exec i3-msg 'workspace $ws4; append_layout ~/.config/i3/layouts/comms.json'
 exec thunderbird
