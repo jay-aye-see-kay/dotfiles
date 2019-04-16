@@ -143,12 +143,14 @@ exec xmodmap ~/.Xmodmap
 # exec volume-plasmoid
 # exec ksysguard
 
-exec i3-msg 'workspace $ws3; append_layout ~/.config/i3/layouts/comms.json'
+exec i3-msg 'workspace $ws4; append_layout ~/.config/i3/layouts/comms.json'
 exec thunderbird
 exec slack -u
 
-exec i3-msg 'workspace $ws2; append_layout ~/.config/i3/layouts/web.json'
+exec i3-msg 'workspace $ws3; append_layout ~/.config/i3/layouts/web.json'
 exec firefox
+
+# TODO add VCS panel here
 
 exec i3-msg 'workspace $ws1; append_layout ~/.config/i3/layouts/editor.json'
 exec konsole
