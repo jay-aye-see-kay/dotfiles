@@ -158,7 +158,6 @@ exec firefox
 # TODO add VCS panel here
 
 exec i3-msg 'workspace $ws1; append_layout ~/.config/i3/layouts/editor.json'
-exec konsole
-exec konsole
+exec code
 exec konsole
 
