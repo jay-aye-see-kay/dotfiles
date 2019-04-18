@@ -41,3 +41,6 @@ export PATH=$PATH:~/.npm_global/bin
 
 # golang
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# command line basics
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
