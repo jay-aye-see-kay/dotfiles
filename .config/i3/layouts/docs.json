@@ -1,0 +1,13 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "percent": 1,
+    "swallows": [
+       {
+        "class": "^qutebrowser$"
+       }
+    ],
+    "type": "con"
+}

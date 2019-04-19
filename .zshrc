@@ -44,3 +44,4 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # command line basics
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias trash='gio trash'

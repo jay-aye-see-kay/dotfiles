@@ -121,6 +121,9 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+# reset xrandr to laptop only display FIXME: shouldn't need this escape hatch
+bindsym $mod+Shift+p exec ~/.screenlayout/laptop.sh
+
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
@@ -130,6 +133,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# Pretty stuff
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
+exec --no-startup-id redshift -l-37:144 -t 6500:4000
+exec --no-startup-id compton
+
+# Keybindings
+exec xmodmap ~/.Xmodmap
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -138,8 +149,6 @@ bar {
 }
 
 # Initial applications load
-exec xmodmap ~/.Xmodmap
-
 # exec i3-msg 'workspace $ws10; append_layout ~/.config/i3/layouts/system.json'
 # exec network-plasmoid
 # exec battery-plasmoid
@@ -165,3 +174,12 @@ exec i3-msg 'workspace $ws1; append_layout ~/.config/i3/layouts/editor.json'
 exec code
 exec konsole
 
+# Theme
+# class                 border  backgr. text    indicator child_border
+client.focused          #285577 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #000000 #000000 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
