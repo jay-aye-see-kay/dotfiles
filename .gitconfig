@@ -1,0 +1,9 @@
+[user]
+	name = Jack Rose
+	email = jackderryrose@gmail.com
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
