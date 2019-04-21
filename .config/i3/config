@@ -26,7 +26,7 @@ bindsym $mod+d exec dmenu_run
 bindsym Mod1+space exec dmenu_run
 
 # lock screen
-set $lock "i3lock -c 000000"
+set $lock "i3lock -t -i ~/Pictures/lock.png"
 exec --no-startup-id xautolock -time 10 -locker $lock 
 bindsym Mod1+Control+l exec $lock
 
