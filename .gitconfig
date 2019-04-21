@@ -7,3 +7,5 @@
 	ci = commit
 	st = status
 	unstage = reset HEAD --
+[core]
+	excludesfile = /home/jack/.globalgitignore
