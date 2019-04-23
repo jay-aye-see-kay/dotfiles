@@ -183,3 +183,8 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
+# Screenshots
+bindsym Print --release exec "scrot -s ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+bindsym Shift+Print exec "scrot ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+
