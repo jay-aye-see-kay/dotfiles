@@ -6,22 +6,61 @@ set lazyredraw
 filetype plugin on
 runtime macros/matchit.vim
 
+" install plug.vim on new on new machines
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dir https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+" plugins
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/goyo.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vimwiki/vimwiki'
+Plug 'w0rp/ale'
+" colorschemes
+Plug 'dikiaap/minimalist'
+call plug#end()
+
 " jk to escape
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
 " visual improvements
+colorscheme minimalist
 syntax on
 set relativenumber
 filetype indent on
 set showcmd       " display incomplete commands
 set laststatus=2  " Always display the status line
 
+" only show cursor line in active window/pane
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+" quick edit vimrc
+noremap <leader>v :tabe $MYVIMRC<CR>
+
 " tabs vs spaces
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+
+" NERDTree
+noremap <leader><leader> :NERDTreeToggle<CR>
+
+"FZF
+set rtp+=~/.fzf
 
 " %% to %:h to get active file dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -95,7 +134,7 @@ if executable('ag')
 
   if !exists(":Ag")
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
+    nnoremap <leader> :Ag<SPACE>
   endif
 endif
 
@@ -112,6 +151,9 @@ nnoremap <C-l> <C-w>l
 
 " END ideas from https://github.com/thoughtbot/dotfiles
 
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+let g:ale_completion_enabled = 1
 
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
