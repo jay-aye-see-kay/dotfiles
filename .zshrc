@@ -7,7 +7,7 @@ ZSH_THEME="robbyrussell"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
@@ -25,6 +25,9 @@ alias pbp='xclip -o -sel clipboard'
 # vim
 export EDITOR=/usr/bin/vim
 alias vi="vim"
+alias vimwiki="vim ~/vimwiki/index.md"
+alias vimzsh="vim ~/.zshrc"
+alias vimrc="vim ~/.vim/vimrc"
 
 # python
 export PYENV_ROOT="$HOME/.pyenv"
@@ -45,3 +48,4 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # command line basics
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias trash='gio trash'
+precmd() { print "" }

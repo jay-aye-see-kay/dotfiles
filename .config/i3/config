@@ -15,6 +15,7 @@ bindsym $mod+b exec firefox
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym Ctrl+q nop nop
 
 # reload, restart, logout
 bindsym $mod+Shift+c reload
