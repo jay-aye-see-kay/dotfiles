@@ -159,8 +159,8 @@ bar {
 # exec volume-plasmoid
 # exec ksysguard
 
-exec i3-msg 'workspace $ws5; append_layout ~/.config/i3/layouts/docs.json'
-exec qutebrowser devdocs.io
+# exec i3-msg 'workspace $ws5; append_layout ~/.config/i3/layouts/docs.json'
+# exec qutebrowser devdocs.io
 
 exec i3-msg 'workspace $ws4; append_layout ~/.config/i3/layouts/comms.json'
 exec thunderbird
@@ -172,20 +172,23 @@ exec firefox
 # TODO add VCS panel here
 
 exec i3-msg 'workspace $ws1; append_layout ~/.config/i3/layouts/editor.json'
-exec code
+exec konsole
 exec konsole
 
 # Theme
 # class                 border  backgr. text    indicator child_border
-client.focused          #285577 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #000000 #000000 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# client.focused          #285577 #285577 #ffffff #2e9ef4   #285577
+# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+# client.unfocused        #000000 #000000 #888888 #292d2e   #222222
+# client.urgent           #2f343a #900000 #ffffff #900000   #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
 
 # Screenshots
 bindsym Print --release exec "scrot -s ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Shift+Print exec "scrot ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
+
+# wifi
+exec nm-applet
 

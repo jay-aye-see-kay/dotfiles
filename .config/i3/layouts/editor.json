@@ -6,7 +6,7 @@
     "percent": 0.8,
     "swallows": [
        {
-        "class": "^Code$"
+        "class": "^konsole$"
        }
     ],
     "type": "con"
