@@ -31,6 +31,7 @@ Plug 'vimwiki/vimwiki'
 " Plug 'w0rp/ale'
 Plug 'zhou13/vim-easyescape'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'gabrielelana/vim-markdown'
 " colorschemes
 " Plug 'dikiaap/minimalist'
 Plug 'tomasiser/vim-code-dark'
@@ -71,6 +72,7 @@ set expandtab
 
 " fzf
 nnoremap <leader>b :Buffer<CR>
+nnoremap <leader>h :History<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
