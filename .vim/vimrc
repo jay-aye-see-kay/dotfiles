@@ -2,6 +2,7 @@
 set nocompatible
 set lazyredraw
 set mouse=a
+let mapleader= " "
 
 " enable plugins
 filetype plugin on
@@ -29,6 +30,7 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 " Plug 'w0rp/ale'
 Plug 'zhou13/vim-easyescape'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " colorschemes
 " Plug 'dikiaap/minimalist'
 Plug 'tomasiser/vim-code-dark'
@@ -67,9 +69,17 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" fzf
+nnoremap <leader>b :Buffer<CR>
+nnoremap <leader>z :FZF<CR>
+nnoremap <leader>g :GFiles<CR>
+nnoremap <leader>a :Ag<CR>
+
 " NERDTree open and open on current
 noremap <leader><leader> :NERDTreeToggle<CR>
-noremap <leader>f :NERDTreeFind<cr>
+noremap <leader>n :NERDTreeFind<cr>
+noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
+
 " NERDTree open when vim is started without cmd line args
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -215,9 +225,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region DISABLED FOR NOW, conflicts with my NERDTree
-" vmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+" Remap for format selected region
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -226,15 +236,6 @@ augroup mygroup
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
