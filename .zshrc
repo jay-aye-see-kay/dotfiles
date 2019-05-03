@@ -49,3 +49,7 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 alias trash='gio trash'
 precmd() { print "" }
+
+alias sai="sudo apt install"
+alias acs="apt search"
+
