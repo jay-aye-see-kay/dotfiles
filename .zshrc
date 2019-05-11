@@ -52,4 +52,5 @@ precmd() { print "" }
 
 alias sai="sudo apt install"
 alias acs="apt search"
+alias sizes="du -csh * | sort -h"
 

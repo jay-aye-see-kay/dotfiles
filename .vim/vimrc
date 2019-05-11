@@ -46,8 +46,9 @@ cnoremap kj <ESC>
 " visual improvements
 colorscheme codedark
 syntax on
-set relativenumber
-filetype indent on
+set number relativenumber
+set nu rnu
+" filetype indent on
 set showcmd       " display incomplete commands
 set laststatus=2  " Always display the status line
 
@@ -73,6 +74,7 @@ set expandtab
 " fzf
 nnoremap <leader>b :Buffer<CR>
 nnoremap <leader>h :History<CR>
+nnoremap <leader>hh :History<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
@@ -81,6 +83,7 @@ nnoremap <leader>a :Ag<CR>
 noremap <leader><leader> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeFind<cr>
 noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
+let g:NERDTreeQuitOnOpen = 1
 
 " NERDTree open when vim is started without cmd line args
 autocmd StdinReadPre * let s:std_in=1
@@ -138,7 +141,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-
+" stop me :wq by mistake
+:cmap wq w
 
 
 
