@@ -1,0 +1,4 @@
+rofi.combi-modi:    window,drun,run,ssh
+rofi.theme:         Pop-Dark
+rofi.font:          Fira Sans 12
+rofi.modi:          combi

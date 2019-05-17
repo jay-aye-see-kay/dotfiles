@@ -12,6 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
 alias config='/usr/bin/git --git-dir=/home/jack/.cfg/ --work-tree=/home/jack'
+export PATH=$PATH:~/bin
 
 # useful image resize/optimise function
 smartresize() {
@@ -19,8 +20,10 @@ smartresize() {
 }
 
 # connect clipboard to shell
-alias pbc='xclip -i -sel clipboard'
-alias pbp='xclip -o -sel clipboard'
+# alias pbc='xclip -i -sel clipboard'
+# alias pbp='xclip -o -sel clipboard'
+alias pbc='wl-copy'
+alias pbp='wl-paste'
 
 # vim
 export EDITOR=/usr/bin/vim
@@ -35,6 +38,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+export PATH="$PATH:$HOME/.poetry/bin"
 
 # javascript
 export NVM_DIR="$HOME/.nvm"
@@ -47,10 +51,19 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # command line basics
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+. ~/bin/z.sh
 alias trash='gio trash'
 precmd() { print "" }
 
 alias sai="sudo apt install"
 alias acs="apt search"
 alias sizes="du -csh * | sort -h"
+
+# auto start sway after login on tty1
+if [ "$(tty)" = "/dev/tty1" ]; then
+  export XDG_SESSION_TYPE=wayland
+  export MOZ_ENABLE_WAYLAND=1
+  # export GDK_BACKEND=1
+  exec sway
+fi
 
