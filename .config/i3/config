@@ -28,8 +28,6 @@ bindsym Mod1+space exec dmenu_run
 
 # lock screen
 set $lock "~/.config/i3/lock.sh"
-# set $lock "~/.config/i3/lock &> ~/tmp.txt"
-# set $lock "qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock"
 exec --no-startup-id xautolock -time 10 -locker $lock
 bindsym Mod1+Control+l exec $lock
 
@@ -150,42 +148,6 @@ bar {
         position top
         status_command i3status
 }
-
-# Initial applications load
-# exec i3-msg 'workspace $ws10; append_layout ~/.config/i3/layouts/system.json'
-# exec network-plasmoid
-# exec battery-plasmoid
-# exec clipboard-plasmoid
-# exec media-plasmoid
-# exec notifications-plasmoid
-# exec volume-plasmoid
-# exec ksysguard
-
-# exec i3-msg 'workspace $ws5; append_layout ~/.config/i3/layouts/docs.json'
-# exec qutebrowser devdocs.io
-
-# exec i3-msg 'workspace $ws4; append_layout ~/.config/i3/layouts/comms.json'
-# exec thunderbird
-# exec slack -u
-
-# exec i3-msg 'workspace $ws3; append_layout ~/.config/i3/layouts/web.json'
-# exec firefox
-
-# # TODO add VCS panel here
-
-# exec i3-msg 'workspace $ws1; append_layout ~/.config/i3/layouts/editor.json'
-# exec konsole
-# exec konsole
-
-# Theme
-# class                 border  backgr. text    indicator child_border
-# client.focused          #285577 #285577 #ffffff #2e9ef4   #285577
-# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-# client.unfocused        #000000 #000000 #888888 #292d2e   #222222
-# client.urgent           #2f343a #900000 #ffffff #900000   #900000
-# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
-client.background       #ffffff
 
 # Screenshots
 bindsym Print --release exec "scrot -s ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
