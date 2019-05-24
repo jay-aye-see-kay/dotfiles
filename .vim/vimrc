@@ -32,11 +32,20 @@ Plug 'vimwiki/vimwiki'
 Plug 'zhou13/vim-easyescape'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'gabrielelana/vim-markdown'
-" colorschemes
-" Plug 'dikiaap/minimalist'
-Plug 'tomasiser/vim-code-dark'
 Plug 'mbbill/undotree'
+
+" colorschemes
+Plug 'tomasiser/vim-code-dark'
 call plug#end()
+
+" visual improvements
+colorscheme codedark
+syntax on
+set number relativenumber
+set nu rnu        " show current line and relative numbers
+set showcmd       " display incomplete commands
+set laststatus=2  " Always display the status line
+set title
 
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -50,15 +59,6 @@ let g:easyescape_chars = { "j": 1, "k": 1 }
 let g:easyescape_timeout = 100
 cnoremap jk <ESC>
 cnoremap kj <ESC>
-
-" visual improvements
-colorscheme codedark
-syntax on
-set number relativenumber
-set nu rnu
-" filetype indent on
-set showcmd       " display incomplete commands
-set laststatus=2  " Always display the status line
 
 " only show cursor line in active window/pane
 augroup CursorLine
@@ -92,6 +92,7 @@ noremap <leader><leader> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeFind<cr>
 noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
 let g:NERDTreeQuitOnOpen = 1
+let NERDTreeShowHidden=1
 
 " NERDTree open when vim is started without cmd line args
 autocmd StdinReadPre * let s:std_in=1
@@ -103,8 +104,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " change cursor shape when in insert mode
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
@@ -150,9 +149,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" stop me :wq by mistake
-:cmap wq w
 
 
 

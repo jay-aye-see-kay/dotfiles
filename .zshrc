@@ -63,7 +63,10 @@ alias sizes="du -csh * | sort -h"
 if [ "$(tty)" = "/dev/tty1" ]; then
   export XDG_SESSION_TYPE=wayland
   export MOZ_ENABLE_WAYLAND=1
-  # export GDK_BACKEND=1
+  export QT_QPA_PLATFORMTHEME="qt5ct"
   exec sway
 fi
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
 

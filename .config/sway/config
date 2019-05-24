@@ -2,192 +2,162 @@
 set $alt Mod1
 set $ctl Control
 set $mod Mod4
-# Home row direction keys, like vim
+# Home row direction keys
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred apps
+# Preferred apps
 set $term termite
 set $menu 'rofi -show'
 set $browser firefox
 
 ### Output configuration
-output * bg CCCCCC solid_color
-# laptop
+output * bg $HOME/Pictures/wallpaper.jpg fill
+# Laptop
 output eDP-1 scale 1.25
 output eDP-1 pos 0 0 res 2560x1440
-# home 27"
+# Home 27"
 output HDMI-A-1 resolution 2560x1440 position -256,-1440
 # CC 2x 24"
-output DP-2 resolution 1920x1200 position -896,-1200
+output DP-1 resolution 1920x1200 position -896,-1200
 output DP-3 resolution 1920x1200 position 1024,-1200
 
-bindsym $mod+b exec $browser
-bindsym $ctl+$alt+l exec swaylock -c 777777
-
-# default_border none
 smart_gaps on
-gaps inner 4
-default_border pixel 4
-
-# class                 border  backgr. text    indicator child_border
-client.focused          #cccccc #285577 #ffffff #00000000   #cccccc
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #00000000
-client.unfocused        #333333 #222222 #888888 #292d2e   #00000000
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #00000000
-
-# Screen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | grep '* index' | cut -d':' -f2) toggle # mute sound
-
-# caps as control
-input 1:1:AT_Translated_Set_2_keyboard {
-  xkb_options ctrl:nocaps
-}
+gaps inner 8
+default_border normal 0
 
 # notifications
 exec mako
 bindsym Control+Space exec makoctl dismiss
+bindsym Shift+Control+Space exec makoctl dismiss -all
 
 # screenshots
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
 bindsym Shift+Print exec grim -g "$(slurp)" $HOME/$(date +'%Y-%m-%d-%H%M%S_screen.png')
-#
-# Example configuration:
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-# You can get the names of your outputs by running: swaymsg -t get_outputs
 
 ### Idle configuration
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
          timeout 300 'swaylock -f -c 777777' \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
         before-sleep 'swaylock -f -c 777777'
 
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-# Example configuration:
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
 ### Key bindings
 #
 # Basics:
 #
-    # start a terminal
-    bindsym $mod+Return exec $term
+  # start a terminal
+  bindsym $mod+Return exec $term
 
-    # kill focused window
-    bindsym  $mod+Shift+q kill
-    bindsym Control+q nop nop
+  # kill focused window
+  bindsym  $mod+Shift+q kill
+  bindsym Control+q nop nop
 
-    # start your launcher
-    bindsym $mod+d exec $menu
-    bindsym Mod1+Space exec $menu
-    bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
+  # start your launcher
+  bindsym $mod+d exec $menu
+  bindsym Mod1+Space exec $menu
+  bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
-    focus_follows_mouse no
+  # Drag floating windows by holding down $mod and left mouse button.
+  # Resize floating or tiled windows with right mouse button + $mod.
+  floating_modifier $mod normal
+  focus_follows_mouse no
 
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
+  # reload the configuration file
+  bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+  # exit sway (logs you out of your Wayland session)
+  bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+  bindsym $mod+b exec $browser
+  bindsym $ctl+$alt+l exec swaylock -c 777777
+
+  # Screen brightness controls
+  bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+  bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+
+  # Pulse Audio controls
+  bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) +5% #increase sound volume
+  bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) -5% #decrease sound volume
+  bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | grep '* index' | cut -d':' -f2) toggle # mute sound
+
+  # caps as control
+  input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_options ctrl:nocaps
+  }
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+  # Move your focus around
+  bindsym $mod+$left focus left
+  bindsym $mod+$down focus down
+  bindsym $mod+$up focus up
+  bindsym $mod+$right focus right
+  bindsym $mod+Left focus left
+  bindsym $mod+Down focus down
+  bindsym $mod+Up focus up
+  bindsym $mod+Right focus right
 
-    # _move_ the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+  # _move_ the focused window with the same, but add Shift
+  bindsym $mod+Shift+$left move left
+  bindsym $mod+Shift+$down move down
+  bindsym $mod+Shift+$up move up
+  bindsym $mod+Shift+$right move right
+  bindsym $mod+Shift+Left move left
+  bindsym $mod+Shift+Down move down
+  bindsym $mod+Shift+Up move up
+  bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
-set $ws1 "1: editor "
-set $ws2 "2: vcs: "
-set $ws3 "3: web "
-set $ws4 "4: comms "
-set $ws5 "5: docs "
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9: music "
-set $ws10 "10: system "
+  set $ws1 "1: editor "
+  set $ws2 "2: vcs: "
+  set $ws3 "3: web "
+  set $ws4 "4: comms "
+  set $ws5 "5: docs "
+  set $ws6 "6"
+  set $ws7 "7"
+  set $ws8 "8"
+  set $ws9 "9: music "
+  set $ws10 "10: system "
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+  # switch to workspace
+  bindsym $mod+1 workspace $ws1
+  bindsym $mod+2 workspace $ws2
+  bindsym $mod+3 workspace $ws3
+  bindsym $mod+4 workspace $ws4
+  bindsym $mod+5 workspace $ws5
+  bindsym $mod+6 workspace $ws6
+  bindsym $mod+7 workspace $ws7
+  bindsym $mod+8 workspace $ws8
+  bindsym $mod+9 workspace $ws9
+  bindsym $mod+0 workspace $ws10
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+  # move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace $ws1
+  bindsym $mod+Shift+2 move container to workspace $ws2
+  bindsym $mod+Shift+3 move container to workspace $ws3
+  bindsym $mod+Shift+4 move container to workspace $ws4
+  bindsym $mod+Shift+5 move container to workspace $ws5
+  bindsym $mod+Shift+6 move container to workspace $ws6
+  bindsym $mod+Shift+7 move container to workspace $ws7
+  bindsym $mod+Shift+8 move container to workspace $ws8
+  bindsym $mod+Shift+9 move container to workspace $ws9
+  bindsym $mod+Shift+0 move container to workspace $ws10
 
-# move workspace between screens
-bindsym $mod+Control+Shift+$up move workspace to output up
-bindsym $mod+Control+Shift+$right move workspace to output right
-bindsym $mod+Control+Shift+$down move workspace to output down
-bindsym $mod+Control+Shift+$left move workspace to output left
-
-bindsym $mod+Control+Shift+Up move workspace to output up
-bindsym $mod+Control+Shift+Right move workspace to output right
-bindsym $mod+Control+Shift+Down move workspace to output down
-bindsym $mod+Control+Shift+Left move workspace to output left
-
+  # move workspace between screens
+  bindsym $mod+Control+Shift+$up move workspace to output up
+  bindsym $mod+Control+Shift+$right move workspace to output right
+  bindsym $mod+Control+Shift+$down move workspace to output down
+  bindsym $mod+Control+Shift+$left move workspace to output left
+  bindsym $mod+Control+Shift+Up move workspace to output up
+  bindsym $mod+Control+Shift+Right move workspace to output right
+  bindsym $mod+Control+Shift+Down move workspace to output down
+  bindsym $mod+Control+Shift+Left move workspace to output left
 #
 # Layout stuff:
 #
@@ -214,37 +184,19 @@ bindsym $mod+Control+Shift+Left move workspace to output left
     # move focus to the parent container
     bindsym $mod+a focus parent
 #
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
 # Resizing containers:
 #
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
-    # ditto, with arrow keys
     bindsym Left resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
     bindsym Right resize grow width 10px
 
-    # return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -253,9 +205,7 @@ bindsym $mod+r mode "resize"
 #
 # Status Bar:
 #
-# exec --no-startup-id waybar
-
 bar {
     swaybar_command waybar
 }
-    
+
