@@ -1,0 +1,8 @@
+color=999999
+image=$HOME/Pictures/lock.jpg
+
+indicator-radius=60
+indicator-thickness=14
+inside-color=00000000
+key-hl-color=111111
+

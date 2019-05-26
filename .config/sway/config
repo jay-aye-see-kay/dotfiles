@@ -41,10 +41,10 @@ bindsym Shift+Print exec grim -g "$(slurp)" $HOME/$(date +'%Y-%m-%d-%H%M%S_scree
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 777777' \
+         timeout 300 'swaylock' \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f -c 777777'
+        before-sleep 'swaylock'
 
 ### Key bindings
 #
@@ -74,7 +74,7 @@ exec swayidle -w \
   bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
   bindsym $mod+b exec $browser
-  bindsym $ctl+$alt+l exec swaylock -c 777777
+  bindsym $ctl+$alt+l exec swaylock
 
   # Screen brightness controls
   bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
