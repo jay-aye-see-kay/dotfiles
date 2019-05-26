@@ -11,6 +11,7 @@ set $right l
 set $term termite
 set $menu 'rofi -show'
 set $browser firefox
+set $private_browser firefox --private-window
 
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
@@ -74,6 +75,7 @@ exec swayidle -w \
   bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
   bindsym $mod+b exec $browser
+  bindsym $mod+Shift+b exec $private_browser
   bindsym $ctl+$alt+l exec swaylock
 
   # Screen brightness controls
@@ -114,16 +116,16 @@ exec swayidle -w \
 #
 # Workspaces:
 #
-  set $ws1 "1: editor "
-  set $ws2 "2: vcs: "
+  set $ws1 "1: editor "
+  set $ws2 "2: vcs "
   set $ws3 "3: web "
-  set $ws4 "4: comms "
-  set $ws5 "5: docs "
+  set $ws4 "4: comms "
+  set $ws5 "5"
   set $ws6 "6"
   set $ws7 "7"
   set $ws8 "8"
-  set $ws9 "9: music "
-  set $ws10 "10: system "
+  set $ws9 "9"
+  set $ws10 "10: music "
 
   # switch to workspace
   bindsym $mod+1 workspace $ws1
@@ -161,9 +163,6 @@ exec swayidle -w \
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
     bindsym $mod+shift+v splith
     bindsym $mod+v splitv
 
