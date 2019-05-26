@@ -2,7 +2,7 @@
     border: none;
     border-radius: 0;
     font-family: 'Fira Mono', fontello, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     min-height: 0;
 }
 
@@ -31,11 +31,10 @@ window#waybar.chromium {
     padding: 0 5px;
     background: transparent;
     color: #ffffff;
-    border-bottom: 3px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button:hover {
-    /* background: #64727D; */
   box-shadow: inherit;
   text-shadow: inherit;
 }
@@ -46,7 +45,7 @@ window#waybar.chromium #workspaces button {
 
 #workspaces button.focused {
     background: rgba(43, 48, 59, 1);
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
 window#waybar.chromium #workspaces button.focused {
@@ -100,7 +99,15 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu { }
+/* make cpu load and temp look like one widget */
+#cpu {
+  margin-right: 0;
+  padding-right: 0;
+}
+#temperature {
+  margin-left: 0;
+  padding-left: 0;
+}
 
 #memory { }
 
@@ -115,8 +122,6 @@ label:focus {
 #pulseaudio { }
 
 #pulseaudio.muted { }
-
-#temperature { }
 
 #temperature.critical {
     background: #eb4d4b;

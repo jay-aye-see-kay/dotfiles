@@ -12,8 +12,8 @@
       "backlight",
       "network",
       "cpu",
-      "memory",
       "temperature",
+      "memory",
       "custom/storage",
       "battery",
       "clock",
@@ -38,15 +38,18 @@
         "format": "{:%Y-%m-%d %H:%M}"
     },
     "cpu": {
+        "interval": 10,
         "format": "{load:2}% ",
         "tooltip": false
     },
     "memory": {
-        "format": "{percentage:2}% "
+        "interval": 10,
+        "format": "{used:.1f}G "
     },
     "temperature": {
+        "interval": 10,
         "critical-threshold": 80,
-        "format": "{temperatureC}°C "
+        "format": " {temperatureC:2}°C"
     },
     "backlight": {
         "format": "{percent}% {icon}",

@@ -29,7 +29,7 @@ alias pbp='wl-paste'
 export EDITOR=/usr/bin/vim
 alias vi="vim"
 alias vimwiki="vim ~/vimwiki/index.md"
-alias vimzsh="vim ~/.zshrc"
+alias zshrc="vim ~/.zshrc"
 alias vimrc="vim ~/.vim/vimrc"
 
 # python
@@ -65,6 +65,7 @@ if [ "$(tty)" = "/dev/tty1" ]; then
   export MOZ_ENABLE_WAYLAND=1
   export QT_QPA_PLATFORMTHEME="qt5ct"
   exec sway
+  exec blueman-manager
 fi
 
 # rust

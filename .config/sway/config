@@ -24,6 +24,10 @@ output HDMI-A-1 resolution 2560x1440 position -256,-1440
 output DP-1 resolution 1920x1200 position -896,-1200
 output DP-3 resolution 1920x1200 position 1024,-1200
 
+font pango:Fira Mono 10
+titlebar_border_thickness 0
+titlebar_padding 6 2
+
 smart_gaps on
 gaps inner 8
 default_border normal 0
