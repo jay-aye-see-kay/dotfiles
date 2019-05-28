@@ -3,9 +3,17 @@
 	email = jackderryrose@gmail.com
 [alias]
 	co = checkout
+	cob = checkout -b
+	com = checkout master
+	cod = checkout develop
 	br = branch
 	ci = commit
+	cia = commit -a
 	st = status
+	pl = pull
+	ps = push
 	unstage = reset HEAD --
 [core]
 	excludesfile = /home/jack/.globalgitignore
+[push]
+	default = current
