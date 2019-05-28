@@ -46,6 +46,7 @@ set nu rnu        " show current line and relative numbers
 set showcmd       " display incomplete commands
 set laststatus=2  " Always display the status line
 set title
+set termguicolors
 
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>

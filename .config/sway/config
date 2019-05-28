@@ -24,6 +24,10 @@ output HDMI-A-1 resolution 2560x1440 position -256,-1440
 output DP-1 resolution 1920x1200 position -896,-1200
 output DP-3 resolution 1920x1200 position 1024,-1200
 
+# redshift
+exec redshift
+
+# titlebar
 font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
@@ -120,16 +124,16 @@ exec swayidle -w \
 #
 # Workspaces:
 #
-  set $ws1 "1: editor "
-  set $ws2 "2: vcs "
-  set $ws3 "3: web "
-  set $ws4 "4: comms "
+  set $ws1 "1:editor "
+  set $ws2 "2:vcs "
+  set $ws3 "3:web "
+  set $ws4 "4:comms "
   set $ws5 "5"
   set $ws6 "6"
   set $ws7 "7"
   set $ws8 "8"
   set $ws9 "9"
-  set $ws10 "10: music "
+  set $ws10 "10:music "
 
   # switch to workspace
   bindsym $mod+1 workspace $ws1
