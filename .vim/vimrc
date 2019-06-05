@@ -51,8 +51,8 @@ set termguicolors
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 if has("persistent_undo")
-    set undodir=$HOME."/.undodir"
-    set undofile
+  set undodir=$HOME/.cache/vim/persistent_undo
+  set undofile
 endif
 
 " jk to escape
@@ -87,6 +87,9 @@ nnoremap <leader>hh :History<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
+nnoremap <leader>l :BLines<CR> " search lines in current buffer
+
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " NERDTree open and open on current
 noremap <leader><leader> :NERDTreeToggle<CR>
@@ -96,8 +99,8 @@ let g:NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
 
 " NERDTree open when vim is started without cmd line args
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " if the only window open is NERDTree, close it
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -151,7 +154,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-
+" Macros TODO sort, better keybindings maybe?
+  " JS/TS: console.log the inner word one line below
+  let @c = "viwyoconsole.log('€ýapa', pa);€ýa"
 
 
 

@@ -12,7 +12,7 @@ source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
 alias config='/usr/bin/git --git-dir=/home/jack/.cfg/ --work-tree=/home/jack'
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin:~/.local/bin
 
 # useful image resize/optimise function
 smartresize() {
