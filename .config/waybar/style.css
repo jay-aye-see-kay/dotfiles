@@ -116,7 +116,7 @@ label:focus {
 #network { }
 
 #network.disconnected {
-    background: #f53c3c;
+    background: rgba(43, 48, 59, 1);
 }
 
 #pulseaudio { }
@@ -127,7 +127,9 @@ label:focus {
     background: #eb4d4b;
 }
 
-#tray { }
+#tray {
+    margin-right: 0;
+}
 
 #idle_inhibitor { }
 

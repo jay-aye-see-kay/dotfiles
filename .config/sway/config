@@ -21,8 +21,8 @@ output eDP-1 pos 0 0 res 2560x1440
 # Home 27"
 output HDMI-A-1 resolution 2560x1440 position -256,-1440
 # CC 2x 24"
-output DP-1 resolution 1920x1200 position -896,-1200
-output DP-3 resolution 1920x1200 position 1024,-1200
+output "Dell Inc. DELL U2412M HC55P1CL2C0L" resolution 1920x1200 position -896,-1200
+output "Dell Inc. DELL U2412M HC55P2592CAL" resolution 1920x1200 position 1024,-1200
 
 # redshift
 exec redshift
@@ -32,14 +32,15 @@ font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
 
+# gaps
 smart_gaps on
-gaps inner 8
+gaps inner 12
 default_border normal 0
 
 # notifications
 exec mako
 bindsym Control+Space exec makoctl dismiss
-bindsym Shift+Control+Space exec makoctl dismiss -all
+bindsym Shift+Control+Space exec makoctl dismiss --all
 
 # screenshots
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
@@ -63,7 +64,7 @@ exec swayidle -w \
   bindsym $mod+Return exec $term
 
   # kill focused window
-  bindsym  $mod+Shift+q kill
+  bindsym $mod+Shift+q kill
   bindsym Control+q nop nop
 
   # start your launcher
@@ -128,7 +129,7 @@ exec swayidle -w \
   set $ws2 "2:vcs "
   set $ws3 "3:web "
   set $ws4 "4:comms "
-  set $ws5 "5"
+  set $ws5 "5:misc "
   set $ws6 "6"
   set $ws7 "7"
   set $ws8 "8"
