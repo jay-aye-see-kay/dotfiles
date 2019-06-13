@@ -26,11 +26,12 @@ alias pbc='wl-copy'
 alias pbp='wl-paste'
 
 # vim
-export EDITOR=/usr/bin/vim
-alias vi="vim"
-alias vimwiki="vim ~/vimwiki/index.md"
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vim/vimrc"
+export EDITOR=/usr/bin/nvim
+alias v="nvim"
+alias vimwiki="nvim ~/vimwiki/index.md"
+alias zshrc="nvim ~/.zshrc"
+alias vimrc="nvim ~/.vim/vimrc"
+alias swayrc="nvim ~/.config/sway/config"
 
 # python
 export PYENV_ROOT="$HOME/.pyenv"
