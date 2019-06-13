@@ -16,13 +16,13 @@ set $private_browser firefox --private-window
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
 # Laptop
-output eDP-1 scale 1.25
-output eDP-1 pos 0 0 res 2560x1440
+output eDP-1 scale 1.5
+output eDP-1 pos 640 1440 res 2560x1440
 # Home 27"
-output HDMI-A-1 resolution 2560x1440 position -256,-1440
+output HDMI-A-1 pos 640 0 res 2560x1440
 # CC 2x 24"
-output "Dell Inc. DELL U2412M HC55P1CL2C0L" resolution 1920x1200 position -896,-1200
-output "Dell Inc. DELL U2412M HC55P2592CAL" resolution 1920x1200 position 1024,-1200
+output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 0 240 res 1920x1200
+output "Dell Inc. DELL U2412M HC55P2592CAL" pos 1920 240 res 1920x1200
 
 # redshift
 exec redshift
