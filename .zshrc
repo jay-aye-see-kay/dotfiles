@@ -51,10 +51,17 @@ export PATH=$PATH:~/.npm_global/bin
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # command line basics
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-. ~/bin/z.sh
 alias trash='gio trash'
 precmd() { print "" }
+
+# fzf and z
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh # init
+. ~/bin/z.sh # init
+unalias z 2> /dev/null # z with no args goes to fzf mode
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
 
 alias sai="sudo apt install"
 alias acs="apt search"
