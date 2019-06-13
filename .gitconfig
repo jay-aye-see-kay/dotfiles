@@ -2,16 +2,17 @@
 	name = Jack Rose
 	email = jackderryrose@gmail.com
 [alias]
-	co = checkout
-	cob = checkout -b
-	com = checkout master
-	cod = checkout develop
+	aa = add .
 	br = branch
 	ci = commit
 	cia = commit -a
+	co = checkout
+	cob = checkout -b
+	cod = checkout develop
+	com = checkout master
+	d = diff
+	ds = diff --staged
 	st = status
-	pl = pull
-	ps = push
 	unstage = reset HEAD --
 [core]
 	excludesfile = /home/jack/.globalgitignore
