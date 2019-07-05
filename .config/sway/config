@@ -20,6 +20,8 @@ output eDP-1 scale 1.5
 output eDP-1 pos 640 1440 res 2560x1440
 # Home 27"
 output HDMI-A-1 pos 640 0 res 2560x1440
+# single 24" 16:10
+# output HDMI-A-1 pos 640 240 res 1920x1200 
 # CC 2x 24"
 output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 0 240 res 1920x1200
 output "Dell Inc. DELL U2412M HC55P2592CAL" pos 1920 240 res 1920x1200
@@ -49,7 +51,7 @@ client.background       #ffffff
 # notifications
 exec mako
 bindsym Control+Space exec makoctl dismiss
-bindsym Shift+Control+Space exec makoctl dismiss --all
+# bindsym Shift+Control+Space exec makoctl dismiss --all
 
 # screenshots
 bindsym Print exec grim -g "$(slurp)" - | wl-copy
@@ -60,10 +62,10 @@ bindsym Shift+Print exec grim -g "$(slurp)" $HOME/$(date +'%Y-%m-%d-%H%M%S_scree
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
-         timeout 300 'swaylock' \
+         timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * dpms off"' \
               resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock'
+        before-sleep 'swaylock -f'
 
 ### Key bindings
 #

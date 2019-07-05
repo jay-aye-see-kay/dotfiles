@@ -10,11 +10,14 @@
 	cob = checkout -b
 	cod = checkout develop
 	com = checkout master
-	d = diff
-	ds = diff --staged
+	df = diff
+	dfs = diff --staged
 	st = status
+	pop = stash pop
 	unstage = reset HEAD --
+	meld = !git difftool -t meld --dir-diff
 [core]
 	excludesfile = /home/jack/.globalgitignore
 [push]
 	default = current
+

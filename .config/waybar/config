@@ -49,7 +49,7 @@
     },
     "temperature": {
         "interval": 10,
-        "critical-threshold": 80,
+        "critical-threshold": 85,
         "format": " {temperatureC:2}°C"
     },
     "backlight": {

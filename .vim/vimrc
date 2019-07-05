@@ -33,6 +33,8 @@ Plug 'zhou13/vim-easyescape'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'gabrielelana/vim-markdown'
 Plug 'mbbill/undotree'
+" expt code exploring (still needs ctags and set up)
+Plug 'majutsushi/tagbar'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
@@ -87,7 +89,7 @@ nnoremap <leader>hh :History<CR>
 nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
-nnoremap <leader>l :BLines<CR> " search lines in current buffer
+nnoremap <leader>l :BLines<CR>
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
@@ -98,9 +100,6 @@ noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
 let g:NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
 
-" NERDTree open when vim is started without cmd line args
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " if the only window open is NERDTree, close it
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -156,12 +155,8 @@ nnoremap <C-l> <C-w>l
 
 " Macros TODO sort, better keybindings maybe?
   " JS/TS: console.log the inner word one line below
-  let @c = "viwyoconsole.log('€ýapa', pa);€ýa"
-
-
-
-
-
+  nnoremap <leader>rp viw"0yoconsole.log('0', 0);
+  vnoremap <leader>rp "0yoconsole.log('0', 0);
 
 
 
@@ -222,6 +217,7 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :vsgd
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -245,7 +241,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format)
 
 augroup mygroup
   autocmd!
