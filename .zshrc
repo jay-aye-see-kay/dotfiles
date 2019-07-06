@@ -3,10 +3,14 @@
 export ZSH="/home/jack/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 DISABLE_AUTO_UPDATE="true"
-ZSH_THEME="fishy"
+ZSH_THEME="robbyrussell"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(fzf z)
+plugins=(
+  fzf
+  vi-mode
+  z
+)
 source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
