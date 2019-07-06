@@ -2,6 +2,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/jack/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="fishy"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
