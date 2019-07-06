@@ -8,7 +8,8 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term termite
+set $term alacritty
+set $alt_term termite
 set $menu 'rofi -show'
 set $browser firefox
 set $private_browser firefox --private-window
@@ -73,6 +74,7 @@ exec swayidle -w \
 #
   # start a terminal
   bindsym $mod+Return exec $term
+  bindsym $mod+Shift+Return exec $alt_term
 
   # kill focused window
   bindsym $mod+Shift+q kill

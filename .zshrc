@@ -1,12 +1,10 @@
+# {{{ core
 # Path to your oh-my-zsh installation.
 export ZSH="/home/jack/.oh-my-zsh"
-
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
+ZSH_THEME="fishy"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(fzf z)
 source $ZSH/oh-my-zsh.sh
 
@@ -19,33 +17,6 @@ export PATH=$PATH:~/bin:~/.local/bin
 # alias pbp='xclip -o -sel clipboard'
 alias pbc='wl-copy'
 alias pbp='wl-paste'
-
-# vim
-export EDITOR=/usr/bin/nvim
-alias v="nvim"
-alias vimwiki="nvim ~/vimwiki/index.md"
-alias zshrc="nvim ~/.zshrc"
-alias vimrc="nvim ~/.vim/vimrc"
-alias swayrc="nvim ~/.config/sway/config"
-
-# python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-export PATH="$PATH:$HOME/.poetry/bin"
-
-# javascript
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH=$PATH:~/.npm_global/bin:~/.yarn/bin
-
-# golang
-GOPATH=$HOME/go/bin
-GOROOT=/usr/lib/go
-export PATH=$GOPATH:$GOROOT/bin:$PATH
 
 # command line basics
 precmd() { print "" }
@@ -60,16 +31,44 @@ function fzf-z {
 zle -N fzf-z
 bindkey '^G' fzf-z
 
-# auto start sway after login on tty1
-if [ "$(tty)" = "/dev/tty1" ]; then
-  export XDG_SESSION_TYPE=wayland
-  # export MOZ_ENABLE_WAYLAND=1
-  export QT_QPA_PLATFORMTHEME="qt5ct"
-  exec sway
+# vim
+export EDITOR=/usr/bin/vim
+alias v="vim"
+alias vimwiki="vim ~/vimwiki/index.md"
+alias zshrc="vim ~/.zshrc"
+alias vimrc="vim ~/.vim/vimrc"
+alias swayrc="vim ~/.config/sway/config"
+# }}} core
+
+# {{{ languages
+# python
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
+export PATH="$PATH:$HOME/.poetry/bin"
+
+# javascript
+export PATH=$PATH:~/.npm_global/bin:~/.yarn/bin
+export NVM_DIR="$HOME/.nvm"
+# stop nvm slowing shell launch by 500ms https://github.com/nvm-sh/nvm/issues/1277#issuecomment-470459658
+nvm() {
+    echo "Lazy loading nvm..."
+    unfunction "$0" # Remove nvm function
+    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # Load nvm
+    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # Load bash_completion
+    $0 "$@" # Call nvm
+}
+
+# golang
+GOPATH=$HOME/go/bin
+GOROOT=/usr/lib/go
+export PATH=$GOPATH:$GOROOT/bin:$PATH
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+# }}} languages
 
 # allows ctrl+shift+t to open new tab same dir, from termite readme
 if [[ $TERM == xterm-termite ]]; then
@@ -100,4 +99,13 @@ fi
 smartresize() {
    mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }
+
+
+# auto start sway after login on tty1
+if [ "$(tty)" = "/dev/tty1" ]; then
+  export XDG_SESSION_TYPE=wayland
+  # export MOZ_ENABLE_WAYLAND=1
+  export QT_QPA_PLATFORMTHEME="qt5ct"
+  exec sway
+fi
 
