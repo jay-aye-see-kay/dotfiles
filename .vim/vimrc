@@ -30,7 +30,7 @@ Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
 " Plug 'w0rp/ale'
 Plug 'zhou13/vim-easyescape'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'gabrielelana/vim-markdown'
 Plug 'mbbill/undotree'
 " expt code exploring (still needs ctags and set up)
@@ -279,7 +279,9 @@ let g:lightline = {
 
 
 
-
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
 " Load all plugins now.
@@ -288,3 +290,4 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+

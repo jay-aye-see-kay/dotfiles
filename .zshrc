@@ -7,8 +7,8 @@ ZSH_THEME="robbyrussell"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
-  fzf
   vi-mode
+  fzf
   z
 )
 source $ZSH/oh-my-zsh.sh
@@ -109,6 +109,7 @@ smartresize() {
 # auto start sway after login on tty1
 if [ "$(tty)" = "/dev/tty1" ]; then
   export XDG_SESSION_TYPE=wayland
+  export _JAVA_AWT_WM_NONREPARENTING=1
   # export MOZ_ENABLE_WAYLAND=1
   export QT_QPA_PLATFORMTHEME="qt5ct"
   exec sway

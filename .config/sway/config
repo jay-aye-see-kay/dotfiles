@@ -8,8 +8,8 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term alacritty
-set $alt_term termite
+set $term termite
+set $alt_term alacritty
 set $menu 'rofi -show'
 set $browser firefox
 set $private_browser firefox --private-window
@@ -19,10 +19,10 @@ output * bg $HOME/Pictures/wallpaper.jpg fill
 # Laptop
 output eDP-1 scale 1.5
 output eDP-1 pos 640 1440 res 2560x1440
-# Home 27"
+# Assume any unknown HDMI will be 27"
 output HDMI-A-1 pos 640 0 res 2560x1440
-# single 24" 16:10
-# output HDMI-A-1 pos 640 240 res 1920x1200 
+# single ArtPro 24" 16:10
+output "Dell Inc. DELL 2407WFP MW79673616US " pos 640 240 res 1920x1200 
 # CC 2x 24"
 output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 0 240 res 1920x1200
 output "Dell Inc. DELL U2412M HC55P2592CAL" pos 1920 240 res 1920x1200
