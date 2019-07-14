@@ -28,13 +28,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vimwiki/vimwiki'
-" Plug 'w0rp/ale'
 Plug 'zhou13/vim-easyescape'
-" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'gabrielelana/vim-markdown'
 Plug 'mbbill/undotree'
-" expt code exploring (still needs ctags and set up)
-Plug 'majutsushi/tagbar'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
@@ -116,7 +112,17 @@ set showmatch
 set incsearch
 set hlsearch
 
-" ideas from https://github.com/thoughtbot/dotfiles
+
+
+" {{{ Custom macros
+" JS/TS: console.log the inner word one line below
+nnoremap <leader>rp viw"0yoconsole.log('0', 0);
+vnoremap <leader>rp "0yoconsole.log('0', 0);
+" }}}
+
+
+
+" {{{ stuff from https://github.com/thoughtbot/dotfiles
 augroup vimrcEx
   autocmd!
 
@@ -152,26 +158,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" Macros TODO sort, better keybindings maybe?
-  " JS/TS: console.log the inner word one line below
-  nnoremap <leader>rp viw"0yoconsole.log('0', 0);
-  vnoremap <leader>rp "0yoconsole.log('0', 0);
+" }}}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-" Code from COC - TODO make lean
+" {{{ Coc config
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -203,9 +194,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -256,39 +244,30 @@ command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
+" }}}
 
 
 
+" {{{ debugging/misc hacks
+" F12 to fix syntax highlighting when needed
+" (https://vim.fandom.com/wiki/Fix_syntax_highlighting)
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-
-
-
-
-
-
-" sytax hl debugging on F10
+" syntax hl debugging on F10
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
 
 
+
+" {{{ I think I need this for plugins to load thier help text
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+" }}}
 
