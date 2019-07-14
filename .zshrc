@@ -36,12 +36,12 @@ zle -N fzf-z
 bindkey '^G' fzf-z
 
 # vim
-export EDITOR=/usr/bin/vim
-alias v="vim"
-alias vimwiki="vim ~/vimwiki/index.md"
-alias zshrc="vim ~/.zshrc"
-alias vimrc="vim ~/.vim/vimrc"
-alias swayrc="vim ~/.config/sway/config"
+export EDITOR=/usr/bin/nvim
+alias v="nvim"
+alias vimwiki="nvim ~/vimwiki/index.md"
+alias zshrc="nvim ~/.zshrc"
+alias vimrc="nvim ~/.vim/vimrc"
+alias swayrc="nvim ~/.config/sway/config"
 # }}} core
 
 # {{{ languages

@@ -71,7 +71,7 @@ augroup CursorLine
 augroup END
 
 " quick edit vimrc
-noremap <leader>v :tabe $MYVIMRC<CR>
+noremap <leader>v :tabe $HOME/.vim/vimrc
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -279,6 +279,7 @@ let g:lightline = {
 
 
 
+" sytax hl debugging on F10
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
