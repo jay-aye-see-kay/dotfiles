@@ -34,6 +34,8 @@ exec redshift
 font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
+# lock firefox title to "Firefox" to stop emojis changing its title bar height
+for_window [app_id="firefox"] title_format Firefox
 
 # gaps
 smart_gaps on

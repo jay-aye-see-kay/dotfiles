@@ -7,7 +7,6 @@ ZSH_THEME="robbyrussell"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
-  vi-mode
   fzf
   z
 )
@@ -115,3 +114,5 @@ if [ "$(tty)" = "/dev/tty1" ]; then
   exec sway
 fi
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
