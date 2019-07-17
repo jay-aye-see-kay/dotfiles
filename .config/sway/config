@@ -23,6 +23,7 @@ output eDP-1 pos 640 1440 res 2560x1440
 output HDMI-A-1 pos 640 0 res 2560x1440
 # single ArtPro 24" 16:10
 output "Dell Inc. DELL 2407WFP MW79673616US " pos 640 240 res 1920x1200 
+output "Unknown BenQ GW2765 T9E08517019" pos 640 360 res 1920x1080
 # CC 2x 24"
 output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 0 240 res 1920x1200
 output "Dell Inc. DELL U2412M HC55P2592CAL" pos 1920 240 res 1920x1200
@@ -35,7 +36,7 @@ font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
 # lock firefox title to "Firefox" to stop emojis changing its title bar height
-for_window [app_id="firefox"] title_format Firefox
+for_window [class="^Firefox$"] title_format Firefox
 
 # gaps
 smart_gaps on
@@ -111,9 +112,9 @@ exec swayidle -w \
   bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) -5% #decrease sound volume
   bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | grep '* index' | cut -d':' -f2) toggle # mute sound
 
-  # caps as control
-  input 1:1:AT_Translated_Set_2_keyboard {
-    xkb_options ctrl:nocaps
+  input "2:7:SynPS/2_Synaptics_TouchPad" {
+    accel_profile adaptive
+    middle_emulation disabled
   }
 #
 # Moving around:
@@ -150,6 +151,10 @@ exec swayidle -w \
   set $ws8 "8"
   set $ws9 "9"
   set $ws10 "10:music "
+
+  #quick back and forth between workspaces
+  workspace_auto_back_and_forth yes
+  bindsym $mod+z workspace back_and_forth
 
   # switch to workspace
   bindsym $mod+1 workspace $ws1

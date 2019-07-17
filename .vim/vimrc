@@ -86,6 +86,7 @@ nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>l :BLines<CR>
+let g:fzf_layout = { 'window': 'enew' }
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
