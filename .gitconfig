@@ -18,6 +18,7 @@
 	meld = !git difftool -t meld --dir-diff
 [core]
 	excludesfile = /home/jack/.globalgitignore
+	pager = diff-so-fancy | less
 [push]
 	default = current
 
