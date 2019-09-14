@@ -17,16 +17,20 @@ set $private_browser firefox --private-window
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
 # Laptop
-output eDP-1 scale 1.5
-output eDP-1 pos 640 1440 res 2560x1440
+output eDP-1 pos 3000 3000 res 2560x1440 scale 1.5
 # Assume any unknown HDMI will be 27"
-output HDMI-A-1 pos 640 0 res 2560x1440
+output HDMI-A-1 pos 2560 1560 res 2560x1440
 # single ArtPro 24" 16:10
-output "Dell Inc. DELL 2407WFP MW79673616US " pos 640 240 res 1920x1200 
-output "Unknown BenQ GW2765 T9E08517019" pos 640 360 res 1920x1080
+output "Dell Inc. DELL 2407WFP MW79673616US " pos 3000 1800 res 1920x1200
+output "Unknown BenQ GW2765 T9E08517019" pos 3000 1920 res 1920x1080
 # CC 2x 24"
-output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 0 240 res 1920x1200
-output "Dell Inc. DELL U2412M HC55P2592CAL" pos 1920 240 res 1920x1200
+output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 2360 1800 res 1920x1200
+output "Dell Inc. DELL U2412M HC55P2592CAL" pos 4280 1800 res 1920x1200
+# CC single 27"
+output "Dell Inc. DELL U2713H C6F0K48S0E6L" pos 3000 1560 res 2560x1440
+
+## CC single 32"
+output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 
 # redshift
 exec redshift
