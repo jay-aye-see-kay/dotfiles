@@ -86,8 +86,8 @@ nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>l :BLines<CR>
-let g:fzf_layout = { 'window': 'enew' }
-
+" let g:fzf_layout = { 'window': 'enew' }
+let $FZF_DEFAULT_OPTS = ""
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " NERDTree open and open on current
@@ -247,7 +247,9 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " }}}
 
-
+" markdown make header
+map <silent> <leader>H= :put=repeat('=', col('$')-1)<cr>
+map <silent> <leader>H- :put=repeat('-', col('$')-1)<cr>
 
 " {{{ debugging/misc hacks
 " F12 to fix syntax highlighting when needed

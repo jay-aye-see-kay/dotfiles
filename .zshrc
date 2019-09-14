@@ -151,3 +151,7 @@ fco_preview() {
   git checkout $(awk '{print $2}' <<<"$target" )
 }
 
+fman() {
+  man -k . | fzf --height 100% --preview-window wrap --preview "echo {} | awk '{print $1}' | xargs -r man" | awk '{print $1}' | xargs -r man
+}
+
