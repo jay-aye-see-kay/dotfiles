@@ -108,17 +108,30 @@ exec swayidle -w \
   bindsym $ctl+$alt+l exec swaylock
 
   # Screen brightness controls
-  bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-  bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+    bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+    bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym $mod+F5 exec brightnessctl set 1%
+    bindsym $mod+F6 exec brightnessctl set 100%
 
   # Pulse Audio controls
-  bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) +5% #increase sound volume
-  bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) -5% #decrease sound volume
-  bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | grep '* index' | cut -d':' -f2) toggle # mute sound
+    #increase sound volume
+    bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) +5%
+    #decrease sound volume
+    bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks | grep '* index' | cut -d':' -f2) -5%
+    # mute sound
+    bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pacmd list-sinks | grep '* index' | cut -d':' -f2) toggle
+    # audio track controls (mod + vol keys)
+    bindsym $mod+F1 exec playerctl play-pause
+    bindsym $mod+F2 exec playerctl previous
+    bindsym $mod+F3 exec playerctl next
 
   input "2:7:SynPS/2_Synaptics_TouchPad" {
     accel_profile adaptive
     middle_emulation disabled
+    dwt enabled
+  }
+  input "1133:45077:M720_Triathlon_Mouse" {
+    accel_profile adaptive
   }
 #
 # Moving around:
