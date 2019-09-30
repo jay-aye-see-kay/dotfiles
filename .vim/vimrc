@@ -122,6 +122,9 @@ vnoremap <leader>rp "0yoconsole.log('0', 0);
 " }}}
 
 
+" disable exmode and commandline search
+map q: <Nop>
+nnoremap Q <nop>
 
 " {{{ stuff from https://github.com/thoughtbot/dotfiles
 augroup vimrcEx
