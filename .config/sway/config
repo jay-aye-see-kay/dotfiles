@@ -240,3 +240,12 @@ bar {
     swaybar_command waybar
 }
 
+# gtk ignoring ~/.config/gtk-3.0/settings.ini workaround
+# see: https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
+    gsettings set $gnome-schema icon-theme 'breeze-dark'
+    gsettings set $gnome-schema cursor-theme 'breeze_cursors'
+}
+
