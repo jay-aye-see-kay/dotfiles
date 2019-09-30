@@ -36,11 +36,12 @@ output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 exec redshift
 
 # titlebar
-font pango:Fira Mono 10
+font pango:"Fira Mono", "Twitter Color Emoji" 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
 # lock firefox title to "Firefox" to stop emojis changing its title bar height
-for_window [class="^Firefox$"] title_format Firefox
+# see: https://github.com/swaywm/sway/issues/3114
+for_window [app_id="firefox"] title_format "Firefox"
 
 # notifications
 exec mako
