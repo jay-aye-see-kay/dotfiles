@@ -36,12 +36,9 @@ output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 exec redshift
 
 # titlebar
-font pango:"Fira Mono", "Twitter Color Emoji" 10
+font pango:Fira Mono, "Twitter Color Emoji" 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
-# lock firefox title to "Firefox" to stop emojis changing its title bar height
-# see: https://github.com/swaywm/sway/issues/3114
-for_window [app_id="firefox"] title_format "Firefox"
 
 # notifications
 exec mako
@@ -246,6 +243,6 @@ set $gnome-schema org.gnome.desktop.interface
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
     gsettings set $gnome-schema icon-theme 'breeze-dark'
-    gsettings set $gnome-schema cursor-theme 'breeze_cursors'
+    gsettings set $gnome-schema cursor-theme 'Adwaita'
 }
 
