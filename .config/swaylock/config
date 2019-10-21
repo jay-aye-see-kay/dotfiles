@@ -1,8 +1,18 @@
-color=999999
-image=$HOME/Pictures/lock.jpg
+ignore-empty-password
 
-indicator-radius=60
-indicator-thickness=14
+clock
+timestr=%R
+datestr=%a, %e of %B
+
+screenshots
+
+effect-blur=30x3
+
+color=999999
+
+indicator
+indicator-caps-lock
+indicator-radius=80
+indicator-thickness=18
 inside-color=00000000
 key-hl-color=111111
-

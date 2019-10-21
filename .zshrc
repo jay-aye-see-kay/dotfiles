@@ -108,10 +108,19 @@ smartresize() {
 
 # auto start sway after login on tty1
 if [ "$(tty)" = "/dev/tty1" ]; then
+  # what a display manager normally sets
   export XDG_SESSION_TYPE=wayland
+
   export _JAVA_AWT_WM_NONREPARENTING=1
   export MOZ_ENABLE_WAYLAND=1
+
+  # all the qt stuff
+  export QT_QPA_PLATFORM=wayland-egl
+  export QT_WAYLAND_FORCE_DPI=physical
+  export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
   export QT_QPA_PLATFORMTHEME="qt5ct"
+  export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
   exec sway
 fi
 
