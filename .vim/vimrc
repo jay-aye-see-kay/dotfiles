@@ -96,6 +96,7 @@ noremap <leader>n :NERDTreeFind<cr>
 noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
 let g:NERDTreeQuitOnOpen = 1
 let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
 
 " if the only window open is NERDTree, close it
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
