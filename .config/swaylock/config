@@ -4,9 +4,7 @@ clock
 timestr=%R
 datestr=%a, %e of %B
 
-screenshots
-
-effect-blur=30x3
+image=$HOME/Pictures/lock.jpg
 
 color=999999
 
