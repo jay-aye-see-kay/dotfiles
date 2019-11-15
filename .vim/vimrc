@@ -27,6 +27,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki'
 Plug 'zhou13/vim-easyescape'
 Plug 'gabrielelana/vim-markdown'
@@ -175,9 +176,6 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
-
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 
@@ -209,7 +207,7 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)zz
 nmap <silent> gD :vsgd
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -235,6 +233,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format)
+" Format doc using eslint
+nmap <leader>e :CocCommand eslint.executeAutofix
 
 augroup mygroup
   autocmd!
