@@ -80,6 +80,7 @@ exec swayidle -w \
   # Resize floating or tiled windows with right mouse button + $mod.
   floating_modifier $mod normal
   focus_follows_mouse no
+  focus_wrapping no
 
   # reload the configuration file
   bindsym $mod+Shift+c reload
