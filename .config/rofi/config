@@ -1,5 +1,5 @@
 rofi.combi-modi:    drun,run,ssh
-rofi.theme:         Pop-Dark
+rofi.theme:         gruvbox-dark-hard
 rofi.font:          Fira Sans 12
 rofi.modi:          combi
 rofi.matching:      fuzzy

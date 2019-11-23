@@ -1,0 +1,7 @@
+background-color=#282828
+border-color=#d65d03
+border-radius=5
+border-size=2
+padding=6,12
+margin=12
+format=<i>%a:</i>\n<b>%s</b>\n%b

@@ -35,10 +35,13 @@ Plug 'mbbill/undotree'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " visual improvements
-colorscheme codedark
+colorscheme gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark = 'hard'
 syntax on
 set number relativenumber
 set nu rnu        " show current line and relative numbers
