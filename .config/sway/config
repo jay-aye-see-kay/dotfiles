@@ -257,14 +257,15 @@ set $red #cc241d
 set $green #98971a
 set $yellow #d79921
 set $blue #458588
+set $lightBlue #458588
 set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 set $white #ffffff
 
-# class                 border   |backgr   |text     |indicator|child_border
-client.focused          $blue     $blue     $darkgray $purple   $blue
-client.focused_inactive $darkgray $darkgray $gray     $purple   $darkgray
-client.unfocused        $darkgray $darkgray $gray     $purple   $darkgray
-client.urgent           $red      $red      $white    $red      $red
+# class                 border   |backgr   |text     |indicator |child_border
+client.focused          $blue     $blue     $darkgray $lightBlue $blue
+client.focused_inactive $darkgray $darkgray $gray     $darkgray  $darkgray
+client.unfocused        $darkgray $darkgray $gray     $darkgray  $darkgray
+client.urgent           $red      $red      $white    $red       $red
