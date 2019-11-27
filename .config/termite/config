@@ -40,6 +40,56 @@ scrollback_lines = 10000
 # "off", "left" or "right"
 #scrollbar = off
 
+[colors]
+# If both of these are unset, cursor falls back to the foreground color,
+# and cursor_foreground falls back to the background color.
+#cursor = #dcdccc
+#cursor_foreground = #dcdccc
+
+# If unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# default.dark from https://terminal.sexy
+# special
+foreground      = #d7d0c7
+foreground_bold = #d7d0c7
+cursor          = #d7d0c7
+# background      = #151515
+background      = rgba(21, 21, 21, 0.9)
+
+# black
+color0  = #101010
+color8  = #404040
+
+# red
+color1  = #e84f4f
+color9  = #d23d3d
+
+# green
+color2  = #b8d68c
+color10 = #a0cf5d
+
+# yellow
+color3  = #e1aa5d
+color11 = #f39d21
+
+# blue
+color4  = #7dc1cf
+color12 = #4e9fb1
+
+# magenta
+color5  = #9b64fb
+color13 = #8542ff
+
+# cyan
+color6  = #6d878d
+color14 = #42717b
+
+# white
+color7  = #dddddd
+color15 = #dddddd
+
+
 [hints]
 #font = Monospace 12
 #foreground = #dcdccc
@@ -50,45 +100,5 @@ scrollback_lines = 10000
 #border = #3f3f3f
 #border_width = 0.5
 #roundness = 2.0
-
-[colors]
-
-# special
-foreground      = #f8f8f2
-foreground_bold = #f8f8f2
-cursor          = #f8f8f2
-background      = rgba(40, 42, 54, 0.9)
-
-# black
-color0  = #000000
-color8  = #4d4d4d
-
-# red
-color1  = #ff5555
-color9  = #ff6e67
-
-# green
-color2  = #50fa7b
-color10 = #5af78e
-
-# yellow
-color3  = #f1fa8c
-color11 = #f4f99d
-
-# blue
-color4  = #bd93f9
-color12 = #caa9fa
-
-# magenta
-color5  = #ff79c6
-color13 = #ff92d0
-
-# cyan
-color6  = #8be9fd
-color14 = #9aedfe
-
-# white
-color7  = #bfbfbf
-color15 = #e6e6e6
 
 # vim: ft=dosini cms=#%s
