@@ -125,8 +125,14 @@ set hlsearch
 " JS/TS: console.log the inner word one line below
 nnoremap <leader>rp viw"0yoconsole.log('0', 0);
 vnoremap <leader>rp "0yoconsole.log('0', 0);
-" }}}
 
+" Copy filepath to vim clipboard (Path Vim)
+nnoremap <leader>pv :let @" = expand("%")
+" Copy filepath to system clipboard (Path Clipboard)
+nnoremap <leader>pc :let @+ = expand("%")
+" Copy word under cusor to system clipboard (Clipboard)
+nnoremap <leader>wc "+yiw
+" }}}
 
 " disable exmode and commandline search
 map q: <Nop>
