@@ -9,12 +9,10 @@
     "modules-right": [
       "idle_inhibitor",
       "pulseaudio",
-      "backlight",
       "network",
       "cpu",
       "temperature",
       "memory",
-      "custom/storage",
       "battery",
       "clock",
       "tray"
