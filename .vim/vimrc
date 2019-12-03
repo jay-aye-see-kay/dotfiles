@@ -42,9 +42,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " visual improvements
-colorscheme dracula
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark = 'hard'
+colorscheme codedark
 syntax on
 set number relativenumber
 set nu rnu        " show current line and relative numbers
