@@ -39,6 +39,8 @@ bindkey '^G' fzf-z
 # vim
 export EDITOR=/usr/bin/nvim
 alias v="nvim"
+alias r="ranger"
+alias g="git"
 alias vimwiki="nvim ~/vimwiki/index.md"
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.vim/vimrc"

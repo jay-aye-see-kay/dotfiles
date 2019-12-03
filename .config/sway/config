@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term termite
+set $term kitty
 set $alt_term alacritty
 set $menu 'rofi -show'
 set $browser firefox
