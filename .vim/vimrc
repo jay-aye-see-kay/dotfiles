@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/goyo.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -30,15 +29,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-speeddating'
-Plug 'vimwiki/vimwiki'
 Plug 'zhou13/vim-easyescape'
-Plug 'gabrielelana/vim-markdown'
 Plug 'mbbill/undotree'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
-Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " visual improvements
@@ -50,6 +45,7 @@ set showcmd       " display incomplete commands
 set laststatus=2  " Always display the status line
 set title
 set termguicolors
+set linebreak
 
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -123,8 +119,11 @@ set hlsearch
 
 " {{{ Custom macros
 " JS/TS: console.log the inner word one line below
-nnoremap <leader>rp viw"0yoconsole.log('0', 0);
-vnoremap <leader>rp "0yoconsole.log('0', 0);
+autocmd FileType javascript,typescript,typescriptreact nnoremap <leader>rp viw"0yoconsole.log('0', 0);
+autocmd FileType javascript,typescript,typescriptreact vnoremap <leader>rp "0yoconsole.log('0', 0);
+" Python print next line
+autocmd FileType python nnoremap <leader>rp viw"0yoprint('0', 0)
+autocmd FileType python vnoremap <leader>rp "0yoprint('0', 0)
 
 " Copy filepath to vim clipboard (Path Vim)
 nnoremap <leader>pv :let @" = expand("%")
