@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term kitty
+set $term termite
 set $alt_term alacritty
 set $menu 'rofi -show'
 set $browser firefox
@@ -28,6 +28,8 @@ output "Dell Inc. DELL U2412M HC55P1CL2C0L" pos 2360 1800 res 1920x1200
 output "Dell Inc. DELL U2412M HC55P2592CAL" pos 4280 1800 res 1920x1200
 # CC single 27"
 output "Dell Inc. DELL U2713H C6F0K48S0E6L" pos 3000 1560 res 2560x1440
+# CC 24" 16:10
+output "Dell Inc. DELL U2415 5K39C55B1N5L" pos 3000 1800 res 1920x1200
 
 ## CC single 32"
 output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
@@ -44,6 +46,9 @@ titlebar_padding 6 2
 exec mako
 bindsym Control+Space exec makoctl dismiss
 # bindsym Shift+Control+Space exec makoctl dismiss --all
+
+# automount usb drives
+exec udiskie
 
 # screenshots
 bindsym Print exec grim -g "$(slurp)" - | wl-copy

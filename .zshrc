@@ -45,6 +45,7 @@ alias vimwiki="nvim ~/vimwiki/index.md"
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.vim/vimrc"
 alias swayrc="nvim ~/.config/sway/config"
+alias kittyrc="nvim ~/.config/kitty/kitty.conf"
 # }}} core
 
 # {{{ languages
