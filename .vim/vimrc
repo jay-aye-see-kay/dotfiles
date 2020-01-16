@@ -79,7 +79,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" fzf
+" {{{ fzf
 nnoremap <leader>b :Buffer<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>hh :History<CR>
@@ -87,9 +87,31 @@ nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>l :BLines<CR>
-" let g:fzf_layout = { 'window': 'enew' }
-let $FZF_DEFAULT_OPTS = ""
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+let $FZF_DEFAULT_OPTS = "--layout=reverse"
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" fzf in floating window https://github.com/junegunn/fzf.vim/issues/664
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let height = float2nr(&lines - (&lines * 2 / 10))
+  let x = float2nr((&columns - width) / 2)
+  let y = float2nr((&lines - height) / 2)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': y,
+        \ 'col': x,
+        \ 'width': width,
+        \ 'height': height,
+        \ 'style': 'minimal'
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+" }}} fzf
 
 " NERDTree open and open on current
 noremap <leader><leader> :NERDTreeToggle<CR>
