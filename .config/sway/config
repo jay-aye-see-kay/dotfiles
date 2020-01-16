@@ -10,9 +10,11 @@ set $right l
 # Preferred apps
 set $term termite
 set $alt_term alacritty
-set $menu 'rofi -show'
 set $browser firefox
 set $private_browser firefox --private-window
+# menu
+for_window [app_id="termite-floating"] floating enable, border pixel 4, sticky enable
+set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
 
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
@@ -34,8 +36,22 @@ output "Dell Inc. DELL U2415 5K39C55B1N5L" pos 3000 1800 res 1920x1200
 ## CC single 32"
 output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 
+## Home 4k 28"
+output "Samsung Electric Company U28E590 H4ZMC00588" pos 2560 1560 res 3840x2160 scale 1.5
+
+# firefox picture in picture
+for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable
+
 # redshift
 exec redshift
+
+# clipboard history set up see: https://github.com/yory8/clipman
+exec wl-paste -t text --watch clipman store -P --max-items=100
+bindsym $mod+quotedbl exec clipman pick --max-items=30
+# bindsym $mod+quotedbl exec kitty -e "${HOME}/bin/clipboard.sh"
+#
+# vim scratchpad TODO why does this open a new, empty file????
+bindsym $mod+Shift+s exec termite --name=termite-floating -e "vim ~/scratch.md"
 
 # titlebar
 font pango:Fira Mono, "Twitter Color Emoji" 10
