@@ -1,58 +1,60 @@
 general {
         output_format = "i3bar"
         colors = true
-        interval = 5
+        interval = 1
 }
 
-order += "disk /"
-order += "run_watch DHCP"
+order += "run_watch idle_inhibit"
 order += "wireless wlp2s0"
-order += "ethernet eth0"
 order += "load"
+order += "memory"
 order += "battery 0"
 order += "volume master"
 order += "tztime local"
 
 wireless wlp2s0 {
-        format_up = "W: (%quality essid, %bitrate) %ip"
-        format_down = "W: down"
-}
-
-ethernet eth0 {
-        # if you use %speed, i3status requires the cap_net_admin capability
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        color_good = "FFFFFF"
+        format_up = " (%quality %essid )"
+        format_down = " down"
 }
 
 battery 0 {
-        format = "%status %percentage %remaining %emptytime"
+        format = "%status %percentage"
         format_down = "No battery"
-        status_chr = "⚡ CHR"
-        status_bat = "🔋 BAT"
-        status_unk = "? UNK"
-        status_full = "☻ FULL"
+        status_chr = "⚡"
+        status_bat = ""
+        status_unk = ""
+        status_full = ""
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
 }
 
-run_watch DHCP {
-        pidfile = "/var/run/dhclient*.pid"
-}
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%Y-%m-%d %H:%M"
 }
 
 load {
-        format = "Load: %5min"
+        format = " %5min"
 }
 
-disk "/" {
-        format = "%free"
+memory {
+        format = " %used"
+        memory_used_method = "classical"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = " %volume"
+        format_muted = " %volume"
         device = "pulse"
+}
+
+run_watch idle_inhibit {
+        pidfile = "/tmp/swayidle.pid"
+        format = ""
+        color_good = "333333"
+        format_down = ""
+        color_bad = "FFFFFF"
 }

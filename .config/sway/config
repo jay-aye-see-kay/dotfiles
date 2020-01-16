@@ -58,11 +58,9 @@ bindsym Shift+Print exec grim -g "$(slurp)" $HOME/$(date +'%Y-%m-%d-%H%M%S_scree
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle -w \
-         timeout 300 'swaylock -f' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock -f'
+exec ./$HOME/.config/sway/scripts/swayidle.sh
+bindsym $mod+Shift+i exec ~/.config/sway/scripts/swayidle.sh
+bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
 ### Key bindings
 #
@@ -239,22 +237,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-bar {
-    swaybar_command waybar
-}
-
-# gtk ignoring ~/.config/gtk-3.0/settings.ini workaround
-# see: https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
-set $gnome-schema org.gnome.desktop.interface
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'Breeze'
-    gsettings set $gnome-schema icon-theme 'breeze'
-    gsettings set $gnome-schema cursor-theme 'Adwaita'
-}
-
+# https://github.com/swaywm/sway/wiki#after-unplugging-an-external-display-some-applications-appear-too-large-on-my-hidpi-screen
+exec xrdb -load ~/.Xresources
 
 # Theme/colors (gruvbox)
 set $bg #282828
@@ -274,3 +258,23 @@ client.focused          $blue     $blue     $darkgray $lightBlue $blue
 client.focused_inactive $darkgray $darkgray $gray     $darkgray  $darkgray
 client.unfocused        $darkgray $darkgray $gray     $darkgray  $darkgray
 client.urgent           $red      $red      $white    $red       $red
+
+#
+# Status Bar:
+#
+bar {
+    font pango:Fira Mono 10
+    status_command i3status
+    separator_symbol "--"
+    tray_padding 0
+    height 0
+    colors {
+        separator $blue
+        background $darkgray
+        focused_workspace $blue $blue $white
+        active_workspace $bg $bg $white
+        inactive_workspace $bg $bg $gray
+        urgent_workspace $red $red $white
+    }
+}
+
