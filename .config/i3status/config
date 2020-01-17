@@ -14,7 +14,8 @@ order += "tztime local"
 
 wireless wlp2s0 {
         color_good = "FFFFFF"
-        format_up = " (%quality %essid )"
+        color_degraded = "FFFFFF"
+        format_up = " (%essid %quality)"
         format_down = " down"
 }
 
@@ -27,6 +28,8 @@ battery 0 {
         status_full = ""
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+        last_full_capacity = true
+        integer_battery_capacity = true
 }
 
 

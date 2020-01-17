@@ -281,7 +281,7 @@ client.urgent           $red      $red      $white    $red       $red
 bar {
     font pango:Fira Mono 10
     status_command i3status
-    separator_symbol "--"
+    separator_symbol "──"
     tray_padding 0
     height 0
     colors {
