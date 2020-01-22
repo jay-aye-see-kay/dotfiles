@@ -54,7 +54,7 @@ bindsym $mod+quotedbl exec clipman pick --max-items=30
 bindsym $mod+Shift+s exec termite --name=termite-floating -e "vim ~/scratch.md"
 
 # titlebar
-font pango:Fira Mono, "Twitter Color Emoji" 10
+font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
 
@@ -223,8 +223,10 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
     bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
-    # Make the current focus fullscreen
+    # Make the current focus fullscreen (no sleeping when fullscreen)
     bindsym $mod+f fullscreen
+    for_window [class="^.*"] inhibit_idle fullscreen
+    for_window [app_id="^.*"] inhibit_idle fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
