@@ -1,0 +1,31 @@
+# React class
+snippet rcla
+class ${1:MyComponent} extends React.Component {
+	render = () => {
+		return (
+			${0:<div></div>}
+		)
+	}
+}
+endsnippet
+
+# React function component
+snippet rfc
+const ${1:MyComponent}: React.FC<${2:Props}> = (${3:{}}) => {
+	return (
+		${0:<div></div>}
+	);
+};
+endsnippet
+
+# React useState (that regex uppercases the first char)
+snippet rus
+const [${1:foo}, set${1/\w+\s*/\u$0/}] = React.useState(${2});
+endsnippet
+
+# React useEffect
+snippet rue
+React.useEffect(() => {
+	${0}
+}, []);
+endsnippet

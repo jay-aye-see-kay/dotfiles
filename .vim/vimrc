@@ -31,6 +31,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-speeddating'
 Plug 'zhou13/vim-easyescape'
 Plug 'mbbill/undotree'
+Plug 'SirVer/ultisnips'
 
 " colorschemes
 Plug 'tomasiser/vim-code-dark'
