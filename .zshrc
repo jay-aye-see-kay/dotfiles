@@ -4,6 +4,8 @@ export ZSH="/home/jack/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="robbyrussell"
+HISTSIZE=10000000
+SAVEHIST=10000000
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
@@ -56,6 +58,9 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 export PATH="$PATH:$HOME/.poetry/bin"
+
+# ruby
+PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # javascript
 export PATH=$PATH:~/.npm_global/bin:~/.yarn/bin
@@ -158,7 +163,7 @@ fco_preview() {
 }
 
 fman() {
-  man -k . | fzf --height 100% --preview-window wrap --preview "echo {} | awk '{print $1}' | xargs -r man" | awk '{print $1}' | xargs -r man
+  man -k . | fzf --height 100% --preview-window=right:66%:wrap --preview "echo {} | awk '{print $1}' | xargs -r man" | awk '{print $1}' | xargs -r man
 }
 
 # make fzf history search unique by overriding this function and changing line 4
