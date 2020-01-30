@@ -15,12 +15,12 @@ order += "tztime local"
 wireless wlp2s0 {
         color_good = "FFFFFF"
         color_degraded = "FFFFFF"
-        format_up = " (%essid %quality)"
-        format_down = " down"
+        format_up = "直 (%essid %quality)"
+        format_down = "睊down"
 }
 
 battery 0 {
-        format = "%status %percentage"
+        format = "%status %percentage"
         format_down = "No battery"
         status_chr = "⚡"
         status_bat = ""
