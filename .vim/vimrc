@@ -30,6 +30,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-speeddating'
 Plug 'zhou13/vim-easyescape'
+Plug 'liuchengxu/vista.vim'
 Plug 'mbbill/undotree'
 Plug 'SirVer/ultisnips'
 
@@ -113,6 +114,10 @@ function! FloatingFZF()
 endfunction
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 " }}} fzf
+"
+" Vista tree explorer
+let g:vista_default_executive = 'coc'
+nnoremap <leader>t :Vista!!<CR>
 
 " NERDTree open and open on current
 noremap <leader><leader> :NERDTreeToggle<CR>
