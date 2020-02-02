@@ -69,15 +69,8 @@ PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 
 # javascript
 export PATH=$PATH:~/.npm_global/bin:~/.yarn/bin
-export NVM_DIR="$HOME/.nvm"
-# stop nvm slowing shell launch by 500ms https://github.com/nvm-sh/nvm/issues/1277#issuecomment-470459658
-nvm() {
-    echo "Lazy loading nvm..."
-    unfunction "$0" # Remove nvm function
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # Load nvm
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # Load bash_completion
-    $0 "$@" # Call nvm
-}
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
 
 # golang
 GOPATH=$HOME/go/bin
