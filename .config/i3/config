@@ -1,4 +1,21 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
+### Variables
+set $alt Mod1
+set $ctl Control
+set $mod Mod4
+# Home row direction keys
+set $left h
+set $down j
+set $up k
+set $right l
+# Preferred apps
+set $term termite
+set $alt_term alacritty
+set $menu 'rofi -show'
+set $browser firefox
+set $private_browser firefox --private-window
+
+
 
 set $mod Mod4
 
@@ -31,21 +48,10 @@ set $lock "~/.config/i3/lock.sh"
 exec --no-startup-id xautolock -time 10 -locker $lock
 bindsym Mod1+Control+l exec $lock
 
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
 # split in horizontal or vertical orientation
 bindsym $mod+Shift+v split h
 bindsym $mod+v split v
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -61,6 +67,26 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+  # Move your focus around
+  bindsym $mod+$left focus left
+  bindsym $mod+$down focus down
+  bindsym $mod+$up focus up
+  bindsym $mod+$right focus right
+  bindsym $mod+Left focus left
+  bindsym $mod+Down focus down
+  bindsym $mod+Up focus up
+  bindsym $mod+Right focus right
+
+  # _move_ the focused window with the same, but add Shift
+  bindsym $mod+Shift+$left move left
+  bindsym $mod+Shift+$down move down
+  bindsym $mod+Shift+$up move up
+  bindsym $mod+Shift+$right move right
+  bindsym $mod+Shift+Left move left
+  bindsym $mod+Shift+Down move down
+  bindsym $mod+Shift+Up move up
+  bindsym $mod+Shift+Right move right
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -102,11 +128,14 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # move workspace between screens
-bindsym $mod+Up move workspace to output up
-bindsym $mod+Right move workspace to output right
-bindsym $mod+Down move workspace to output down
-bindsym $mod+Left move workspace to output left
-bindsym $mod+c move workspace to output current
+bindsym $mod+Control+Shift+$up move workspace to output up
+bindsym $mod+Control+Shift+$right move workspace to output right
+bindsym $mod+Control+Shift+$down move workspace to output down
+bindsym $mod+Control+Shift+$left move workspace to output left
+bindsym $mod+Control+Shift+Up move workspace to output up
+bindsym $mod+Control+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+Down move workspace to output down
+bindsym $mod+Control+Shift+Left move workspace to output left
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
