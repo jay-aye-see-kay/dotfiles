@@ -23,7 +23,7 @@ for_window [instance="termite-floating"] floating enable, border pixel 4, sticky
 set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
 
 # Font for window titles. Will also be used by the bar unless a different font
-font pango:Fira Sans 10
+font pango:Fira Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

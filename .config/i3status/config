@@ -42,22 +42,22 @@ load {
 }
 
 memory {
-        format = " %used"
+        format = " %used"
         memory_used_method = "classical"
         threshold_degraded = "10%"
         format_degraded = "MEMORY: %free"
 }
 
 volume master {
-        format = " %volume"
-        format_muted = " %volume"
+        format = " %volume"
+        format_muted = "婢 %volume"
         device = "pulse"
 }
 
 run_watch idle_inhibit {
         pidfile = "/tmp/swayidle.pid"
-        format = ""
+        format = ""
         color_good = "333333"
-        format_down = ""
+        format_down = ""
         color_bad = "FFFFFF"
 }
