@@ -52,6 +52,7 @@ alias vimwiki="nvim ~/vimwiki/index.md"
 alias zshrc="nvim ~/.zshrc"
 alias vimrc="nvim ~/.vim/vimrc"
 alias swayrc="nvim ~/.config/sway/config"
+alias i3rc="nvim ~/.config/i3/config"
 alias kittyrc="nvim ~/.config/kitty/kitty.conf"
 # }}} core
 

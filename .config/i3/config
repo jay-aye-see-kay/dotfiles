@@ -16,10 +16,11 @@ set $private_browser firefox --private-window
 
 set $mod Mod4
 
-# menu
-# for_window [app_id="termite-floating"] floating enable, border pixel 4, sticky enable
-set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
+exec picom
 
+# menu
+for_window [instance="termite-floating"] floating enable, border pixel 4, sticky enable
+set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
 
 # Font for window titles. Will also be used by the bar unless a different font
 font pango:Fira Sans 10
@@ -200,6 +201,7 @@ for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
 # there must be a better way of doing this... maybe I have to bail on plasma for notifications
-for_window [class="plasmashell" window_type="notification"] sticky enable, floating enable, border none, move position 3300px 40px, no_focus
+# for_window [class="plasmashell" window_type="notification"] sticky enable, floating enable, border none, move position 3300px 40px, no_focus
+for_window [class="plasmashell" window_type="notification"] floating enable
 
 for_window [title="Desktop — Plasma"] kill;
