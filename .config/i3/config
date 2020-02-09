@@ -11,13 +11,15 @@ set $right l
 # Preferred apps
 set $term termite
 set $alt_term alacritty
-set $menu 'rofi -show'
 set $browser firefox
 set $private_browser firefox --private-window
 
-
-
 set $mod Mod4
+
+# menu
+# for_window [app_id="termite-floating"] floating enable, border pixel 4, sticky enable
+set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 font pango:Fira Sans 10
@@ -27,7 +29,7 @@ floating_modifier $mod
 focus_follows_mouse no
 
 # start a terminal or browser
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec $term
 bindsym $mod+b exec firefox
 
 # kill focused window
@@ -37,11 +39,12 @@ bindsym Ctrl+q nop nop
 # reload, restart, logout
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "qdbus org.kde.ksmserver /KSMServer logout 0 0 0"
+# using plasma's logout screen instead of i3's
+bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-bindsym Mod1+space exec dmenu_run
+bindsym $mod+d exec $menu
+bindsym Mod1+space exec $menu
 
 # lock screen
 set $lock "~/.config/i3/lock.sh"
@@ -174,41 +177,29 @@ exec xmodmap ~/.Xmodmap
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        position top
-        status_command i3status
+    status_command i3status
 }
 
 # Screenshots
 bindsym Print --release exec "scrot -s ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Shift+Print exec "scrot ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
-#---( focus related )---)
-
-focus_follows_mouse no
-
-no_focus [class="plasmashell"]
-no_focus [window_role="pop-up"]
-no_focus [window_type="notification"]
-
-focus_on_window_activation none
-
-
-
-
-#---( windows rules )---#
-
-# Float by name
-for_window [title="Nitrogen"] floating enable
-for_window [title="Install user style"] floating enable
-for_window [title="KCalc"] floating enable
-for_window [class="plasmashell"] floating enable
-
-
-# Float by type
+# Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
 
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+# there must be a better way of doing this... maybe I have to bail on plasma for notifications
+for_window [class="plasmashell" window_type="notification"] sticky enable, floating enable, border none, move position 3300px 40px, no_focus
 
 for_window [title="Desktop — Plasma"] kill;
