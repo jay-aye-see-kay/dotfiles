@@ -125,6 +125,9 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
     bindsym $mod+F1 exec playerctl play-pause
     bindsym $mod+F2 exec playerctl previous
     bindsym $mod+F3 exec playerctl next
+    # audio track controls (headphones)
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioPause exec playerctl play-pause
 
   input "2:7:SynPS/2_Synaptics_TouchPad" {
     accel_profile adaptive
