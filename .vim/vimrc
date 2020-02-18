@@ -91,6 +91,7 @@ nnoremap <leader>z :FZF<CR>
 nnoremap <leader>g :GFiles<CR>
 nnoremap <leader>a :Ag<CR>
 nnoremap <leader>l :BLines<CR>
+nnoremap <leader>c :Commands<CR>
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
 " let g:fzf_history_dir = '~/.local/share/fzf-history'
 
