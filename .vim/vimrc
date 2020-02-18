@@ -36,11 +36,12 @@ Plug 'mbbill/undotree'
 Plug 'SirVer/ultisnips'
 
 " colorschemes
-Plug 'tomasiser/vim-code-dark'
+Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
 
 " visual improvements
-colorscheme codedark
+set background=dark
+colorscheme hybrid_material
 syntax on
 set number relativenumber
 set nu rnu        " show current line and relative numbers
