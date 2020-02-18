@@ -42,6 +42,10 @@ output "Samsung Electric Company U28E590 H4ZMC00588" pos 2560 1560 res 3840x2160
 # firefox picture in picture
 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable
 
+# loading pages
+for_window [instance="postman" window_role="^browser-window$"] floating enable
+for_window [app_id="java" title="^DBeaver $"] floating enable
+
 # vim scratchpad TODO why does this open a new, empty file????
 bindsym $mod+Shift+s exec termite --name=termite-floating -e "vim ~/scratch.md"
 
@@ -87,7 +91,6 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
   # start your launcher
   bindsym $mod+d exec $menu
   bindsym Mod1+Space exec $menu
-  bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
 
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize floating or tiled windows with right mouse button + $mod.
