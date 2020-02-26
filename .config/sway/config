@@ -134,6 +134,9 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
     middle_emulation disabled
     dwt enabled
   }
+  input "TPPS/2 Elan TrackPoint" {
+    accel_profile adaptive
+  }
   input "1133:45077:M720_Triathlon_Mouse" {
     accel_profile adaptive
   }
