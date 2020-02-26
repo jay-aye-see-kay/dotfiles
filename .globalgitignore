@@ -3,4 +3,5 @@
 *.swn
 tags
 .node-version
+.python-version
 
