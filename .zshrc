@@ -17,6 +17,7 @@ SAVEHIST=10000000
 plugins=(
   fzf
   z
+  poetry
 )
 source $ZSH/oh-my-zsh.sh
 
