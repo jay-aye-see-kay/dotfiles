@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -40,6 +41,9 @@ colorscheme hybrid_material
 set termguicolors
 let g:is_posix = 1 " shell for syntax highlighting purposes.
 
+" git
+set signcolumn=yes
+g:gitgutter_map_keys = 0
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 if has("persistent_undo")
