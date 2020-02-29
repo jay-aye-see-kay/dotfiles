@@ -1,5 +1,7 @@
 {
   "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "python.poetryPath": ".poetry/bin/poetry",
   "languageserver": {
     "elmLS": {
       "command": "elm-language-server",
