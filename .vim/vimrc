@@ -33,6 +33,9 @@ Plug 'mbbill/undotree'
 Plug 'SirVer/ultisnips'
 Plug 'dense-analysis/ale'
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'fszymanski/deoplete-emoji'
+
 " theme + color
 Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
@@ -43,7 +46,8 @@ let g:is_posix = 1 " shell for syntax highlighting purposes.
 
 " git
 set signcolumn=yes
-g:gitgutter_map_keys = 0
+let g:gitgutter_map_keys = 0
+
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 if has("persistent_undo")
@@ -206,3 +210,12 @@ nmap <leader>ll :ALELint<CR>
 nmap <leader>lc :ALEReset<CR>
 nmap <leader>le :ALEEnable<CR>
 nmap <leader>ld :ALEDisable<CR>
+
+" completions
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('sources', {
+\ '_': ['ale', 'emoji'],
+\})
+call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
+call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+
