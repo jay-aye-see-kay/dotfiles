@@ -18,6 +18,7 @@ set $mod Mod4
 
 # exec --no-startup-id picom
 exec --no-startup-id dunst
+exec --no-startup-id nextcloud
 
 # menu
 for_window [instance="termite-floating"] floating enable, border pixel 4, sticky enable
