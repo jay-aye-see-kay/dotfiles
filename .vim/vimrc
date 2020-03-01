@@ -5,6 +5,7 @@ set title
 set number relativenumber
 set showmatch
 set hlsearch
+set linebreak " don't break words when wrapping
 
 " enable plugins
 filetype plugin on
@@ -199,6 +200,7 @@ let g:ale_fixers = {
 \  'javascriptreact': ['eslint'],
 \  'typescript': ['eslint'],
 \  'typescriptreact': ['eslint'],
+\  'markdown': ['prettier'],
 \}
 let g:ale_set_balloons = 1 " use balloons for ALEHover
 let g:ale_lint_on_insert_leave = 1
