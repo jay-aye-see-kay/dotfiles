@@ -189,11 +189,16 @@ packloadall
 silent! helptags ALL
 
 " ALE
+let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
 \  'python': ['pyls'],
 \}
 let g:ale_fixers = {
 \  'python': ['isort', 'black', 'pyls'],
+\  'javascript': ['eslint'],
+\  'javascriptreact': ['eslint'],
+\  'typescript': ['eslint'],
+\  'typescriptreact': ['eslint'],
 \}
 let g:ale_set_balloons = 1 " use balloons for ALEHover
 let g:ale_lint_on_insert_leave = 1
@@ -207,6 +212,7 @@ nmap <leader>lr :ALEFindReferences<CR>
 nmap <leader>ln :ALERename<CR>
 nmap <leader>ls :ALESymbolSearch<CR>
 nmap <leader>ll :ALELint<CR>
+nmap <leader>lf :ALEFix<CR>
 nmap <leader>lc :ALEReset<CR>
 nmap <leader>le :ALEEnable<CR>
 nmap <leader>ld :ALEDisable<CR>
@@ -214,7 +220,7 @@ nmap <leader>ld :ALEDisable<CR>
 " completions
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('sources', {
-\ '_': ['ale', 'emoji'],
+\ '_': ['ale', 'emoji', 'ultisnips'],
 \})
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
