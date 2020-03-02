@@ -6,6 +6,7 @@ set number relativenumber
 set showmatch
 set hlsearch
 set linebreak " don't break words when wrapping
+set hidden " leave buffers without abandoning
 
 " enable plugins
 filetype plugin on
@@ -126,21 +127,23 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-" {{{ Custom macros
-" JS/TS: console.log the inner word one line below
-autocmd FileType javascript,typescript,typescriptreact nnoremap <leader>rp viw"0yoconsole.log('0', 0);
-autocmd FileType javascript,typescript,typescriptreact vnoremap <leader>rp "0yoconsole.log('0', 0);
-" Python print next line
-autocmd FileType python nnoremap <leader>rp viw"0yoprint('0', 0)
-autocmd FileType python vnoremap <leader>rp "0yoprint('0', 0)
+augroup customMacros
+  autocmd!
+  " JS/TS: console.log the inner word one line below
+  autocmd FileType javascript,typescript,typescriptreact nnoremap <leader>rp viw"0yoconsole.log('0', 0);
+  autocmd FileType javascript,typescript,typescriptreact vnoremap <leader>rp "0yoconsole.log('0', 0);
+  " Python print next line
+  autocmd FileType python nnoremap <leader>rp viw"0yoprint('0', 0)
+  autocmd FileType python vnoremap <leader>rp "0yoprint('0', 0)
+augroup END
 
+" TODO new shortcut style (prob namespace under c for clipboard)
 " Copy filepath to vim clipboard (Path Vim)
 nnoremap <leader>pv :let @" = expand("%")
 " Copy filepath to system clipboard (Path Clipboard)
 nnoremap <leader>pc :let @+ = expand("%")
 " Copy word under cusor to system clipboard (Clipboard)
 nnoremap <leader>wc "+yiw
-" }}}
 
 " disable exmode and commandline search
 map q: <Nop>
@@ -185,10 +188,6 @@ nnoremap <C-l> <C-w>l
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-" Load all plugins and helptags
-packloadall
-silent! helptags ALL
-
 " ALE
 let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
@@ -202,7 +201,6 @@ let g:ale_fixers = {
 \  'typescriptreact': ['eslint'],
 \  'markdown': ['prettier'],
 \}
-let g:ale_set_balloons = 1 " use balloons for ALEHover
 let g:ale_lint_on_insert_leave = 1
 
 nmap <leader>lg :ALEGoToDefinition<CR>
@@ -221,9 +219,15 @@ nmap <leader>ld :ALEDisable<CR>
 
 " completions
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('sources', {
-\ '_': ['ale', 'emoji', 'ultisnips'],
+\ '_': ['ale', 'buffer', 'ultisnips', 'emoji'],
 \})
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
+" TODO git keybinds
+
+" Load all plugins and helptags
+packloadall
+silent! helptags ALL
