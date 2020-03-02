@@ -52,6 +52,15 @@ let g:is_posix = 1 " shell for syntax highlighting purposes.
 " git
 set signcolumn=yes
 let g:gitgutter_map_keys = 0
+nnoremap <leader>gd :Gvdiffsplit!<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gl :Gclog<CR>
+nnoremap <leader>gb :Gblame<CR>
+
+" fuzzy git
+nnoremap <leader>gfl :Commits<CR>
+nnoremap <leader>gfc :BCommits<CR>
 
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -73,7 +82,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
-" {{{ fzf
+" {{{ fzf TODO colorscheme
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
 nnoremap <leader>fz :FZF<CR>
@@ -217,8 +226,6 @@ call deoplete#custom#option('sources', {
 \})
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
-
-" TODO git keybinds
 
 " Load all plugins and helptags
 packloadall
