@@ -41,8 +41,7 @@ Plug 'fszymanski/deoplete-emoji'
 " theme + color
 Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
-set background=dark
-colorscheme hybrid_material
+colorscheme hybrid_reverse
 set termguicolors
 let g:is_posix = 1 " shell for syntax highlighting purposes.
 
