@@ -1,4 +1,4 @@
-" core setup
+" core
 set mouse=a
 let mapleader= " "
 set title
@@ -7,6 +7,10 @@ set showmatch
 set hlsearch
 set linebreak " don't break words when wrapping
 set hidden " leave buffers without abandoning
+set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+set nojoinspaces " Use one space, not two, after punctuation.
+set splitbelow " matches i3 behaviour
+set splitright " matches i3 behaviour
 
 " enable plugins
 filetype plugin on
@@ -163,17 +167,6 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 augroup END
-" When the type of shell script is /bin/sh, assume a POSIX-compatible
-"
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
