@@ -38,7 +38,7 @@ Plug 'tpope/vim-sensible'
 Plug 'mbbill/undotree'
 Plug 'SirVer/ultisnips'
 Plug 'dense-analysis/ale'
-
+Plug 'vimwiki/vimwiki'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fszymanski/deoplete-emoji'
 
@@ -226,6 +226,12 @@ call deoplete#custom#option('sources', {
 \})
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" 'list toggle' as ctrl space I use to clear notifications
+nnoremap glt :VimwikiToggleListItem<CR>
+vnoremap glt :VimwikiToggleListItem<CR>
 
 " Load all plugins and helptags
 packloadall
