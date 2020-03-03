@@ -51,6 +51,7 @@ let g:is_posix = 1 " shell for syntax highlighting purposes.
 
 " git
 set signcolumn=yes
+set updatetime=100
 let g:gitgutter_map_keys = 0
 nnoremap <leader>gd :Gvdiffsplit!<CR>
 nnoremap <leader>gs :Gstatus<CR>
@@ -193,14 +194,16 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
 \  'python': ['pyls'],
+\  'proto': [],
 \}
 let g:ale_fixers = {
-\  'python': ['isort', 'black', 'pyls'],
+\  'python': ['isort', 'black'],
 \  'javascript': ['eslint'],
 \  'javascriptreact': ['eslint'],
 \  'typescript': ['eslint'],
 \  'typescriptreact': ['eslint'],
 \  'markdown': ['prettier'],
+\  'elm': ['elm-format'],
 \}
 let g:ale_lint_on_insert_leave = 1
 
@@ -217,6 +220,8 @@ nmap <leader>lf :ALEFix<CR>
 nmap <leader>lc :ALEReset<CR>
 nmap <leader>le :ALEEnable<CR>
 nmap <leader>ld :ALEDisable<CR>
+nmap <leader>la :ALENext<CR>
+nmap <leader>lx :ALEPrevious<CR>
 
 " completions
 let g:deoplete#enable_at_startup = 1
