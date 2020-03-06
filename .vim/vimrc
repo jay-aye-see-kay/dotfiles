@@ -193,7 +193,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " ALE
 let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
-\  'python': ['pyls'],
+\  'python': ['pyls', 'mypy'],
 \  'proto': [],
 \}
 let g:ale_fixers = {
