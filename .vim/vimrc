@@ -193,7 +193,7 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 " ALE
 let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
-\  'python': ['pyls'],
+\  'python': ['pyls', 'mypy'],
 \  'proto': [],
 \}
 let g:ale_fixers = {
@@ -229,7 +229,7 @@ call deoplete#custom#option('camel_case', v:true)
 call deoplete#custom#option('sources', {
 \ '_': ['ale', 'buffer', 'ultisnips', 'emoji'],
 \})
-call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', ''])
+call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', 'vimwiki'])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 " vimwiki
