@@ -233,10 +233,16 @@ call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'tex
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 
 " vimwiki
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/'}]
 " 'list toggle' as ctrl space I use to clear notifications
 nnoremap glt :VimwikiToggleListItem<CR>
 vnoremap glt :VimwikiToggleListItem<CR>
+
+augroup naturalMovementInTextFiles
+  autocmd!
+  autocmd FileType text,markdown,vimwiki nnoremap j gj
+  autocmd FileType text,markdown,vimwiki nnoremap k gk
+augroup END
 
 " Load all plugins and helptags
 packloadall
