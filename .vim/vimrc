@@ -231,6 +231,7 @@ call deoplete#custom#option('sources', {
 \})
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', 'vimwiki'])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
+autocmd CompleteDone * silent! pclose!
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/'}]
