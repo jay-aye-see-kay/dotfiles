@@ -1,3 +1,7 @@
+command_exists() {
+  command -v "$@" >/dev/null 2>&1
+}
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -7,7 +11,7 @@ fi
 
 # {{{ core
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jack/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 DISABLE_AUTO_UPDATE="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 HISTSIZE=10000000
@@ -15,21 +19,29 @@ SAVEHIST=10000000
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
+  asdf
   fzf
   z
-  poetry
 )
 source $ZSH/oh-my-zsh.sh
 
 # dotfiles/config management
-alias config='/usr/bin/git --git-dir=/home/jack/.cfg/ --work-tree=/home/jack'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 export PATH=$PATH:~/bin:~/.local/bin
 
 # connect clipboard to shell
-# alias pbc='xclip -i -sel clipboard'
-# alias pbp='xclip -o -sel clipboard'
-alias pbc='wl-copy'
-alias pbp='wl-paste'
+command_exists xclip && {
+  alias pbc='xclip -i -sel clipboard'
+  alias pbp='xclip -o -sel clipboard'
+}
+command_exists wl-copy && {
+  alias pbc='wl-copy'
+  alias pbp='wl-paste'
+}
+command_exists pbcopy && {
+  alias pbc='pbcopy'
+  alias pbp='pbpaste'
+}
 
 # command line basics
 alias trash='gio trash'
@@ -45,7 +57,7 @@ zle -N fzf-z
 bindkey '^G' fzf-z
 
 # vim
-export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 alias v="nvim"
 alias r="ranger"
 alias g="git"
@@ -72,7 +84,9 @@ PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 # javascript
 export PATH=$PATH:~/.npm_global/bin:~/.yarn/bin
 export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
+command_exists nodenv && {
+  eval "$(nodenv init -)"
+}
 
 # golang
 GOPATH=$HOME/go/bin
@@ -186,4 +200,6 @@ fzf-history-widget() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /home/jack/.config/broot/launcher/bash/br
+command_exists broot && {
+  source $HOME/.config/broot/launcher/bash/br
+}
