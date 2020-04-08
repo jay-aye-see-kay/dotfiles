@@ -131,16 +131,13 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPause exec playerctl play-pause
 
-  input "2:7:SynPS/2_Synaptics_TouchPad" {
+  input * {
     accel_profile adaptive
+  }
+  input "1739:0:Synaptics_TM3289-021" {
     middle_emulation disabled
     dwt enabled
-  }
-  input "TPPS/2 Elan TrackPoint" {
-    accel_profile adaptive
-  }
-  input "1133:45077:M720_Triathlon_Mouse" {
-    accel_profile adaptive
+    natural_scroll enabled
   }
 #
 # Moving around:
