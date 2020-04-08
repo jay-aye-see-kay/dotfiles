@@ -82,6 +82,13 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+augroup tabwidths
+  autocmd!
+  autocmd FileType elm,python set tabstop=4
+  autocmd FileType elm,python set softtabstop=4
+  autocmd FileType elm,python set shiftwidth=4
+augroup END
+
 
 " {{{ fzf TODO colorscheme
 nnoremap <leader>fb :Buffer<CR>
@@ -232,6 +239,8 @@ call deoplete#custom#option('sources', {
 call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', 'vimwiki'])
 call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
 autocmd CompleteDone * silent! pclose!
+
+let g:markdown_fenced_languages = ['python']
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/'}]
