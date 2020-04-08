@@ -1,6 +1,6 @@
 [user]
 	name = Jack Rose
-	email = jackderryrose@gmail.com
+	email = user@jackrose.co.nz
 [alias]
 	aa = add .
 	br = branch
@@ -17,7 +17,7 @@
 	unstage = reset HEAD --
 	meld = !git difftool -t meld --dir-diff
 [core]
-	excludesfile = /home/jack/.globalgitignore
+	excludesfile = ~/.globalgitignore
 [push]
 	default = current
 
