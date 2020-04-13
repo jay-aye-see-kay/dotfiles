@@ -90,7 +90,7 @@ augroup tabwidths
 augroup END
 
 
-" {{{ fzf TODO colorscheme
+" {{{ fzf
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
 nnoremap <leader>fz :FZF<CR>
@@ -98,6 +98,7 @@ nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fa :Ag<CR>
 nnoremap <leader>fl :BLines<CR>
 nnoremap <leader>fc :Commands<CR>
+nnoremap <leader>fw :call fzf#vim#ag('', { 'dir':  g:vimwiki_list[0]['path'] })<CR>
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
 
 " fzf in floating window https://github.com/junegunn/fzf.vim/issues/664
@@ -124,6 +125,24 @@ function! CreateCenteredFloatingWindow()
     au BufWipeout <buffer> exe 'bw '.s:buf
 endfunction
 let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+" see https://github.com/junegunn/fzf/blob/master/README-VIM.md#configuration
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 " }}} fzf
 "
 " NERDTree open and open on current
