@@ -55,6 +55,8 @@ bindsym $mod+Shift+s exec termite --name=termite-floating -e "vim ~/scratch.md"
 font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
+gaps inner 4
+default_border pixel 4
 
 # notifications
 exec mako
@@ -131,6 +133,9 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPause exec playerctl play-pause
 
+  seat seat0 {
+    hide_cursor 2000
+  }
   input * {
     accel_profile adaptive
   }
@@ -283,6 +288,7 @@ client.urgent           $red      $red      $white    $red       $red
 # Status Bar:
 #
 bar {
+    position top
     font pango:Fira Mono 10
     status_command i3status
     separator_symbol "──"
