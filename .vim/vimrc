@@ -243,7 +243,8 @@ autocmd CompleteDone * silent! pclose!
 let g:markdown_fenced_languages = ['python']
 
 " vimwiki
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/'}]
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki.md'}]
+
 " 'list toggle' as ctrl space I use to clear notifications
 nnoremap glt :VimwikiToggleListItem<CR>
 vnoremap glt :VimwikiToggleListItem<CR>
