@@ -57,16 +57,16 @@ zle -N fzf-z
 bindkey '^G' fzf-z
 
 # vim
-export EDITOR=nvim
-alias v="nvim"
+export EDITOR=$(which nvim)
+alias v="$EDITOR"
 alias r="ranger"
 alias g="git"
-alias vimwiki="nvim ~/vimwiki/index.md"
-alias zshrc="nvim ~/.zshrc"
-alias vimrc="nvim ~/.vim/vimrc"
-alias swayrc="nvim ~/.config/sway/config"
-alias i3rc="nvim ~/.config/i3/config"
-alias kittyrc="nvim ~/.config/kitty/kitty.conf"
+alias vw="$EDITOR -c VimwikiIndex"
+alias zshrc="$EDITOR ~/.zshrc"
+alias vimrc="$EDITOR ~/.vim/vimrc"
+alias swayrc="$EDITOR ~/.config/sway/config"
+alias i3rc="$EDITOR ~/.config/i3/config"
+alias kittyrc="$EDITOR ~/.config/kitty/kitty.conf"
 # }}} core
 
 # {{{ languages
