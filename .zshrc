@@ -197,9 +197,16 @@ fzf-history-widget() {
   return $ret
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 command_exists broot && {
   source $HOME/.config/broot/launcher/bash/br
 }
+
+# work MBP specific setup
+[ $HOST = "jrose-LVMD6M" ] && {
+  export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+  alias mysql=/usr/local/mysql/bin/mysql
+  alias mysqladmin=/usr/local/mysql/bin/mysqladmin
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
