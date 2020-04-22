@@ -200,6 +200,11 @@ command_exists broot && {
   source $HOME/.config/broot/launcher/bash/br
 }
 
+# Completion for kitty
+[ $TERM = "xterm-kitty" ] && {
+  kitty + complete setup zsh | source /dev/stdin
+}
+
 # work MBP specific setup
 [ $HOST = "jrose-LVMD6M" ] && {
   export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
