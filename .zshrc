@@ -57,7 +57,6 @@ zle -N fzf-z
 bindkey '^G' fzf-z
 
 # vim
-export EDITOR=$(which nvim)
 alias v="$EDITOR"
 alias r="ranger"
 alias g="git"
@@ -199,6 +198,11 @@ fzf-history-widget() {
 
 command_exists broot && {
   source $HOME/.config/broot/launcher/bash/br
+}
+
+# Completion for kitty
+[ $TERM = "xterm-kitty" ] && {
+  kitty + complete setup zsh | source /dev/stdin
 }
 
 # work MBP specific setup

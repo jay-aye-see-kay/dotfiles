@@ -1,23 +1,33 @@
 [user]
-	name = Jack Rose
-	email = user@jackrose.co.nz
+    name = Jack Rose
+    email = user@jackrose.co.nz
 [alias]
-	aa = add .
-	br = branch
-	ci = commit
-	cia = commit -a
-	co = checkout
-	cob = checkout -b
-	cod = checkout develop
-	com = checkout master
-	df = diff
-	dfs = diff --staged
-	st = status
-	pop = stash pop
-	unstage = reset HEAD --
-	meld = !git difftool -t meld --dir-diff
+    aa = add .
+    br = branch
+    ci = commit
+    cia = commit -a
+    co = checkout
+    cob = checkout -b
+    cod = checkout develop
+    com = checkout master
+    df = diff
+    dfs = diff --staged
+    st = status
+    pop = stash pop
+    unstage = reset HEAD --
+    kd = difftool --no-symlinks --dir-diff
+    kds = difftool --no-symlinks --dir-diff --staged
 [core]
-	excludesfile = ~/.globalgitignore
+    excludesfile = ~/.globalgitignore
 [push]
-	default = current
-
+    default = current
+[diff]
+    tool = kitty
+    guitool = kitty.gui
+[difftool]
+    prompt = false
+    trustExitCode = true
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
+[difftool "kitty.gui"]
+    cmd = kitty kitty +kitten diff $LOCAL $REMOTE
