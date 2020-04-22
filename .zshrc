@@ -206,7 +206,7 @@ command_exists broot && {
 }
 
 # Kitty OS specific settings hack
-[ $OSTYPE = "darwin" ] && [ $TERM = "xterm-kitty" ] && {
+[ $(uname) = "Darwin" ] && [ $TERM = "xterm-kitty" ] && {
   kitty @ set-font-size 13
   kitty @ set-background-opacity 1
 }
