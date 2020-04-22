@@ -57,7 +57,6 @@ zle -N fzf-z
 bindkey '^G' fzf-z
 
 # vim
-export EDITOR=$(which nvim)
 alias v="$EDITOR"
 alias r="ranger"
 alias g="git"
