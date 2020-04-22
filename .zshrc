@@ -205,6 +205,12 @@ command_exists broot && {
   kitty + complete setup zsh | source /dev/stdin
 }
 
+# Kitty OS specific settings hack
+[ $OSTYPE = "darwin" ] && [ $TERM = "xterm-kitty" ] && {
+  kitty @ set-font-size 13
+  kitty @ set-background-opacity 1
+}
+
 # work MBP specific setup
 [ $HOST = "jrose-LVMD6M" ] && {
   export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"

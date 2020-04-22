@@ -8,8 +8,7 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term termite
-set $alt_term alacritty
+set $term kitty
 set $browser firefox
 set $private_browser firefox --private-window
 # menu
