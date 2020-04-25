@@ -127,19 +127,6 @@ smartresize() {
    mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
 }
 
-
-# auto start sway after login on tty1
-if [ "$(tty)" = "/dev/tty1" ]; then
-  # what a display manager normally sets
-  export XDG_SESSION_TYPE=wayland
-
-  export _JAVA_AWT_WM_NONREPARENTING=1
-  export MOZ_ENABLE_WAYLAND=1
-
-  exec sway
-fi
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
@@ -211,6 +198,17 @@ command_exists broot && {
   alias mysql=/usr/local/mysql/bin/mysql
   alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 }
+
+
+# auto start sway after login on tty1
+[ "$TTY" = "/dev/tty1" ] && {
+  # what a display manager normally sets
+  export XDG_SESSION_TYPE=wayland
+  export _JAVA_AWT_WM_NONREPARENTING=1
+  export MOZ_ENABLE_WAYLAND=1
+  exec sway
+}
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
