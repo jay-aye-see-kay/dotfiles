@@ -263,6 +263,7 @@ let g:markdown_fenced_languages = ['python']
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki.md'}]
+let g:vimwiki_conceallevel = 0
 
 " 'list toggle' as ctrl space I use to clear notifications
 nnoremap glt :VimwikiToggleListItem<CR>
