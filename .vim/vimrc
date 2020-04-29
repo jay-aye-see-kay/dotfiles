@@ -221,6 +221,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:ale_linters = {
 \  'python': ['pyls', 'mypy'],
 \  'proto': [],
+\  'sh': ['language_server'],
 \}
 let g:ale_fixers = {
 \  'python': ['isort', 'black'],
