@@ -98,7 +98,13 @@ nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fa :Ag<CR>
 nnoremap <leader>fl :BLines<CR>
 nnoremap <leader>fc :Commands<CR>
+" grep all text in my wiki (TODO add preview window)
 nnoremap <leader>fw :call fzf#vim#ag('', { 'dir':  g:vimwiki_list[0]['path'] })<CR>
+" shows files edited on current branch (diffed with master)
+command! -bang EditedFiles call fzf#run(fzf#vim#with_preview(fzf#wrap({
+      \ 'source': 'git diff --name-only `git merge-base origin/master HEAD`' })))
+nnoremap <leader>fe :EditedFiles<CR>
+
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
 
 " fzf in floating window https://github.com/junegunn/fzf.vim/issues/664
