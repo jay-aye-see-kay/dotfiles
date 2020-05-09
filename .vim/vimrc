@@ -285,6 +285,11 @@ augroup naturalMovementInTextFiles
   autocmd FileType text,markdown,vimwiki nnoremap k gk
 augroup END
 
+augroup downsheet
+  autocmd!
+  autocmd BufRead,BufNewFile *.dsh set filetype=toml
+augroup END
+
 " Load all plugins and helptags
 packloadall
 silent! helptags ALL
