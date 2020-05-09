@@ -178,7 +178,7 @@ let &t_EI = "\e[2 q"
 augroup customMacros
   autocmd!
   " JS/TS: console.log the inner word one line below
-  autocmd FileType javascript,typescripe,typescriptreact nnoremap <leader>rp "0yiwoconsole.log('0', 0);
+  autocmd FileType javascript,typescript,typescriptreact nnoremap <leader>rp "0yiwoconsole.log('0', 0);
   autocmd FileType javascript,typescript,typescriptreact vnoremap <leader>rp "0yoconsole.log('0', 0);
   " Python print next line
   autocmd FileType python nnoremap <leader>rp viw"0yoprint('0', 0)
