@@ -36,9 +36,9 @@ output "Dell Inc. DELL U2415 5K39C55B1N5L" pos 3000 1800 res 1920x1200
 output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 
 ## Home 4k 28" (assuming only one used at a time)
-output "Samsung Electric Company U28E590 H4ZMC00588" pos 4707 1400 res 3840x2160 scale 1.5
-output "Samsung Electric Company U28E590 H4ZMC00588" transform 270
-output "Samsung Electric Company U28E590 H4ZM800885" pos 2147 1560 res 3840x2160 scale 1.5
+output "Samsung Electric Company U28E590 H4ZM800885" pos 4707 1400 res 3840x2160 scale 1.5
+output "Samsung Electric Company U28E590 H4ZM800885" transform 270
+output "Samsung Electric Company U28E590 H4ZMC00588" pos 2147 1560 res 3840x2160 scale 1.5
 
 # firefox picture in picture
 for_window [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable
