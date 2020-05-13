@@ -5,4 +5,5 @@
 tags
 .node-version
 .python-version
+.npmrc
 

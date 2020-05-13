@@ -44,7 +44,9 @@ command_exists pbcopy && {
 }
 
 # command line basics
-alias trash='gio trash'
+command_exists trash || {
+  alias trash='gio trash'
+}
 alias sizes="du -csh * | sort -h"
 
 # fzf and z
