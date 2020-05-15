@@ -189,13 +189,11 @@ augroup printDebugMacros
   autocmd FileType ruby vnoremap <leader>rp "0yoputs '<C-R>0: ' + <C-R>0<ESC>
 augroup END
 
-" TODO new shortcut style (prob namespace under c for clipboard)
-" Copy filepath to vim clipboard (Path Vim)
-nnoremap <leader>pv :let @" = expand("%")
-" Copy filepath to system clipboard (Path Clipboard)
-nnoremap <leader>pc :let @+ = expand("%")
-" Copy word under cusor to system clipboard (Clipboard)
-nnoremap <leader>wc "+yiw
+" Copy filepath to system clipboard
+nnoremap <leader>cp :let @+ = expand("%")
+" Copy word/selection under cusor to system clipboard (Clipboard)
+nnoremap <leader>cc "+yiw
+vnoremap <leader>cc "+y
 
 " disable exmode and commandline search
 map q: <Nop>
