@@ -12,8 +12,7 @@ set $term kitty
 set $browser firefox
 set $private_browser firefox --private-window
 # menu
-for_window [app_id="termite-floating"] floating enable, border pixel 4, sticky enable
-set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
+set $menu exec wofi
 
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
