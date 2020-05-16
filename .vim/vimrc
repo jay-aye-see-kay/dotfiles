@@ -290,6 +290,8 @@ augroup END
 augroup downsheet
   autocmd!
   autocmd BufRead,BufNewFile *.dsh set filetype=toml
+  autocmd BufRead,BufNewFile *.dsh set nowrap
+  autocmd BufWritePre *.dsh :%!dsc
 augroup END
 
 " Load all plugins and helptags
