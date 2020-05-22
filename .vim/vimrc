@@ -90,6 +90,16 @@ augroup tabwidths
 augroup END
 
 
+" faster scrolling
+nnoremap <c-y> 3<c-y>
+nnoremap <c-e> 3<c-e>
+
+" toggle foldcolumn
+nnoremap yof :set foldcolumn=<C-R>=&foldcolumn == 0 ? 2 : 0<CR><CR>
+" don't auto open folds while moving by paragraph
+set foldopen-=block
+
+
 " {{{ fzf
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
