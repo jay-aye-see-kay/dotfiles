@@ -100,6 +100,12 @@ nnoremap yof :set foldcolumn=<C-R>=&foldcolumn == 0 ? 2 : 0<CR><CR>
 set foldopen-=block
 
 
+" double ctrl-backslash to is escape from terminal mode
+tnoremap <C-\><C-\> <C-\><C-n>
+" keep 'other' terminal cursor visible when in normal mode
+hi! TermCursorNC ctermfg=15 guifg=#fdf6e3 ctermbg=14 guibg=#5f875f cterm=NONE gui=NONE
+
+
 " {{{ fzf
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
