@@ -185,6 +185,13 @@ fzf-history-widget() {
   return $ret
 }
 
+# EXPERIMENTAL: make nvim my man page pager
+# TODO: breaks fman command
+command_exists nvim && {
+  export MANPAGER='nvim +Man!'
+  export MANWIDTH=999
+}
+
 command_exists broot && {
   source $HOME/.config/broot/launcher/bash/br
 }
