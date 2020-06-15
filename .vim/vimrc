@@ -259,6 +259,7 @@ let g:ale_fixers = {
 \  'typescriptreact': ['eslint'],
 \  'markdown': ['prettier'],
 \  'elm': ['elm-format'],
+\  'ruby': ['standardrb'],
 \}
 let g:ale_lint_on_insert_leave = 1
 
