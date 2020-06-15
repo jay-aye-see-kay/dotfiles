@@ -41,6 +41,7 @@ Plug 'dense-analysis/ale'
 Plug 'vimwiki/vimwiki'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fszymanski/deoplete-emoji'
+Plug 'godlygeek/tabular'
 
 " theme + color
 Plug 'kristijanhusak/vim-hybrid-material'
