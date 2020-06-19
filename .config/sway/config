@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term kitty
+set $term alacritty
 set $browser firefox
 set $private_browser firefox --private-window
 # menu
