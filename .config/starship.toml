@@ -1,0 +1,9 @@
+[aws]
+disabled = true
+
+[cmd_duration]
+min_time = 1000
+
+[directory]
+truncate_to_repo = false
+truncation_length = 5
