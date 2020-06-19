@@ -45,9 +45,9 @@ Plug 'fszymanski/deoplete-emoji'
 Plug 'godlygeek/tabular'
 
 " theme + color
-Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
-colorscheme hybrid_reverse
+colorscheme nord
 set termguicolors
 let g:is_posix = 1 " shell for syntax highlighting purposes.
 
