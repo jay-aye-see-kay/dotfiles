@@ -14,6 +14,10 @@ plugins=(
   asdf
   fzf
   z
+  # requires: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+  zsh-autosuggestions
+  # requires: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
+  zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 
