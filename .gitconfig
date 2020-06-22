@@ -15,19 +15,7 @@
     st = status
     pop = stash pop
     unstage = reset HEAD --
-    kd = difftool --no-symlinks --dir-diff
-    kds = difftool --no-symlinks --dir-diff --staged
 [core]
     excludesfile = ~/.globalgitignore
 [push]
     default = current
-[diff]
-    tool = kitty
-    guitool = kitty.gui
-[difftool]
-    prompt = false
-    trustExitCode = true
-[difftool "kitty"]
-    cmd = kitty +kitten diff $LOCAL $REMOTE
-[difftool "kitty.gui"]
-    cmd = kitty kitty +kitten diff $LOCAL $REMOTE
