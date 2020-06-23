@@ -126,7 +126,7 @@ nnoremap <leader>fe :EditedFiles<CR>
 nnoremap <leader>ff "0yiw:Ag <C-R>0<CR>
 vnoremap <leader>ff "0y:Ag <C-R>0<CR>
 
-
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
 
 " fzf in floating window https://github.com/junegunn/fzf.vim/issues/664
@@ -253,14 +253,15 @@ let g:ale_linters = {
 \  'sh': ['language_server'],
 \}
 let g:ale_fixers = {
-\  'python': ['isort', 'black'],
+\  'c': ['clang-format'],
+\  'elm': ['elm-format'],
 \  'javascript': ['eslint'],
 \  'javascriptreact': ['eslint'],
+\  'markdown': ['prettier'],
+\  'python': ['isort', 'black'],
+\  'ruby': ['standardrb'],
 \  'typescript': ['eslint'],
 \  'typescriptreact': ['eslint'],
-\  'markdown': ['prettier'],
-\  'elm': ['elm-format'],
-\  'ruby': ['standardrb'],
 \}
 let g:ale_lint_on_insert_leave = 1
 
