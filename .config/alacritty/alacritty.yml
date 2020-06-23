@@ -24,6 +24,18 @@ colors:
     cyan: '0x8FBCBB'
     white: '0xECEFF4'
 
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: N,        mods: Control|Shift, action: SpawnNewInstance }
+  - { key: W,        mods: Control|Shift, action: Quit             }
+# font size/zoom level
+  - { key: Key0,     mods: Control|Shift, action: ResetFontSize    }
+  - { key: Equals,   mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Subtract, mods: Control|Shift, action: DecreaseFontSize }
+  - { key: Minus,    mods: Control|Shift, action: DecreaseFontSize }
+
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as
