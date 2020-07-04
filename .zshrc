@@ -44,6 +44,7 @@ command_exists trash || {
   alias trash='gio trash'
 }
 alias sizes="du -csh * | sort -h"
+alias whoslistening="lsof -iTCP -sTCP:LISTEN -n -P"
 
 # fzf and z
 export FZF_DEFAULT_OPTS="--height 40% --reverse --tac"
@@ -201,6 +202,7 @@ command_exists broot && {
 # work MBP specific setup
 [ $HOST = "jrose-LVMD6M" ] && {
   export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+  export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
   alias mysql=/usr/local/mysql/bin/mysql
   alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 }
