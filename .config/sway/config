@@ -174,9 +174,6 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
   set $ws9 "9"
   set $ws10 "10:music "
 
-  #quick back and forth between workspaces
-  bindsym $mod+z workspace back_and_forth
-
   # switch to workspace
   bindsym $mod+1 workspace $ws1
   bindsym $mod+2 workspace $ws2
@@ -237,6 +234,7 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
     # move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+z focus child
 #
 # Resizing containers:
 #
