@@ -35,8 +35,7 @@ output "Dell Inc. DELL U2415 5K39C55B1N5L" pos 3000 1800 res 1920x1200
 output "Dell Inc. DELL U3219Q DMJRWP2" pos 2300 1272 res 3840x2160 scale 1.25
 
 ## Home 4k 28" (assuming only one used at a time)
-output "Samsung Electric Company U28E590 H4ZM800885" pos 4707 1400 res 3840x2160 scale 1.5
-output "Samsung Electric Company U28E590 H4ZM800885" transform 270
+output "Samsung Electric Company U28E590 H4ZM800885" pos 4707 2260 res 3840x2160 scale 1.5
 output "Samsung Electric Company U28E590 H4ZMC00588" pos 2147 1560 res 3840x2160 scale 1.5
 
 # firefox picture in picture
@@ -175,9 +174,6 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
   set $ws9 "9"
   set $ws10 "10:music "
 
-  #quick back and forth between workspaces
-  bindsym $mod+z workspace back_and_forth
-
   # switch to workspace
   bindsym $mod+1 workspace $ws1
   bindsym $mod+2 workspace $ws2
@@ -238,6 +234,7 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
     # move focus to the parent container
     bindsym $mod+a focus parent
+    bindsym $mod+z focus child
 #
 # Resizing containers:
 #

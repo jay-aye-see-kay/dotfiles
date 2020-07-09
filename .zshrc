@@ -40,6 +40,9 @@ command_exists pbcopy && {
 }
 
 # command line basics
+command_exists open || command_exists xdg-open && {
+    alias open='xdg-open'
+}
 command_exists trash || {
   alias trash='gio trash'
 }
