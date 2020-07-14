@@ -11,6 +11,7 @@ set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 set nojoinspaces " Use one space, not two, after punctuation.
 set splitbelow " matches i3 behaviour
 set splitright " matches i3 behaviour
+set nowrap
 
 " enable plugins
 filetype plugin on
@@ -329,6 +330,7 @@ augroup naturalMovementInTextFiles
   autocmd!
   autocmd FileType text,markdown,vimwiki nnoremap j gj
   autocmd FileType text,markdown,vimwiki nnoremap k gk
+  autocmd FileType text,markdown,vimwiki set wrap
 augroup END
 
 augroup downsheet
