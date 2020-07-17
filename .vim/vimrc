@@ -230,6 +230,9 @@ augroup printDebugMacros
   " Ruby print next line
   autocmd FileType ruby nnoremap <leader>rp "0yiwoputs '<C-R>0: ' + <C-R>0<ESC>
   autocmd FileType ruby vnoremap <leader>rp "0yoputs '<C-R>0: ' + <C-R>0<ESC>
+  " Shell print next line
+  autocmd FileType sh nnoremap <leader>rp "0yiwoecho "<C-R>0: $<C-R>0"<ESC>
+  autocmd FileType sh vnoremap <leader>rp "0yoecho "<C-R>0: $<C-R>0"<ESC>
 augroup END
 
 " Copy filepath to system clipboard
