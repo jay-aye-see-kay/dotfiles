@@ -7,7 +7,7 @@ map('J', 'E');
 map('K', 'R');
 
 // link in new tab like vimium
-map('F', 'af');
+map('F', 'gf');
 
 // default theme
 settings.theme = `
