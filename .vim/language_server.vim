@@ -10,6 +10,7 @@ let g:coc_global_extensions = [
 \ 'coc-json',
 \ 'coc-python',
 \ 'coc-sh',
+\ 'coc-snippets',
 \ 'coc-solargraph',
 \ 'coc-sql',
 \ 'coc-tailwindcss',
@@ -131,3 +132,15 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+
+"
+" Snippets
+"
+" Use <C-j> and <C-k> for jump to next and prev placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+vmap <C-j> <Plug>(coc-snippets-select)
