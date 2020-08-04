@@ -1,3 +1,5 @@
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "
 " Extensions to install
 "
@@ -31,10 +33,8 @@ augroup cocSettings
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-set hidden " TextEdit might fail if hidden is not set.
 set nobackup " Some servers have issues with backup files, see #649.
 set nowritebackup
-set updatetime=300 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays
 set shortmess+=c " Don't pass messages to |ins-completion-menu|.
 
 " Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.

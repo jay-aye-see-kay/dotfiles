@@ -12,9 +12,7 @@ set nojoinspaces " Use one space, not two, after punctuation.
 set splitbelow " matches i3 behaviour
 set splitright " matches i3 behaviour
 set nowrap
-
-" enable plugins
-filetype plugin on
+set updatetime=100
 
 " install plug.vim on new on new machines
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -24,77 +22,25 @@ endif
 
 " plugins
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'airblade/vim-gitgutter'
+source $HOME/.vim/file-tree.vim
+source $HOME/.vim/search.vim
+source $HOME/.vim/functions.vim
+source $HOME/.vim/language-server.vim
+source $HOME/.vim/terminal.vim
+source $HOME/.vim/theme.vim
+source $HOME/.vim/vcs.vim
+
+Plug 'godlygeek/tabular'
+Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rhubarb'
-Plug 'mbbill/undotree'
-Plug 'vimwiki/vimwiki'
-Plug 'godlygeek/tabular'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'lambdalisue/fern.vim'
-
-" open or focus drawer (if pressed from outside that focus)
-nnoremap <leader>e :Fern . -drawer -reveal=% -width=40<cr>
-
-function! s:init_fern() abort
-  " make window movements work as expected
-  nnoremap <buffer> <C-j> <C-w>j
-  nnoremap <buffer> <C-k> <C-w>k
-  nnoremap <buffer> <C-h> <C-w>h
-  nnoremap <buffer> <C-l> <C-w>l
-
-  nnoremap <buffer> r <Plug>(fern-action-reload)
-  nnoremap <buffer> <leader>e :Fern . -drawer -toggle<cr>
-endfunction
-augroup fernCustom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
-" theme + color
-Plug 'arcticicestudio/nord-vim'
 call plug#end()
-colorscheme nord
-set termguicolors
-let g:is_posix = 1 " shell for syntax highlighting purposes.
-
-let g:nord_underline = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_uniform_diff_background = 1
-hi Comment         guifg=#64804B
-" hi SpecialComment  guifg=#A3BE8C
-
-hi StatusLine   guifg=#E5E9F0 guibg=#5E81AC
-hi StatusLineNC guifg=#E5E9F0 guibg=#5E81AC
-hi VertSplit    guifg=#E5E9F0 guibg=#5E81AC
-
-" vimrc sections
-source $HOME/.vim/language_server.vim
-
-" git
-set signcolumn=yes
-set updatetime=100
-let g:gitgutter_map_keys = 0
-nnoremap <leader>gd :Gvdiffsplit!<CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit<CR>
-nnoremap <leader>gl :Gclog<CR>
-nnoremap <leader>gb :Gblame<CR>
-
-" fuzzy git
-nnoremap <leader>gfl :Commits<CR>
-nnoremap <leader>gfc :BCommits<CR>
 
 " undotree
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -103,10 +49,11 @@ if has("persistent_undo")
   set undofile
 endif
 
+" Only show cursorline on focued window
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * if &filetype != "chadtree" | setlocal nocursorline | endif
+  au WinLeave * setlocal nocursorline
 augroup END
 
 " tabs vs spaces
@@ -121,118 +68,23 @@ augroup tabwidths
   autocmd FileType elm,python set shiftwidth=4
 augroup END
 
-
 " faster scrolling
 nnoremap <c-y> 3<c-y>
 nnoremap <c-e> 3<c-e>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " toggle foldcolumn
 nnoremap yof :set foldcolumn=<C-R>=&foldcolumn == 0 ? 2 : 0<CR><CR>
 " don't auto open folds while moving by paragraph
 set foldopen-=block
 
-
-" double ctrl-backslash to escape from terminal mode
-tnoremap <C-\><C-\> <C-\><C-n>
-" ctrl-c, ctrl-p, ctrl-n, enter should all be passed through from normal mode
-augroup termPassthroughCommands
-  au!
-  au BufEnter term://*  nnoremap <C-C> i<C-C><C-\><C-n>
-  au BufLeave term://*  nnoremap <C-C> <C-C>
-  au BufEnter term://*  nnoremap <C-P> i<C-P><C-\><C-n>
-  au BufLeave term://*  nnoremap <C-P> <C-P>
-  au BufEnter term://*  nnoremap <C-N> i<C-N><C-\><C-n>
-  au BufLeave term://*  nnoremap <C-N> <C-N>
-  au BufEnter term://*  nnoremap <CR> i<CR><C-\><C-n>
-  au BufLeave term://*  nnoremap <CR> <CR>
-augroup END
-" keep 'other' terminal cursor visible when in normal mode
-hi! TermCursorNC ctermfg=15 guifg=#fdf6e3 ctermbg=14 guibg=#5f875f cterm=NONE gui=NONE
-
-
-" {{{ fzf
-nnoremap <leader>fb :Buffer<CR>
-nnoremap <leader>fh :History<CR>
-nnoremap <leader>fz :FZF<CR>
-nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fa :Ag<CR>
-nnoremap <leader>fl :BLines<CR>
-nnoremap <leader>fc :Commands<CR>
-" grep all text in my wiki (TODO add preview window)
-nnoremap <leader>fw :call fzf#vim#ag('', { 'dir':  g:vimwiki_list[0]['path'] })<CR>
-" shows files edited on current branch (diffed with master)
-command! -bang EditedFiles call fzf#run(fzf#vim#with_preview(fzf#wrap({
-      \ 'source': 'git diff --name-only `git merge-base origin/master HEAD`' })))
-nnoremap <leader>fe :EditedFiles<CR>
-" global search word under cursor/selection
-nnoremap <leader>ff "0yiw:Ag <C-R>0<CR>
-vnoremap <leader>ff "0y:Ag <C-R>0<CR>
-
-let g:fzf_history_dir = '~/.local/share/fzf-history'
-let $FZF_DEFAULT_OPTS = "--layout=reverse"
-
-" fzf in floating window https://github.com/junegunn/fzf.vim/issues/664
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-
-" Customize fzf colors to match your color scheme
-" - fzf#wrap translates this to a set of `--color` options
-" see https://github.com/junegunn/fzf/blob/master/README-VIM.md#configuration
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-" }}} fzf
-
 " %% to %:h to get active file dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-augroup printDebugMacros
-  autocmd!
-  " JS/TS: print next line
-  autocmd FileType javascript,javascriptreact,typescript,typescriptreact nnoremap <leader>rp "0yiwoconsole.log('<C-R>0', <C-R>0);<ESC>
-  autocmd FileType javascript,javascriptreact,typescript,typescriptreact vnoremap <leader>rp "0yoconsole.log('<C-R>0', <C-R>0);<ESC>
-  " Python print next line
-  autocmd FileType python nnoremap <leader>rp "0yiwoprint('<C-R>0', <C-R>0)<ESC>
-  autocmd FileType python vnoremap <leader>rp "0yoprint('<C-R>0', <C-R>0)<ESC>
-  " Ruby print next line
-  autocmd FileType ruby nnoremap <leader>rp "0yiwoputs '<C-R>0: ' + <C-R>0<ESC>
-  autocmd FileType ruby vnoremap <leader>rp "0yoputs '<C-R>0: ' + <C-R>0<ESC>
-  " Shell print next line
-  autocmd FileType sh nnoremap <leader>rp "0yiwoecho "<C-R>0: $<C-R>0"<ESC>
-  autocmd FileType sh vnoremap <leader>rp "0yoecho "<C-R>0: $<C-R>0"<ESC>
-augroup END
 
 " Copy filepath to system clipboard
 nnoremap <leader>cp :let @+ = expand("%")
@@ -254,40 +106,13 @@ augroup vimrcEx
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
-
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .eslintrc,tsconfig.json set filetype=json5
 augroup END
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 " }}}
 
-" {{{ debugging/misc hacks
-" F12 to fix syntax highlighting when needed https://vim.fandom.com/wiki/Fix_syntax_highlighting
-noremap <F12> <Esc>:syntax sync fromstart<CR>
-inoremap <F12> <C-o>:syntax sync fromstart<CR>
-
 let g:markdown_fenced_languages = ['python']
-
-" vimwiki
-let g:vimwiki_list = [{'path': '~/Documents/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki.md'}]
-let g:vimwiki_conceallevel = 0
-
-" 'list toggle' as ctrl space I use to clear notifications
-nnoremap glt :VimwikiToggleListItem<CR>
-vnoremap glt :VimwikiToggleListItem<CR>
-
-augroup naturalMovementInTextFiles
-  autocmd!
-  autocmd FileType text,markdown,vimwiki nnoremap j gj
-  autocmd FileType text,markdown,vimwiki nnoremap k gk
-  autocmd FileType text,markdown,vimwiki set wrap
-augroup END
 
 augroup downsheet
   autocmd!
@@ -295,7 +120,3 @@ augroup downsheet
   autocmd BufRead,BufNewFile *.dsh set nowrap
   autocmd BufWritePre *.dsh :%!dsc
 augroup END
-
-" Load all plugins and helptags
-packloadall
-silent! helptags ALL
