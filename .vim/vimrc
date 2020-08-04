@@ -37,13 +37,11 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rhubarb'
 Plug 'mbbill/undotree'
-Plug 'SirVer/ultisnips'
-Plug 'dense-analysis/ale'
 Plug 'vimwiki/vimwiki'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fszymanski/deoplete-emoji'
 Plug 'godlygeek/tabular'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " theme + color
 Plug 'arcticicestudio/nord-vim'
@@ -63,6 +61,8 @@ hi StatusLine   guifg=#E5E9F0 guibg=#5E81AC
 hi StatusLineNC guifg=#E5E9F0 guibg=#5E81AC
 hi VertSplit    guifg=#E5E9F0 guibg=#5E81AC
 
+" vimrc sections
+source $HOME/.vim/language_server.vim
 
 " git
 set signcolumn=yes
@@ -272,52 +272,6 @@ nnoremap <C-l> <C-w>l
 " F12 to fix syntax highlighting when needed https://vim.fandom.com/wiki/Fix_syntax_highlighting
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
-
-" ALE
-let g:python3_host_prog = '/usr/bin/python3'
-let g:ale_linters = {
-\  'python': ['pyls', 'mypy'],
-\  'proto': [],
-\  'sh': ['language_server'],
-\}
-let g:ale_fixers = {
-\  'c': ['clang-format'],
-\  'elm': ['elm-format'],
-\  'javascript': ['eslint'],
-\  'javascriptreact': ['eslint'],
-\  'markdown': ['prettier'],
-\  'python': ['isort', 'black'],
-\  'ruby': ['standardrb'],
-\  'typescript': ['eslint'],
-\  'typescriptreact': ['eslint'],
-\}
-let g:ale_lint_on_insert_leave = 1
-
-nmap <leader>lg :ALEGoToDefinition<CR>
-nmap <leader>lG :ALEGoToDefinitionInVSplit<CR>
-nmap <leader>LG :ALEGoToDefinitionInVSplit<CR>
-nmap <leader>lk :ALEDocumentation<CR>
-nmap <leader>lh :ALEHover<CR>
-nmap <leader>lr :ALEFindReferences<CR>
-nmap <leader>ln :ALERename<CR>
-nmap <leader>ls :ALESymbolSearch<CR>
-nmap <leader>ll :ALELint<CR>
-nmap <leader>lf :ALEFix<CR>
-nmap <leader>lc :ALEReset<CR>
-nmap <leader>le :ALEEnable<CR>
-nmap <leader>ld :ALEDisable<CR>
-nmap <leader>la :ALENext<CR>
-nmap <leader>lx :ALEPrevious<CR>
-
-" completions
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('camel_case', v:true)
-call deoplete#custom#option('sources', {
-\ '_': ['ale', 'buffer', 'ultisnips', 'emoji'],
-\})
-call deoplete#custom#source('emoji', 'filetypes', ['gitcommit', 'markdown', 'text', 'rst', 'vimwiki'])
-call deoplete#custom#source('emoji', 'converters', ['converter_emoji'])
-autocmd CompleteDone * silent! pclose!
 
 let g:markdown_fenced_languages = ['python']
 
