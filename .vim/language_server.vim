@@ -7,8 +7,8 @@ let g:coc_global_extensions = [
 \ 'coc-css',
 \ 'coc-eslint',
 \ 'coc-html',
+\ 'coc-jedi',
 \ 'coc-json',
-\ 'coc-python',
 \ 'coc-sh',
 \ 'coc-snippets',
 \ 'coc-solargraph',
@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
 \ 'coc-tailwindcss',
 \ 'coc-tsserver',
 \ 'coc-vimlsp',
+\ 'coc-yank',
 \]
 
 
@@ -144,3 +145,9 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 vmap <C-j> <Plug>(coc-snippets-select)
+
+
+"
+" Clipboard manager (coc-yank)
+"
+nnoremap <leader>y :<C-u>CocList --auto-preview --normal --tab yank<CR>
