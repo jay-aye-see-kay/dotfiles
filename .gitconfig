@@ -16,6 +16,11 @@
     pop = stash pop
     unstage = reset HEAD --
 [core]
+    pager = delta
     excludesfile = ~/.globalgitignore
 [push]
     default = current
+[pull]
+    rebase = false
+[delta]
+    side-by-side = true

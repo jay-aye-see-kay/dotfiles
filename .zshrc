@@ -209,6 +209,7 @@ command_exists broot && {
   export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
   alias mysql=/usr/local/mysql/bin/mysql
   alias mysqladmin=/usr/local/mysql/bin/mysqladmin
+  alias pc=perform-cli
 }
 
 
