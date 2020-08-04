@@ -26,7 +26,6 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
@@ -42,6 +41,8 @@ Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
 Plug 'godlygeek/tabular'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+nnoremap <leader>e <cmd>CHADopen<cr>
 
 " theme + color
 Plug 'arcticicestudio/nord-vim'
@@ -85,11 +86,10 @@ if has("persistent_undo")
   set undofile
 endif
 
-" only show cursor line in active window/pane
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
+  au WinLeave * if &filetype != "chadtree" | setlocal nocursorline | endif
 augroup END
 
 " tabs vs spaces
@@ -197,27 +197,9 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 " }}} fzf
-"
-" NERDTree open and open on current
-noremap <leader><leader> :NERDTreeToggle<CR>
-noremap <leader>n :NERDTreeFind<cr>
-noremap <leader>s :NERDTreeFind<cr><C-W><C-P>
-let g:NERDTreeQuitOnOpen = 1
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
-
-" if the only window open is NERDTree, close it
-augroup vimrcEx
-  autocmd!
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
 
 " %% to %:h to get active file dir in ex mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-" change cursor shape when in insert mode
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
 
 augroup printDebugMacros
   autocmd!
