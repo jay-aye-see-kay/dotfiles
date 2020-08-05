@@ -23,12 +23,13 @@ endif
 " plugins
 call plug#begin('~/.vim/plugged')
 source $HOME/.vim/file-tree.vim
-source $HOME/.vim/search.vim
 source $HOME/.vim/functions.vim
 source $HOME/.vim/language-server.vim
+source $HOME/.vim/search.vim
 source $HOME/.vim/terminal.vim
 source $HOME/.vim/theme.vim
 source $HOME/.vim/vcs.vim
+source $HOME/.vim/wiki.vim
 
 Plug 'godlygeek/tabular'
 Plug 'mbbill/undotree'
