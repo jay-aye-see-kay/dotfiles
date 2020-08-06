@@ -7,10 +7,12 @@ let g:coc_global_extensions = [
 \ 'coc-actions',
 \ 'coc-clangd',
 \ 'coc-css',
+\ 'coc-emoji',
 \ 'coc-eslint',
 \ 'coc-html',
 \ 'coc-jedi',
 \ 'coc-json',
+\ 'coc-prettier',
 \ 'coc-sh',
 \ 'coc-snippets',
 \ 'coc-solargraph',
@@ -91,10 +93,6 @@ endfunction
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 
 "
 " Set up custom text object (not actually working rn)
@@ -151,3 +149,14 @@ vmap <C-j> <Plug>(coc-snippets-select)
 " Clipboard manager (coc-yank)
 "
 nnoremap <leader>y :<C-u>CocList --auto-preview --normal --tab yank<CR>
+
+
+"
+" Formatting and prettier
+"
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nnoremap <leader>lp  :Prettier<CR>
+
+xmap <leader>lf  <Plug>(coc-format-selected)
+nmap <leader>lf  <Plug>(coc-format-selected)
+
