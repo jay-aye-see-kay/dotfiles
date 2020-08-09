@@ -149,6 +149,7 @@ vmap <C-j> <Plug>(coc-snippets-select)
 " Clipboard manager (coc-yank)
 "
 nnoremap <leader>y :<C-u>CocList --auto-preview --normal --tab yank<CR>
+" TODO <C-y> for paste from insert mode
 
 
 "
