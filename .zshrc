@@ -187,6 +187,9 @@ fzf-history-widget() {
   return $ret
 }
 
+# make shopping list
+alias shopping_list='$EDITOR $HOME/Documents/shopping-lists/$(date --iso-8601).md'
+
 # EXPERIMENTAL: make nvim my man page pager
 # TODO: breaks fman command
 command_exists nvim && {
