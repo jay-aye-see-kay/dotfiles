@@ -17,5 +17,6 @@
   },
   "eslint.options": {
     "ignorePattern": ["**/*.css"]
-  }
+  },
+  "coc.source.emoji.filetypes": ["markdown", "text", "vimwiki"]
 }
