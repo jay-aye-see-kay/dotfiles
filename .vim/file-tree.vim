@@ -1,7 +1,7 @@
 Plug 'lambdalisue/fern.vim'
 
 " open or focus drawer (if pressed from outside that focus)
-nnoremap <silent> <leader>e :Fern . -drawer -reveal=% -width=40<cr>
+nnoremap <silent> <leader>e :Fern . -drawer -reveal=% -width=30<cr>
 
 function! s:init_fern() abort
   " allow <leader>e to close drawer from inside it
@@ -15,6 +15,9 @@ function! s:init_fern() abort
 
   " this seems like a better use of r
   nnoremap <buffer> r <Plug>(fern-action-reload)
+
+  " more space
+  setlocal signcolumn=no
 endfunction
 
 augroup fern
