@@ -88,7 +88,7 @@ set foldopen-=block
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Copy filepath to system clipboard
-nnoremap <leader>cp :let @+ = expand("%")
+nnoremap <leader>cp :let @+ = expand("%")<CR>
 " Copy word/selection under cusor to system clipboard (Clipboard)
 nnoremap <leader>cc "+yiw
 vnoremap <leader>cc "+y
