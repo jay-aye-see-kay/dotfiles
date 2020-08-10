@@ -148,8 +148,11 @@ vmap <C-j> <Plug>(coc-snippets-select)
 "
 " Clipboard manager (coc-yank)
 "
+" The second one isn't that great because it leaves the cursor before the
+" pasted text. Plus the reflow jank from coc-yank is pretty bad, would prefer
+" something fzf based.
 nnoremap <leader>y :<C-u>CocList --auto-preview --normal --tab yank<CR>
-" TODO <C-y> for paste from insert mode
+inoremap <C-y> <C-o>:<C-u>CocList --auto-preview --normal yank<CR>
 
 
 "
@@ -160,4 +163,3 @@ nnoremap <leader>lp  :Prettier<CR>
 
 xmap <leader>lf  <Plug>(coc-format-selected)
 nmap <leader>lf  <Plug>(coc-format-selected)
-
