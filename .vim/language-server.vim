@@ -172,7 +172,10 @@ let g:vista_default_executive = 'coc'
 nnoremap <silent> <leader>tb :Vista!!<CR>
 let g:vista_sidebar_width = 40
 let g:vista#renderer#enable_icon = 1
+
+" we want nothing to happen on hover, but to scroll on `s`
 let g:vista_echo_cursor = 0
+let g:vista_echo_cursor_strategy = "scroll"
 
 " TODO/to ask for:
 " - code to markdown doesn't update tagbar
@@ -183,6 +186,6 @@ augroup vistaCustomMaps
   autocmd!
   autocmd FileType vista nnoremap <buffer> <silent> x    :close<CR>
   autocmd FileType vista nnoremap <buffer> <silent> <CR> :<c-u>call vista#cursor#FoldOrJump()<CR>
-  autocmd FileType vista nnoremap <buffer> <silent> s    :<c-u>call vista#cursor#FoldOrJump()<CR><c-w><c-p>
+  autocmd FileType vista nnoremap <buffer> <silent> s    :<c-u>call vista#cursor#ShowDetail(0)<CR>
   autocmd FileType vista nnoremap <buffer> <silent> p    :<c-u>call vista#cursor#TogglePreview()<CR>
 augroup end
