@@ -121,3 +121,14 @@ augroup downsheet
   autocmd BufRead,BufNewFile *.dsh set nowrap
   autocmd BufWritePre *.dsh :%!dsc
 augroup END
+
+"
+" quickfix list
+"
+augroup quickFixList
+  " dd to remove an item from the quick fix list
+  autocmd FileType qf nnoremap <buffer><silent> dd
+        \ <Cmd>call setqflist(filter(getqflist(), {idx -> idx != line('.') - 1}), 'r') <Bar> cc<CR>
+  " s to 'scroll to' a location, but keep focus on the quick fix list
+  autocmd FileType qf nnoremap <buffer><silent> s <CR>zz<C-w><C-p>
+augroup END
