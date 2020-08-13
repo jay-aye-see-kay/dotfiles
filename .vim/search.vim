@@ -25,7 +25,7 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.85,
 
 augroup fzfDefaultEscapeBehavior
   autocmd!
-  autocmd FileType fzf tnoremap <ESC> <ESC>
+  autocmd FileType fzf tnoremap <buffer> <ESC> <ESC>
 augroup END
 
 " Customize fzf colors to match your color scheme
