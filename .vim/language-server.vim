@@ -163,3 +163,4 @@ nnoremap <leader>lp  :Prettier<CR>
 
 xmap <leader>lf  <Plug>(coc-format-selected)
 nmap <leader>lf  <Plug>(coc-format-selected)
+nmap <leader>lff  <Plug>(coc-format)
