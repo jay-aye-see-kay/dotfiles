@@ -2,6 +2,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 
+augroup commitMessageSettings
+  autocmd!
+  autocmd FileType gitcommit setlocal spell
+augroup end
+
 let g:gitgutter_map_keys = 0
 nnoremap [h :GitGutterPrevHunk<CR>
 nnoremap ]h :GitGutterNextHunk<CR>

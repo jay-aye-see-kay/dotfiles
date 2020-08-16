@@ -14,8 +14,8 @@ augroup termConfig
   autocmd TermOpen * call s:terminal_config()
 augroup END
 
-" double ctrl-backslash to escape from terminal mode
-tnoremap <C-\><C-\> <C-\><C-n>
+" escape from terminal mode
+tnoremap <ESC> <C-\><C-n>
 
 " open new term in split
 nnoremap <leader>ts <C-w><C-s>:terminal<CR>

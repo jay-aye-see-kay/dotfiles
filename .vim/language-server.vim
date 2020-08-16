@@ -1,4 +1,5 @@
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'liuchengxu/vista.vim'
 
 "
 " Extensions to install
@@ -130,7 +131,7 @@ function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+nmap <silent> <leader>a :<C-u>CocCommand actions.open<CR>
 
 
 "
@@ -164,3 +165,27 @@ nnoremap <leader>lp  :Prettier<CR>
 xmap <leader>lf  <Plug>(coc-format-selected)
 nmap <leader>lf  <Plug>(coc-format-selected)
 nmap <leader>lff  <Plug>(coc-format)
+
+"
+" tagbar
+"
+let g:vista_default_executive = 'coc'
+nnoremap <silent> <leader>tb :Vista!!<CR>
+let g:vista_sidebar_width = 40
+let g:vista#renderer#enable_icon = 1
+
+" we want nothing to happen on hover, but to scroll on `s`
+let g:vista_echo_cursor = 0
+let g:vista_echo_cursor_strategy = "scroll"
+
+" TODO/to ask for:
+" - code to markdown doesn't update tagbar
+" - toc for helpfiles?
+
+let g:vista_no_mappings = 1
+augroup vistaCustomMaps
+  autocmd!
+  autocmd FileType vista nnoremap <buffer> <silent> <CR> :<c-u>call vista#cursor#FoldOrJump()<CR>
+  autocmd FileType vista nnoremap <buffer> <silent> s    :<c-u>call vista#cursor#ShowDetail(0)<CR>
+  autocmd FileType vista nnoremap <buffer> <silent> p    :<c-u>call vista#cursor#TogglePreview()<CR>
+augroup end
