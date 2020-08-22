@@ -41,6 +41,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " undotree
@@ -132,3 +133,11 @@ augroup quickFixList
   " s to 'scroll to' a location, but keep focus on the quick fix list
   autocmd FileType qf nnoremap <buffer><silent> s <CR>zz<C-w><C-p>
 augroup END
+
+"
+" TODO make a writing section
+"
+nnoremap yog :Goyo<CR>
+" 100 chars wide x 100% height
+let g:goyo_width = 100
+let g:goyo_height = 100
