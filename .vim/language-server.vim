@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
 \ 'coc-jedi',
 \ 'coc-json',
 \ 'coc-prettier',
+\ 'coc-rust-analyzer',
 \ 'coc-sh',
 \ 'coc-snippets',
 \ 'coc-solargraph',
