@@ -1,8 +1,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 ### Variables
-set $alt Mod1
 set $ctl Control
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys
 set $left h
 set $down j
@@ -13,8 +12,6 @@ set $term termite
 set $alt_term alacritty
 set $browser firefox
 set $private_browser firefox --private-window
-
-set $mod Mod4
 
 # start on login
 exec --no-startup-id dunst
@@ -48,10 +45,9 @@ bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec $menu
-bindsym Mod1+space exec $menu
 
 # lock screen
-bindsym Mod1+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
+bindsym $mod+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
 
 # split in horizontal or vertical orientation
 bindsym $mod+Shift+v split h
