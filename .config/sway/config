@@ -1,7 +1,6 @@
 ### Variables
-set $alt Mod1
 set $ctl Control
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys
 set $left h
 set $down j
@@ -52,7 +51,6 @@ bindsym $mod+Shift+s exec termite --name=termite-floating -e "vim ~/scratch.md"
 font pango:Fira Mono 10
 titlebar_border_thickness 0
 titlebar_padding 6 2
-gaps inner 4
 default_border pixel 4
 
 # notifications
@@ -91,7 +89,6 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
   # start your launcher
   bindsym $mod+d exec $menu
-  bindsym Mod1+Space exec $menu
 
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize floating or tiled windows with right mouse button + $mod.
@@ -107,7 +104,7 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
   bindsym $mod+b exec $browser
   bindsym $mod+Shift+b exec $private_browser
-  bindsym $ctl+$alt+l exec swaylock
+  bindsym $ctl+$mod+l exec swaylock
 
   # Screen brightness controls
     bindsym XF86MonBrightnessUp exec brightnessctl set +5%
