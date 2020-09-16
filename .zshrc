@@ -234,3 +234,4 @@ command_exists broot && {
 }
 
 eval "$(starship init zsh)"
+

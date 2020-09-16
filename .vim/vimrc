@@ -32,7 +32,7 @@ source $HOME/.vim/vcs.vim
 source $HOME/.vim/wiki.vim
 
 Plug 'godlygeek/tabular'
-Plug 'mbbill/undotree'
+Plug 'simnalamburt/vim-mundo'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -45,7 +45,10 @@ Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " undotree
-nnoremap <leader>u :UndotreeToggle<cr>
+nnoremap <leader>u :MundoToggle<cr>
+let g:mundo_preview_bottom = 1
+let g:mundo_width = 40
+let g:mundo_preview_height = 20
 if has("persistent_undo")
   set undodir=$HOME/.cache/vim/persistent_undo
   set undofile
