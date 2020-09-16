@@ -5,7 +5,7 @@ nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
 nnoremap <leader>fz :FZF<CR>
 nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>fa :Rg<CR>
 nnoremap <leader>fl :BLines<CR>
 nnoremap <leader>fc :Commands<CR>
 " grep all text in my wiki (TODO add preview window)
@@ -15,8 +15,8 @@ command! -bang EditedFiles call fzf#run(fzf#vim#with_preview(fzf#wrap({
       \ 'source': 'git diff --name-only `git merge-base origin/master HEAD`' })))
 nnoremap <leader>fe :EditedFiles<CR>
 " global search word under cursor/selection
-nnoremap <leader>ff "0yiw:Ag <C-R>0<CR>
-vnoremap <leader>ff "0y:Ag <C-R>0<CR>
+nnoremap <leader>ff "0yiw:Rg <C-R>0<CR>
+vnoremap <leader>ff "0y:Rg <C-R>0<CR>
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
