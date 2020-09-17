@@ -98,7 +98,7 @@ nnoremap <leader>cc "+yiw
 vnoremap <leader>cc "+y
 
 " disable exmode and commandline search
-map q: <Nop>
+map q: <nop>
 nnoremap Q <nop>
 
 " {{{ stuff from https://github.com/thoughtbot/dotfiles

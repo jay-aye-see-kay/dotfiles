@@ -1,6 +1,9 @@
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+" disable s as I want to start using it for seach mapping soon
+nnoremap s <nop>
+
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
 nnoremap <leader>fz :FZF<CR>
