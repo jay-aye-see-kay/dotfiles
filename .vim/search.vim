@@ -1,8 +1,27 @@
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" disable s as I want to start using it for seach mapping soon
+" {{{ TEMP experiemnt to replace `<space>f` with `s`
+" disable `s`, use `cl` instead
 nnoremap s <nop>
+
+nnoremap sb :Buffer<CR>
+nnoremap sh :History<CR>
+nnoremap sz :FZF<CR>
+nnoremap sg :GFiles<CR>
+nnoremap sa :Rg<CR>
+nnoremap sl :BLines<CR>
+nnoremap sc :Commands<CR>
+" grep all text in my wiki (TODO add preview window)
+nnoremap sw :call fzf#vim#ag('', { 'dir':  g:vimwiki_list[0]['path'] })<CR>
+" shows files edited on current branch (diffed with master)
+command! -bang EditedFiles call fzf#run(fzf#vim#with_preview(fzf#wrap({
+      \ 'source': 'git diff --name-only `git merge-base origin/master HEAD`' })))
+nnoremap se :EditedFiles<CR>
+" global search word under cursor/selection
+nnoremap sf "0yiw:Rg <C-R>0<CR>
+vnoremap sf "0y:Rg <C-R>0<CR>
+" END experiemnt }}}
 
 nnoremap <leader>fb :Buffer<CR>
 nnoremap <leader>fh :History<CR>
