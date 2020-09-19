@@ -1,25 +1,23 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 ### Variables
-set $alt Mod1
 set $ctl Control
-set $mod Mod4
+set $mod Mod1
 # Home row direction keys
 set $left h
 set $down j
 set $up k
 set $right l
 # Preferred apps
-set $term termite
-set $alt_term alacritty
+set $term alacritty
 set $browser firefox
 set $private_browser firefox --private-window
-
-set $mod Mod4
 
 # start on login
 exec --no-startup-id dunst
 exec --no-startup-id nextcloud
 exec --no-startup-id redshift -l-37:144 -t 6500:4000
+
+default_border pixel 4
 
 # menu
 for_window [instance="termite-floating"] floating enable, border pixel 4, sticky enable
@@ -48,10 +46,9 @@ bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec $menu
-bindsym Mod1+space exec $menu
 
 # lock screen
-bindsym Mod1+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
+bindsym $mod+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
 
 # split in horizontal or vertical orientation
 bindsym $mod+Shift+v split h
@@ -173,6 +170,7 @@ bindsym XF86AudioNext exec playerctl next
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    position top
     status_command i3status
     tray_output primary
     separator_symbol "──"
