@@ -83,6 +83,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Traditional save shortcuts
+nnoremap <silent> <C-s> :w<CR>
+nnoremap <silent> <D-s> :w<CR>
+
 " toggle foldcolumn
 nnoremap yof :set foldcolumn=<C-R>=&foldcolumn == 0 ? 2 : 0<CR><CR>
 " don't auto open folds while moving by paragraph
