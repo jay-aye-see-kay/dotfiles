@@ -87,6 +87,9 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <silent> <D-s> :w<CR>
 
+" remove insert last while in insert
+inoremap <C-a> <nop>
+
 " toggle foldcolumn
 nnoremap yof :set foldcolumn=<C-R>=&foldcolumn == 0 ? 2 : 0<CR><CR>
 " don't auto open folds while moving by paragraph
