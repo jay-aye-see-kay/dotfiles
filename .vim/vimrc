@@ -151,3 +151,7 @@ nnoremap yog :Goyo<CR>
 " 100 chars wide x 100% height
 let g:goyo_width = 100
 let g:goyo_height = 100
+
+" increase oldfile saved (used for fzf's :History)
+" ( default is !,'100,<50,s10,h )
+set shada=!,'1000,<50,s10,h
