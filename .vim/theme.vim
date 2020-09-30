@@ -1,7 +1,7 @@
-Plug 'tomasiser/vim-code-dark'
+Plug 'cormacrelf/vim-colors-github'
 call plug#end()
 
-colorscheme codedark
+colorscheme github
 set termguicolors
 let g:is_posix = 1 " shell for syntax highlighting purposes.
 
