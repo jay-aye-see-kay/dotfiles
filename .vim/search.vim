@@ -11,20 +11,26 @@ nnoremap sg :GFiles<CR>
 nnoremap sa :Rg<CR>
 nnoremap sl :BLines<CR>
 nnoremap sc :Commands<CR>
-" grep all text in my wiki (TODO add preview window)
-nnoremap sw :call fzf#vim#ag('', { 'dir':  g:vimwiki_list[0]['path'] })<CR>
+nnoremap sn :Notes<CR>
 " shows files edited on current branch (diffed with master)
 command! -bang EditedFiles call fzf#run(fzf#vim#with_preview(fzf#wrap({
       \ 'source': 'git diff --name-only `git merge-base origin/master HEAD`' })))
 nnoremap se :EditedFiles<CR>
-" global search word under cursor/selection
-nnoremap sf "0yiw:Rg <C-R>0<CR>
-vnoremap sf "0y:Rg <C-R>0<CR>
+" Search word Under cursor/selection in pwd
+nnoremap su :Rg <C-r><C-w><CR>
+vnoremap su "0y:Rg <C-R>0<CR>
 
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 let $FZF_DEFAULT_OPTS = "--layout=reverse"
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.85,
       \ 'highlight': 'Question', 'border': 'sharp' } }
+
+" grep all text in my wiki
+command! -bang -nargs=* Notes
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '
+  \   .shellescape(<q-args>).' '.g:vimwiki_list[0]['path'], 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 augroup fzfDefaultEscapeBehavior
   autocmd!
