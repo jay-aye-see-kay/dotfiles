@@ -41,3 +41,29 @@ augroup timestamps
   nnoremap <leader>dn "=strftime("%Y-%m-%d %H:%M")<CR>p
   nnoremap <leader>ds "=system("date --iso-8601=seconds")<CR>p
 augroup END
+
+
+
+"
+" focus floating window, if exists
+"
+function ToggleFloatingFocus() abort
+  let visible_win_ids = nvim_tabpage_list_wins(0)
+  let focused_win_id = nvim_get_current_win()
+
+  for win_id in visible_win_ids
+    let win_config = nvim_win_get_config(win_id)
+    if win_config.relative ==# ''
+      continue
+    endif
+
+    if win_id !=# focused_win_id
+      call nvim_set_current_win(win_id)
+    else
+      call nvim_set_current_win(win_config.win)
+    endif
+  endfor
+endfunction
+
+nnoremap <C-w><C-f> :call ToggleFloatingFocus()<CR>
+nnoremap <C-w>f :call ToggleFloatingFocus()<CR>
