@@ -17,8 +17,11 @@ augroup printDebugMacros
   autocmd FileType sh nnoremap <leader>rp "0yiwoecho "<C-R>0: $<C-R>0"<ESC>
   autocmd FileType sh vnoremap <leader>rp "0yoecho "<C-R>0: $<C-R>0"<ESC>
   " Rust print next line
-  autocmd FileType rust nnoremap <leader>rp "0yiwoprintln!("<C-R>0: {}", <C-R>0);<ESC>
-  autocmd FileType rust vnoremap <leader>rp "0yoprintln!("<C-R>0: {}", <C-R>0);<ESC>
+  autocmd FileType rust nnoremap <leader>rp "0yiwoprintln!("<C-R>0: {:?}", <C-R>0);<ESC>
+  autocmd FileType rust vnoremap <leader>rp "0yoprintln!("<C-R>0: {:?}", <C-R>0);<ESC>
+  " vimL print next line
+  autocmd FileType vim nnoremap <leader>rp "0yiwoecho '<C-R>0: ' <C-R>0<ESC>
+  autocmd FileType vim vnoremap <leader>rp "0yoecho '<C-R>0: ', <C-R>0<ESC>
 augroup END
 
 " F12 to fix syntax highlighting when needed https://vim.fandom.com/wiki/Fix_syntax_highlighting
