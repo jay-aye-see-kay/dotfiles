@@ -43,6 +43,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/goyo.vim'
 Plug 'AndrewRadev/switch.vim'
+Plug 'jeetsukumaran/vim-indentwise'
 call plug#end()
 
 " undotree

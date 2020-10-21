@@ -123,3 +123,6 @@ shift + alt - f : yabai -m window --toggle native-fullscreen
 
 # restart yabai
 shift + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# Open new terminal
+alt - return : alacritty
