@@ -163,3 +163,18 @@ set shada=!,'1000,<50,s10,h
 
 " make Y consistent with C and D.
 nnoremap Y y$
+
+"
+" Statusbar
+"
+let g:lightline = {
+\   'colorscheme': 'github',
+\   'active': {
+\     'left': [ [ 'mode', 'paste' ],
+\               [ 'cocstatus', 'readonly', 'filename', 'gitbranch', 'modified' ] ]
+\   },
+\   'component_function': {
+\     'cocstatus': 'coc#status',
+\     'gitbranch': 'FugitiveHead'
+\   },
+\ }

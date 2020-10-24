@@ -102,22 +102,6 @@ omap ac <Plug>(coc-classobj-a)
 
 
 "
-" Statusline (add coc status to start of)
-"
-set statusline=%{coc#status()} " coc's loading spinner
-set statusline+=\              " Separator
-set statusline+=%f             " Path to the file
-set statusline+=\              " Separator
-set statusline+=%m             " Modified flag
-
-set statusline+=%=             " Switch to the right side
-set statusline+=%l             " Current line
-set statusline+=/              " Separator
-set statusline+=%L             " Total lines
-set statusline+=%{get(b:,'coc_current_function','')}
-
-
-"
 " Code actions
 "
 function! s:cocActionsOpenFromSelected(type) abort
