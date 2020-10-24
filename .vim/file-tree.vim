@@ -1,7 +1,11 @@
 Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'lambdalisue/nerdfont.vim'
 
-" open or focus drawer (if pressed from outside that focus)
-nnoremap <silent> <leader>e :Fern . -drawer -reveal=% -width=30<cr>
+let g:fern#renderer = "nerdfont"
+let g:fern#default_hidden = 1
 
 function! s:init_fern() abort
   " allow <leader>e to close drawer from inside it
@@ -15,9 +19,6 @@ function! s:init_fern() abort
 
   " this seems like a better use of r
   nnoremap <buffer> r <Plug>(fern-action-reload)
-
-  " more space
-  setlocal signcolumn=no
 endfunction
 
 augroup fern
@@ -27,13 +28,20 @@ augroup fern
   autocmd FileType fern-renamer cnoremap <buffer> wq w
 augroup END
 
-" A |String| used as leading space unit (one indentation level.)
-let g:fern#renderer#default#leading=" "
-" A |String| used as a symbol of root node.
-let g:fern#renderer#default#root_symbol=""
-" A |String| used as a symbol of leaf node (non branch node like file).
-let g:fern#renderer#default#leaf_symbol="│ "
-" A |String| used as a symbol of collapsed branch node.
-let g:fern#renderer#default#collapsed_symbol="├━ "
-" A |String| used as a symbol of expanded branch node.
-let g:fern#renderer#default#expanded_symbol="└┬ "
+function s:fern_open_project_view(drawer) abort
+  let project_dir = GetProjectDir()
+  let current_file = expand("%:p")
+  if a:drawer
+    execute printf('Fern %s -reveal=%s -drawer -width=30', fnameescape(project_dir), fnameescape(current_file))
+  else
+    execute printf('Fern %s -reveal=%s', fnameescape(project_dir), fnameescape(current_file))
+  endif
+endfunction
+
+" open Fern as Window
+nnoremap <silent> <leader>fw :call <SID>fern_open_project_view(0)<CR>
+" open Fern as Drawer
+nnoremap <silent> <leader>fd :call <SID>fern_open_project_view(1)<CR>
+
+
+" show hidden by default

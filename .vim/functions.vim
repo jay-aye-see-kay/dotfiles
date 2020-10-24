@@ -67,3 +67,22 @@ endfunction
 
 nnoremap <C-w><C-f> :call ToggleFloatingFocus()<CR>
 nnoremap <C-w>f :call ToggleFloatingFocus()<CR>
+
+
+"
+" Get the project dir, home dir, or root dir, whichever comes first
+" (a project dir is defined by having a .git folder)
+"
+function GetProjectDir() abort
+  let current_dir = expand("%:p")
+  let parent_dir = fnamemodify(current_dir, ':h')
+
+  while current_dir != parent_dir
+    if isdirectory(current_dir . "/.git") || current_dir == $HOME
+      return current_dir
+    endif
+
+    let current_dir = parent_dir
+    let parent_dir = fnamemodify(current_dir, ':h')
+  endwhile
+endfunction
