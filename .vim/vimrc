@@ -44,8 +44,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/goyo.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'ryanoasis/vim-devicons'
-Plug 'pacha/vem-tabline'
 Plug 'itchyny/lightline.vim'
 call plug#end()
 
