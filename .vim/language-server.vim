@@ -140,16 +140,6 @@ vmap <C-j> <Plug>(coc-snippets-select)
 
 
 "
-" Clipboard manager (coc-yank)
-"
-" The second one isn't that great because it leaves the cursor before the
-" pasted text. Plus the reflow jank from coc-yank is pretty bad, would prefer
-" something fzf based.
-nnoremap <leader>y :<C-u>CocList --auto-preview --normal --tab yank<CR>
-inoremap <C-y> <C-o>:<C-u>CocList --auto-preview --normal yank<CR>
-
-
-"
 " Formatting and prettier
 "
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
