@@ -1,5 +1,6 @@
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 "
 " Fzf config/setup
@@ -63,21 +64,33 @@ command! -bang -nargs=* AllHelpText
   \ )
 
 "
-" Keymaps
+" FZF Keymaps
 "
-nnoremap sb :Buffer<CR>
-nnoremap sh :History<CR>
 nnoremap sz :FZF<CR>
-nnoremap sf :GFiles<CR>
-nnoremap sa :Rg<CR>
-nnoremap sl :BLines<CR>
-nnoremap sc :Commands<CR>
 nnoremap sn :Notes<CR>
 nnoremap se :EditedFiles<CR>
-" Search word Under cursor/selection in pwd
-nnoremap su :Rg <C-r><C-w><CR>
-vnoremap su "0y:Rg <C-R>0<CR>
 " Search Git Commits (in whole project)
 nnoremap sgc :Commits<CR>
-" Search all helptags (Documentation)
-nnoremap sd :Helptags<CR>
+
+"
+" Clap config
+"
+let g:clap_layout = { 'relative': 'editor', 'row': '10%' }
+let g:clap_provider_grep_delay = 0
+let g:clap_preview_size = 100 " fill the rest of the page
+
+"
+" Clap Keymaps
+"
+nnoremap sf :Clap files<CR>
+nnoremap sl :Clap blines<CR>
+nnoremap sb :Clap buffers<CR>
+nnoremap sc :Clap command<CR>
+nnoremap sa :Clap grep<CR>
+" Search Oldfiles (history)
+nnoremap so :Clap history<CR>
+" Search Under cursor/ selection
+nnoremap su :Clap grep ++query=<cword><CR>
+vnoremap su :Clap grep ++query=@visual<CR>
+" Search Helptags
+nnoremap sh :Clap help_tags<CR>
