@@ -10,8 +10,12 @@ set $right l
 set $term alacritty
 set $browser firefox
 set $private_browser firefox --private-window
-# menu
-set $menu exec wofi
+
+# launcher
+set $menu exec ulauncher
+exec ulauncher --hide-window
+for_window [app_id="ulauncher"] border pixel 0
+
 
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
