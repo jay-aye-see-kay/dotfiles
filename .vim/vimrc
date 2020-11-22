@@ -169,7 +169,10 @@ let g:lightline = {
 \   'colorscheme': 'github',
 \   'active': {
 \     'left': [ [ 'mode', 'paste' ],
-\               [ 'cocstatus', 'readonly', 'filename', 'gitbranch', 'modified' ] ]
+\               [ 'cocstatus', 'readonly', 'gitbranch', 'relativepath', 'modified' ] ]
+\   },
+\   'inactive': {
+\     'left': [ [ 'relativepath' ] ]
 \   },
 \   'component_function': {
 \     'cocstatus': 'coc#status',
