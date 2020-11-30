@@ -8,6 +8,13 @@ let g:vimwiki_conceallevel = 0
 nnoremap glt :VimwikiToggleListItem<CR>
 vnoremap glt :VimwikiToggleListItem<CR>
 
+let g:vimwiki_key_mappings =
+  \ {
+  \   'headers': 0,
+  \   'links': 0,
+  \   'html': 0,
+  \ }
+
 augroup naturalMovementInTextFiles
   autocmd!
   autocmd FileType text,markdown,vimwiki nnoremap j gj
