@@ -32,8 +32,7 @@ key_bindings:
 # font size/zoom level
   - { key: Key0,     mods: Control|Shift, action: ResetFontSize    }
   - { key: Equals,   mods: Control|Shift, action: IncreaseFontSize }
-  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
-  - { key: Subtract, mods: Control|Shift, action: DecreaseFontSize }
+  - { key: Plus,     mods: Control|Shift, action: IncreaseFontSize }
   - { key: Minus,    mods: Control|Shift, action: DecreaseFontSize }
 
 background_opacity: 0.9
@@ -52,7 +51,7 @@ background_opacity: 0.9
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-window:
+# window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -89,7 +88,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  decorations: none
+  # decorations: none
 
   # Startup Mode (changes require restart)
   #
