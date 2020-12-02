@@ -42,6 +42,3 @@ endfunction
 nnoremap <silent> <leader>fw :call <SID>fern_open_project_view(0)<CR>
 " open Fern as Drawer
 nnoremap <silent> <leader>fd :call <SID>fern_open_project_view(1)<CR>
-
-
-" show hidden by default

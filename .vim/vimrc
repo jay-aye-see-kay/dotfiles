@@ -45,6 +45,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'itchyny/lightline.vim'
+Plug 'yazgoo/unicodemoji', { 'branch': 'main' }
 call plug#end()
 
 " undotree
@@ -155,6 +156,9 @@ nnoremap yog :Goyo<CR>
 let g:goyo_width = 100
 let g:goyo_height = 100
 
+" emoji stuff
+nnoremap <leader>e :Unicodemoji<CR>
+
 " increase oldfile saved (used for fzf's :History)
 " ( default is !,'100,<50,s10,h )
 set shada=!,'1000,<50,s10,h
@@ -169,7 +173,10 @@ let g:lightline = {
 \   'colorscheme': 'github',
 \   'active': {
 \     'left': [ [ 'mode', 'paste' ],
-\               [ 'cocstatus', 'readonly', 'filename', 'gitbranch', 'modified' ] ]
+\               [ 'cocstatus', 'readonly', 'gitbranch', 'relativepath', 'modified' ] ]
+\   },
+\   'inactive': {
+\     'left': [ [ 'relativepath' ] ]
 \   },
 \   'component_function': {
 \     'cocstatus': 'coc#status',
