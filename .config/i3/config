@@ -20,8 +20,9 @@ exec --no-startup-id redshift -l-37:144 -t 6500:4000
 default_border pixel 4
 
 # menu
-for_window [instance="termite-floating"] floating enable, border pixel 4, sticky enable
-set $menu exec termite --name=termite-floating -e "${HOME}/bin/launcher.sh"
+set $menu exec ulauncher --no-window-shadow
+exec ulauncher --hide-window
+for_window [class="^Ulauncher$"] border pixel 0
 
 # Font for window titles. Will also be used by the bar unless a different font
 font pango:Fira Mono 10
