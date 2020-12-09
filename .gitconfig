@@ -9,12 +9,14 @@
     co = checkout
     cob = checkout -b
     cod = checkout develop
-    com = checkout master
+    com = !"git checkout master 2> /dev/null || git checkout main"
     df = diff
     dfs = diff --staged
     st = status
     pop = stash pop
     unstage = reset HEAD --
+    uncommit = reset --soft HEAD~1
+    recommit = commit --amend --no-edit
 [core]
     pager = delta
     excludesfile = ~/.globalgitignore
