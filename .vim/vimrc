@@ -46,6 +46,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'itchyny/lightline.vim'
 Plug 'yazgoo/unicodemoji', { 'branch': 'main' }
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
 
 " undotree
