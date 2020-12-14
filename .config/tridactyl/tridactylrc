@@ -15,6 +15,9 @@ set editorcmd /usr/bin/alacritty -e /usr/bin/nvim
 " Ctrl-F should use the browser's native find
 unbind <C-f>
 
+" use native browser bookmark
+unbind <C-d>
+
 " But also support Tridactyl search too.
 bind / fillcmdline find
 bind ? fillcmdline find -?
