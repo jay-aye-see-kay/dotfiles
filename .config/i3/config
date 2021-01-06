@@ -30,6 +30,7 @@ font pango:Fira Mono 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 focus_follows_mouse no
+focus_wrapping no
 
 # start a terminal or browser
 bindsym $mod+Return exec $term
