@@ -22,6 +22,7 @@ endif
 
 " plugins
 call plug#begin('~/.vim/plugged')
+source $HOME/.vim/debugger.vim
 source $HOME/.vim/file-tree.vim
 source $HOME/.vim/functions.vim
 source $HOME/.vim/language-server.vim
