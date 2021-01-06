@@ -17,6 +17,7 @@ unbind <C-f>
 
 " use native browser bookmark
 unbind <C-d>
+unbind <C-u>
 
 " But also support Tridactyl search too.
 bind / fillcmdline find
@@ -36,3 +37,6 @@ bind k scrollline -5
 bind x tabclose
 bind u scrollpage -0.5
 bind d scrollpage 0.5
+
+" nofocus on tab enter so I can rely on J/K to change tabs
+autocmd TabEnter .* unfocus
