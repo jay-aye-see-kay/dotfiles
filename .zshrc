@@ -198,6 +198,9 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
 # make shopping list
 alias shopping_list='$EDITOR $HOME/Documents/shopping-lists/$(date --iso-8601).md'
 
+# inflate zlib compressed stream from stdin, part of the building git book
+alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
+
 # EXPERIMENTAL: make nvim my man page pager
 # TODO: breaks fman command
 command_exists nvim && {
