@@ -280,5 +280,7 @@ bar {
         inactive_workspace $bg $bg $gray
         urgent_workspace $red $red $white
     }
+    bindsym button4 nop
+    bindsym button5 nop
 }
 
