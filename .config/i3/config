@@ -20,9 +20,8 @@ exec --no-startup-id redshift -l-37:144 -t 6500:4000
 default_border pixel 4
 
 # menu
-set $menu exec ulauncher --no-window-shadow
-exec ulauncher --hide-window
-for_window [class="^Ulauncher$"] border pixel 0
+for_window [instance="^floating-launcher$"] floating enable, sticky enable
+bindsym $mod+d exec $term --class=floating-launcher -e env "FZF_DEFAULT_OPTS='--reverse'" sway-launcher-desktop
 
 # Font for window titles. Will also be used by the bar unless a different font
 font pango:Fira Mono 10
@@ -45,9 +44,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # using plasma's logout screen instead of i3's
 bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
-
-# start dmenu (a program launcher)
-bindsym $mod+d exec $menu
 
 # lock screen
 bindsym $mod+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
