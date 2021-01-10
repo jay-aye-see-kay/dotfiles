@@ -11,11 +11,9 @@ set $term alacritty
 set $browser firefox
 set $private_browser firefox --private-window
 
-# launcher
-set $menu exec ulauncher
-exec ulauncher --hide-window
-for_window [app_id="ulauncher"] border pixel 0
-
+# menu
+for_window [app_id="^floating-launcher$"] floating enable, sticky enable
+bindsym $mod+d exec $term --class=floating-launcher -e env "FZF_DEFAULT_OPTS='--reverse'" sway-launcher-desktop
 
 ### Output configuration
 output * bg $HOME/Pictures/wallpaper.jpg fill
@@ -90,9 +88,6 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
   # kill focused window
   bindsym $mod+Shift+q kill
   bindsym Control+q nop nop
-
-  # start your launcher
-  bindsym $mod+d exec $menu
 
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize floating or tiled windows with right mouse button + $mod.
