@@ -1,5 +1,8 @@
-theme = "plain"
-icons = "awesome"
+# requires the package `ttf-font-awesome`
+icons = "awesome5"
+
+[[block]]
+block = "sound"
 
 [[block]]
 block = "music"
@@ -11,21 +14,23 @@ block = "networkmanager"
 on_click = "alacritty -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
+max_ssid_width = 12
+ap_format = "{ssid} ({strength}%)"
 
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
+alias = ""
 info_type = "available"
-unit = "GB"
+unit = "GiB"
 interval = 20
 warning = 20.0
 alert = 10.0
 
 [[block]]
 block = "memory"
-format_mem = "{Mug}GiB({Mup}%)"
-format_swap = "{SUg}GiB({SUp}%)"
+format_mem = "{Mug} GiB"
+format_swap = "{SUg} GiB"
 display_type = "memory"
 icons = true
 clickable = true
@@ -36,16 +41,16 @@ critical_mem = 95
 critical_swap = 95
 
 [[block]]
-block = "cpu"
-interval = 1
-
-[[block]]
 block = "load"
 interval = 1
 format = "{1m}"
 
 [[block]]
-block = "sound"
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "temperature"
 
 [[block]]
 block = "time"
