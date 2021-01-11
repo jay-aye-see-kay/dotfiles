@@ -53,6 +53,11 @@ interval = 1
 block = "temperature"
 
 [[block]]
+block = "battery"
+allow_missing = true
+hide_missing = true
+
+[[block]]
 block = "time"
 interval = 60
 format = "%a %d/%m %R"
