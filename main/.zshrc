@@ -21,8 +21,6 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-# dotfiles/config management
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 export PATH=$PATH:~/bin:~/.local/bin
 
 # connect clipboard to shell
