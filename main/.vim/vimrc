@@ -36,6 +36,7 @@ source $HOME/.vim/file-tree.vim
 source $HOME/.vim/functions.vim
 source $HOME/.vim/language-server.vim
 source $HOME/.vim/search.vim
+source $HOME/.vim/status-line.vim
 source $HOME/.vim/terminal.vim
 source $HOME/.vim/theme.vim
 source $HOME/.vim/vcs.vim
@@ -54,7 +55,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/goyo.vim'
 Plug 'AndrewRadev/switch.vim'
 Plug 'jeetsukumaran/vim-indentwise'
-Plug 'itchyny/lightline.vim'
 Plug 'yazgoo/unicodemoji', { 'branch': 'main' }
 call plug#end()
 
@@ -162,21 +162,3 @@ let g:goyo_height = 100
 
 " emoji stuff
 nnoremap <leader>e :Unicodemoji<CR>
-
-"
-" Statusbar
-"
-let g:lightline = {
-\   'colorscheme': 'github',
-\   'active': {
-\     'left': [ [ 'mode', 'paste' ],
-\               [ 'cocstatus', 'readonly', 'gitbranch', 'relativepath', 'modified' ] ]
-\   },
-\   'inactive': {
-\     'left': [ [ 'relativepath' ] ]
-\   },
-\   'component_function': {
-\     'cocstatus': 'coc#status',
-\     'gitbranch': 'FugitiveHead'
-\   },
-\ }
