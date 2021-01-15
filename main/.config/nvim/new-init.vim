@@ -19,6 +19,18 @@ inoremap <C-a> <nop>
 nnoremap Y y$
 " }}}
 
+" tabs vs spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+augroup tabwidths
+  autocmd!
+  autocmd FileType elm,python set tabstop=4
+  autocmd FileType elm,python set softtabstop=4
+  autocmd FileType elm,python set shiftwidth=4
+augroup END
+
 " {{{ plugins
 " install plug.vim on new on new machines
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
