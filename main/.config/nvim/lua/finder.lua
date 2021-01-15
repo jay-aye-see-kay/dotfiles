@@ -13,8 +13,9 @@ require('telescope').setup{
 }
 
 local opts = { noremap=true, silent=false }
+map('n', 'sg', '<cmd>Telescope git_files<cr>', opts)
 map('n', 'sf', '<cmd>Telescope find_files<cr>', opts)
-map('n', 'sg', '<cmd>Telescope live_grep<cr>', opts)
+map('n', 'sa', '<cmd>Telescope live_grep<cr>', opts)
 map('n', 'sb', '<cmd>Telescope buffers<cr>', opts)
 map('n', 'sh', '<cmd>Telescope help_tags<cr>', opts)
 map('n', 'sc', '<cmd>Telescope commands<cr>', opts)
