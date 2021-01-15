@@ -145,7 +145,7 @@ augroup completionsInEveryBuffer
   autocmd BufEnter * lua require'completion'.on_attach()
 augroup end
 
-let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:completion_enable_snippet = 'UltiSnips'
 let g:completion_enable_auto_paren = 1
 let g:completion_auto_change_source = 1

@@ -1,0 +1,30 @@
+extends javascript
+
+snippet imr "import react" b
+import React from "react;
+endsnippet
+
+# can I make tabs expand instead?? I want to use what the file is using
+snippet rfc "react function component"
+const ${1:`!p snip.rv = snip.basename`} = (${2}) => {
+	return (
+		${0:<div></div>}
+	);
+};
+endsnippet
+
+snippet us "useState"
+const [${1:foo}, set${1/\w+\s*/\u$0/}] = React.useState(${2});
+endsnippet
+
+snippet ue "useEffect"
+React.useEffect(() => {
+	${0}
+}, []);
+endsnippet
+
+snippet sc "styled component"
+const ${1:foo} = styled.${2:div}\`
+	${0}
+\`;
+endsnippet

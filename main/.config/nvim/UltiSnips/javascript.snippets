@@ -1,0 +1,103 @@
+snippet iife "Immediately-Invoked Function Expression (iife)"
+(function (${1:window}) {
+	${VISUAL}$0
+}(${2:$1}));
+endsnippet
+
+# {{{ standard/arrow functions
+snippet f "function (arrow)"
+const ${1:foo} = ($2) => {
+	$0
+}
+endsnippet
+
+snippet af "async function (arrow)"
+const ${1:foo} = async ($2) => {
+	$0
+}
+endsnippet
+
+snippet fi "function (arrow, inline)"
+($1) => { $0 }
+endsnippet
+# }}}
+
+# {{{ original/old style functions
+snippet fo "function (original/old)"
+function ${1:foo}($2) {
+	$0
+}
+endsnippet
+
+snippet afo "async function (original/old)"
+async function ${1:foo}($2) {
+	$0
+}
+endsnippet
+
+snippet gf "generator function"
+function* ${1:foo}($2) {
+	$0
+}
+endsnippet
+
+snippet foi "function (inline, original/old)"
+function($1) { $0 }
+endsnippet
+# }}}
+
+# {{{ variables
+snippet c "const"
+const ${1:foo} = ${2:bar};
+endsnippet
+
+snippet l "let"
+let ${1:foo} = ${2:bar};
+endsnippet
+# }}}
+
+# {{{ conditionals
+snippet if "if"
+if (${1:true}) {
+	$0
+}
+endsnippet
+
+snippet ife "if (condition) { ... } else { ... }"
+if (${1:true}) {
+	${2}
+} else {
+	${0}
+}
+endsnippet
+
+snippet switch
+switch (${VISUAL}${1:expression}) {
+	case '${VISUAL}${3:case}':
+		${4}
+		break;
+	${0}
+	default:
+		${2}
+}
+endsnippet
+# }}}
+
+snippet log "console.log()"
+console.log($1);
+endsnippet
+
+snippet timeout "setTimeout function"
+setTimeout(() => {
+	$0
+}, ${1:1000});
+endsnippet
+
+snippet ok "object-keys"
+Object.keys($0)
+endsnippet
+
+snippet im "import"
+import ${2} from "${1}";
+
+endsnippet
