@@ -27,3 +27,5 @@
     rebase = false
 [delta]
     side-by-side = true
+[init]
+    defaultBranch = master
