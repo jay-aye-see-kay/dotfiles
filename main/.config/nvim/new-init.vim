@@ -41,6 +41,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 source $HOME/.vim/file-tree.vim
 source $HOME/.vim/functions.vim
+source $HOME/.vim/search.vim
 source $HOME/.vim/status-line.vim
 source $HOME/.vim/terminal.vim
 source $HOME/.vim/vcs.vim

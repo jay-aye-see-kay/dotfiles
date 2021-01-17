@@ -1,4 +1,3 @@
-local function map(...) vim.api.nvim_set_keymap(...) end
 
 require('telescope').setup{
   defaults = {
@@ -12,15 +11,15 @@ require('telescope').setup{
   }
 }
 
-local opts = { noremap=true, silent=false }
-map('n', 'sg', '<cmd>Telescope git_files<cr>', opts)
-map('n', 'sf', '<cmd>Telescope find_files<cr>', opts)
-map('n', 'sa', '<cmd>Telescope live_grep<cr>', opts)
-map('n', 'sb', '<cmd>Telescope buffers<cr>', opts)
-map('n', 'sh', '<cmd>Telescope help_tags<cr>', opts)
-map('n', 'sc', '<cmd>Telescope commands<cr>', opts)
-map('n', 'so', '<cmd>Telescope oldfiles<cr>', opts)
-map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>', opts)
+
+map('n', 'sg', '<cmd>Telescope git_files<cr>')
+map('n', 'sf', '<cmd>Telescope find_files<cr>')
+map('n', 'sa', '<cmd>Telescope live_grep<cr>')
+map('n', 'sb', '<cmd>Telescope buffers<cr>')
+map('n', 'sh', '<cmd>Telescope help_tags<cr>')
+map('n', 'sc', '<cmd>Telescope commands<cr>')
+map('n', 'so', '<cmd>Telescope oldfiles<cr>')
+map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.api.nvim_command("set shada=!,'1000,<50,s10,h")
