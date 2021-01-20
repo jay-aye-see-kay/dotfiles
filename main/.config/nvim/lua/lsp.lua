@@ -4,7 +4,7 @@ vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
 
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
-map('n', 'gr', '<cmd>Telescope lsp_references()<cr>')
+map('n', 'gr', '<cmd>Telescope lsp_references<cr>')
 map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
