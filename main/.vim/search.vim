@@ -72,8 +72,6 @@ command! -bang -nargs=* AllHelpText
 nnoremap sz :FZF<CR>
 nnoremap sn :Notes<CR>
 nnoremap se :EditedFiles<CR>
-" Search Git Commits (in whole project)
-nnoremap sgc :Commits<CR>
 
 " quick hack
 if !has('nvim-0.5')
