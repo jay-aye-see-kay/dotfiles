@@ -1,3 +1,5 @@
+let g:ale_disable_lsp = 1
+
 " {{{ core set up
 let mapleader= " "
 set title
@@ -70,6 +72,7 @@ Plug 'rhysd/git-messenger.vim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'dense-analysis/ale'
 
 Plug 'sirver/UltiSnips'
 call plug#end()
@@ -161,4 +164,21 @@ set completeopt=menuone,noinsert,noselect
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+" }}}
+
+" {{{ ale
+" TODO put this in a file somewhere, but I need linting now
+let g:ale_linters = {
+\   'javascript': [],
+\   'javascriptreact': [],
+\   'typescript': [],
+\   'typescriptreact': [],
+\}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'javascriptreact': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 " }}}
