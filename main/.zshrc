@@ -96,6 +96,13 @@ export PATH=$GOPATH:$GOROOT/bin:$PATH
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# android dev stuff
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 # }}} languages
 
 # allows ctrl+shift+t to open new tab same dir, from termite readme
