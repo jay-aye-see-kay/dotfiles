@@ -20,6 +20,7 @@ map('n', 'sh', '<cmd>Telescope help_tags<cr>')
 map('n', 'sc', '<cmd>Telescope commands<cr>')
 map('n', 'so', '<cmd>Telescope oldfiles<cr>')
 map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
+map('n', 'se', '<cmd>Telescope symbols<cr>')
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.api.nvim_command("set shada=!,'1000,<50,s10,h")
