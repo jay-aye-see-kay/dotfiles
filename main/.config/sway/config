@@ -1,6 +1,6 @@
 ### Variables
 set $ctl Control
-set $mod Mod1
+set $mod Mod4
 # Home row direction keys
 set $left h
 set $down j
