@@ -76,6 +76,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
 
 Plug 'sirver/UltiSnips'
+
+Plug 'GutenYe/json5.vim'
 call plug#end()
 " }}}
 

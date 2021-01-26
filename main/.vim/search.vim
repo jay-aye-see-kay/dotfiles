@@ -54,7 +54,7 @@ command! -bang -nargs=* Notes
 " Shows files edited on current branch (diffed with master)
 command! -bang EditedFiles
   \ call fzf#run(fzf#vim#with_preview(fzf#wrap({
-  \   'source': 'git diff --name-only `git merge-base origin/master HEAD`'
+  \   'source': 'git diff --name-only `git merge-base origin/develop HEAD`'
   \ })))
 
 " loads _all_ help text in fzf
