@@ -8,6 +8,7 @@ block = "sound"
 block = "music"
 player = "spotify"
 buttons = ["play", "next"]
+marquee = false
 
 [[block]]
 block = "networkmanager"
