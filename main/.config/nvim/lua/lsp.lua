@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
-local saga = require 'lspsaga'
+local saga = require('lspsaga')
+local lspconfig = require('lspconfig')
 
 saga.init_lsp_saga()
 
@@ -45,3 +46,43 @@ local servers = {
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+
+-- Formatting via efm
+local prettier = {
+  formatCommand = "prettier --stdin-filepath ${INPUT}",
+  formatStdin = true,
+}
+
+local eslint = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+}
+
+local languages = {
+  typescript = {prettier, eslint},
+  javascript = {prettier, eslint},
+  typescriptreact = {prettier, eslint},
+  javascriptreact = {prettier, eslint},
+  yaml = {prettier},
+  json = {prettier},
+  html = {prettier},
+  scss = {prettier},
+  css = {prettier},
+  markdown = {prettier},
+}
+
+-- depends on efm-langserver `pacman -S efm-langserver`
+lspconfig.efm.setup {
+  root_dir = lspconfig.util.root_pattern("yarn.lock", "lerna.json", ".git"),
+  filetypes = vim.tbl_keys(languages),
+  init_options = {
+    documentFormatting = true,
+    codeAction = true
+  },
+  settings = {
+    languages = languages
+  },
+  on_attach = on_attach
+}

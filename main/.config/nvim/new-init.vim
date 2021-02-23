@@ -77,7 +77,6 @@ Plug 'sedm0784/vim-resize-mode'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'dense-analysis/ale'
 
 Plug 'sirver/UltiSnips'
 
@@ -88,7 +87,7 @@ call plug#end()
 
 " {{{ color scheme
 let g:nvcode_termcolors=256
-colorscheme nvcode " Or whatever colorscheme you make
+colorscheme nvcode
 if (has("termguicolors"))
     set termguicolors
     hi LineNr ctermbg=NONE guibg=NONE
@@ -160,21 +159,4 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
-" }}}
-
-" {{{ ale
-" TODO put this in a file somewhere, but I need linting now
-let g:ale_linters = {
-\   'javascript': [],
-\   'javascriptreact': [],
-\   'typescript': [],
-\   'typescriptreact': [],
-\}
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'javascriptreact': ['prettier'],
-\   'typescript': ['prettier'],
-\   'typescriptreact': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
 " }}}
