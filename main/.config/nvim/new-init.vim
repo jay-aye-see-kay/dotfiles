@@ -1,4 +1,6 @@
 let g:ale_disable_lsp = 1
+let g:python_host_prog  = '/usr/bin/python2'
+let g:python3_host_prog  = '/usr/bin/python3'
 
 " {{{ core set up
 let mapleader= " "

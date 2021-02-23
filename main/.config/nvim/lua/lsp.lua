@@ -21,6 +21,7 @@ local servers = {
   "clangd", -- should be installed
   "cssls", -- `yarn global add vscode-css-languageserver-bin`
   "dockerls", -- `yarn global add dockerfile-language-server-nodejs`
+  "pyls", -- `pacman -S python-language-server`
   "rust_analyzer", -- `pacman -S rust-analyzer`
   "tsserver", -- `yarn global add typescript typescript-language-server`
   "vimls", -- `yarn global add vim-language-server`
