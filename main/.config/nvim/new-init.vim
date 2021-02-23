@@ -77,6 +77,7 @@ Plug 'sedm0784/vim-resize-mode'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'dense-analysis/ale'
 
 Plug 'sirver/UltiSnips'
 
@@ -159,4 +160,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
+" }}}
+
+" {{{ ale
+" TODO put this in a file somewhere, but I need prettier now
+let g:ale_enabled = 0
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'javascriptreact': ['prettier'],
+\   'typescript': ['prettier'],
+\   'typescriptreact': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 " }}}

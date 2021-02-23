@@ -28,7 +28,16 @@ map('n', '<leader>la', '<cmd>Lspsaga code_action<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Set some keybinds conditional on server capabilities
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap("n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap=true })
+  elseif client.resolved_capabilities.document_range_formatting then
+    buf_set_keymap("n", "<space>=", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap=true })
+  end
 end
 
 local servers = {
@@ -47,30 +56,21 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
--- Formatting via efm
-local prettier = {
-  formatCommand = "prettier --stdin-filepath ${INPUT}",
-  formatStdin = true,
-}
-
+-- Linting and formatting/fixing on command via efm
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
+  formatCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT} --fix-to-stdout",
+  formatStdin = true,
 }
 
 local languages = {
-  typescript = {prettier, eslint},
-  javascript = {prettier, eslint},
-  typescriptreact = {prettier, eslint},
-  javascriptreact = {prettier, eslint},
-  yaml = {prettier},
-  json = {prettier},
-  html = {prettier},
-  scss = {prettier},
-  css = {prettier},
-  markdown = {prettier},
+  typescript = {eslint},
+  javascript = {eslint},
+  typescriptreact = {eslint},
+  javascriptreact = {eslint},
 }
 
 -- depends on efm-langserver `pacman -S efm-langserver`
