@@ -1,9 +1,20 @@
 local nvim_lsp = require('lspconfig')
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
 local saga = require 'lspsaga'
 
 saga.init_lsp_saga()
+
+vim.o.completeopt = 'menuone,noselect'
+
+require'compe'.setup({
+  enabled = true,
+  source = {
+    path = true,
+    buffer = true,
+    nvim_lua = true,
+    nvim_lsp = true,
+    spell = true,
+  },
+})
 
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
 map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
