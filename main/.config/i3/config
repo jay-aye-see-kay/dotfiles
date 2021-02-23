@@ -16,6 +16,7 @@ set $private_browser firefox --private-window
 exec --no-startup-id dunst
 exec --no-startup-id nextcloud
 exec --no-startup-id redshift -l-37:144 -t 6500:4000
+exec --no-startup-id udiskie
 
 default_border pixel 4
 
