@@ -1,15 +1,18 @@
 local nvim_lsp = require('lspconfig')
 vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
+local saga = require 'lspsaga'
+
+saga.init_lsp_saga()
 
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>')
-map('n', 'gr', '<cmd>Telescope lsp_references<cr>')
 map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
-map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
-map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-map('n', '<leader>la', '<cmd>Telescope lsp_code_actions<cr>')
+map('n', 'gh', '<cmd>Lspsaga hover_doc<cr>')
+map('n', 'gr', '<cmd>Lspsaga lsp_finder<cr>')
+map('n', '<leader>rn', '<cmd>Lspsaga rename<cr>')
+map('n', '[g', '<cmd>Lspsaga diagnostic_jump_prev<cr>')
+map('n', ']g', '<cmd>Lspsaga diagnostic_jump_next<cr>')
+map('n', '<leader>la', '<cmd>Lspsaga code_action<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
