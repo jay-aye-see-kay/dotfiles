@@ -29,3 +29,5 @@
     side-by-side = true
 [init]
     defaultBranch = master
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
