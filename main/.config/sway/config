@@ -87,6 +87,7 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 
   # kill focused window
   bindsym $mod+Shift+q kill
+  bindsym Control+q nop nop
 
   # Drag floating windows by holding down $mod and left mouse button.
   # Resize floating or tiled windows with right mouse button + $mod.
