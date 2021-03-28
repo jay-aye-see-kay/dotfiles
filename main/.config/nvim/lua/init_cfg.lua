@@ -1,4 +1,4 @@
-config_files = {
+local config_files = {
   'helpers_cfg',
   'finder_cfg',
   'lsp_cfg',

@@ -1,6 +1,5 @@
-local nvim_lsp = require('lspconfig')
-local saga = require('lspsaga')
 local lspconfig = require('lspconfig')
+local saga = require('lspsaga')
 
 saga.init_lsp_saga {
   code_action_prompt = { enable = false }
@@ -55,7 +54,7 @@ local servers = {
   -- TODO lua lsp
 }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  lspconfig[lsp].setup { on_attach = on_attach }
 end
 
 -- Linting and formatting/fixing on command via efm
@@ -90,7 +89,7 @@ lspconfig.efm.setup {
 }
 
 
-function quiet_lsp ()
+function Quiet_lsp ()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       signs = false,
@@ -100,7 +99,7 @@ function quiet_lsp ()
   )
 end
 
-function louden_lsp ()
+function Louden_lsp ()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
       signs = true,
@@ -111,5 +110,40 @@ function louden_lsp ()
 end
 
 -- HACK: pop into insert mode after to trigger lsp applying settings
-map('n', '<leader>lq', '<cmd>call v:lua.quiet_lsp()<cr>i <bs><esc>')
-map('n', '<leader>ll', '<cmd>call v:lua.louden_lsp()<cr>i <bs><esc>')
+map('n', '<leader>lq', '<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>')
+map('n', '<leader>ll', '<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>')
+
+
+-- {{{ lua lang server set up
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local sumneko_root_path = '/usr/bin'
+local sumneko_binary = sumneko_root_path..'/lua-language-server'
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = vim.split(package.path, ';'),
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        },
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+-- }}}
