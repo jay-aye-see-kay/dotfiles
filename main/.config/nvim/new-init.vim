@@ -87,8 +87,12 @@ Plug 'dense-analysis/ale'
 Plug 'sirver/UltiSnips'
 
 Plug 'GutenYe/json5.vim'
+
+Plug 'phaazon/hop.nvim'
 call plug#end()
 " }}}
+
+noremap <leader>h <cmd>HopWord<cr>
 
 
 " {{{ color scheme
