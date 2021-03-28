@@ -2,7 +2,9 @@ local nvim_lsp = require('lspconfig')
 local saga = require('lspsaga')
 local lspconfig = require('lspconfig')
 
-saga.init_lsp_saga()
+saga.init_lsp_saga {
+  code_action_prompt = { enable = false }
+}
 
 vim.o.completeopt = 'menuone,noselect'
 
@@ -86,3 +88,28 @@ lspconfig.efm.setup {
   },
   on_attach = on_attach
 }
+
+
+function quiet_lsp ()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      signs = false,
+      underline = false,
+      virtual_text = false,
+    }
+  )
+end
+
+function louden_lsp ()
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      signs = true,
+      underline = true,
+      virtual_text = true,
+    }
+  )
+end
+
+-- HACK: pop into insert mode after to trigger lsp applying settings
+map('n', '<leader>lq', '<cmd>call v:lua.quiet_lsp()<cr>i <bs><esc>')
+map('n', '<leader>ll', '<cmd>call v:lua.louden_lsp()<cr>i <bs><esc>')
