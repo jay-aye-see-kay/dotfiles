@@ -107,25 +107,15 @@ endif
 " }}}
 
 
-" {{{ specific config bits
-lua require('helpers')
-lua require('lsp')
-lua require('finder')
-" }}}
+" {{{ meta (config config)
+" unload my lua config so it gets sourced
+lua package.loaded['init_cfg'] = nill
+" load lua config
+lua require('init_cfg')
 
-
-" {{{ treesitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- Modules and its options go here
-  highlight = { enable = true },
-  incremental_selection = { enable = true },
-  textobjects = { enable = true },
-  playground = { enable = true },
-  context_commentstring = { enable = true },
-}
-EOF
+" maps
+nnoremap <leader>vr :source $MYVIMRC<cr>
+nnoremap <leader>vc :edit $HOME/dotfiles/main/.config/nvim/new-init.vim<cr>
 " }}}
 
 
