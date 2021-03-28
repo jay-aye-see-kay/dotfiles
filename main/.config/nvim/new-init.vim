@@ -54,6 +54,7 @@ source $HOME/.vim/wiki.vim
 " tpope/core stuff
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -112,6 +113,7 @@ require'nvim-treesitter.configs'.setup {
   incremental_selection = { enable = true },
   textobjects = { enable = true },
   playground = { enable = true },
+  context_commentstring = { enable = true },
 }
 EOF
 " }}}
