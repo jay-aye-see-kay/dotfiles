@@ -19,8 +19,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+" disable repeat last insert from insert mode
 inoremap <C-a> <nop>
 nnoremap Y y$
+" disable ex-mode
+nnoremap Q <nop>
+nnoremap gQ <nop>
 " }}}
 
 " tabs vs spaces
