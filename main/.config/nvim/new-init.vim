@@ -1,4 +1,3 @@
-let g:ale_disable_lsp = 1
 let g:python_host_prog  = '/usr/bin/python2'
 let g:python3_host_prog  = '/usr/bin/python3'
 
@@ -82,7 +81,10 @@ Plug 'sedm0784/vim-resize-mode'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'dense-analysis/ale'
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css'] }
 
 Plug 'sirver/UltiSnips'
 
@@ -172,14 +174,7 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set shortmess+=c
 " }}}
 
-" {{{ ale
-" TODO put this in a file somewhere, but I need prettier now
-let g:ale_enabled = 0
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'javascriptreact': ['prettier'],
-\   'typescript': ['prettier'],
-\   'typescriptreact': ['prettier'],
-\}
-let g:ale_fix_on_save = 1
-" }}}
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+" let g:prettier#autoformat_config_present = 1
+let g:prettier#quickfix_enabled = 0
