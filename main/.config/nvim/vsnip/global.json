@@ -1,0 +1,23 @@
+{
+  "filename": {
+    "prefix": ["fname"],
+    "description": "current filename without path or extension",
+    "body": "$TM_FILENAME_BASE"
+  },
+  "uuid": {
+    "prefix": ["uuid"],
+    "body": "${VIM:system('python -c \"import uuid, sys;sys.stdout.write(str(uuid.uuid4()))\"')}"
+  },
+  "date": {
+    "prefix": ["date"],
+    "body": "${VIM:strftime('%Y-%m-%d')}"
+  },
+  "iso-datetime": {
+    "prefix": ["diso"],
+    "body": "${VIM:strftime('%Y-%m-%d %H:%M:%S%z')}"
+  },
+  "time": {
+    "prefix": ["time"],
+    "body": "${VIM:strftime('%H:%M')}"
+  }
+}
