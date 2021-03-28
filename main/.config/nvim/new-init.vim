@@ -89,6 +89,7 @@ Plug 'prettier/vim-prettier', {
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
 
