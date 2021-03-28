@@ -15,6 +15,7 @@ require'compe'.setup({
     nvim_lua = true,
     nvim_lsp = true,
     spell = true,
+    vsnip = true,
   },
 })
 
@@ -54,7 +55,13 @@ local servers = {
   -- TODO lua lsp
 }
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup { on_attach = on_attach }
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
 end
 
 -- Linting and formatting/fixing on command via efm

@@ -87,7 +87,8 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css'] }
 
-Plug 'sirver/UltiSnips'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 Plug 'GutenYe/json5.vim'
 
@@ -153,13 +154,21 @@ augroup highlightOnYank
   autocmd TextYankPost * lua vim.highlight.on_yank{}
 augroup end
 
-
 " {{{ completions
-let g:UltiSnipsExpandTrigger="<c-j>"
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+inoremap <silent><expr> <CR> compe#confirm('<CR>')
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let g:vsnip_snippet_dir = "$HOME/.config/nvim/vsnip"
 
 " Avoid showing message extra message when using completion
 set shortmess+=c
