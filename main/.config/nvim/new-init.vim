@@ -83,9 +83,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css'] }
+Plug 'sbdchd/neoformat'
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -98,7 +96,6 @@ call plug#end()
 " }}}
 
 noremap <leader>h <cmd>HopWord<cr>
-
 
 " {{{ color scheme
 let g:nvcode_termcolors=256
@@ -175,7 +172,7 @@ let g:vsnip_snippet_dir = "$HOME/.config/nvim/vsnip"
 set shortmess+=c
 " }}}
 
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-" let g:prettier#autoformat_config_present = 1
-let g:prettier#quickfix_enabled = 0
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
