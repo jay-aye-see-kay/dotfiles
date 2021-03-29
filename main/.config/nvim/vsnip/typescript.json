@@ -1,0 +1,10 @@
+{
+  "let statement": {
+    "prefix": "l",
+    "body": "let ${1:name} = $2"
+  },
+  "const statement": {
+    "prefix": "c",
+    "body": "const ${1:name} = $2"
+  }
+}
