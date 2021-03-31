@@ -23,6 +23,7 @@ map('n', 'sc', '<cmd>Telescope commands<cr>')
 map('n', 'so', '<cmd>Telescope oldfiles<cr>')
 map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 map('n', 'ss', '<cmd>Telescope symbols<cr>')
+map('n', 'sw', '<cmd>Telescope spell_suggest<cr>')
 map('n', 'sp', [[<cmd>lua require'telescope'.extensions.z.list{ cmd = { vim.o.shell, '-c', 'zoxide query -sl' } }<cr>]])
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
