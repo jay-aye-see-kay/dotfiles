@@ -99,6 +99,7 @@ call plug#end()
 " }}}
 
 noremap <leader>h <cmd>HopWord<cr>
+noremap <leader>H <cmd>HopChar1<cr>
 
 let g:indentLine_char='▏'
 
