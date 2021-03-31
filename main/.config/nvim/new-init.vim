@@ -91,6 +91,7 @@ Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
 Plug 'nvim-telescope/telescope-z.nvim'
 Plug 'phaazon/hop.nvim'
@@ -98,6 +99,8 @@ call plug#end()
 " }}}
 
 noremap <leader>h <cmd>HopWord<cr>
+
+let g:indentLine_char='▏'
 
 " {{{ color scheme
 let g:nvcode_termcolors=256
