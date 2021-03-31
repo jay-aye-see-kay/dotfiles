@@ -13,7 +13,6 @@ SAVEHIST=10000000
 plugins=(
   asdf
   fzf
-  z
   # requires: https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
   zsh-autosuggestions
   # requires: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
@@ -49,8 +48,9 @@ alias whoslistening="lsof -iTCP -sTCP:LISTEN -n -P"
 
 # fzf and z
 export FZF_DEFAULT_OPTS="--height 40% --reverse --tac"
+eval "$(zoxide init zsh)"
 function fzf-z {
-  cd "$(_z -l 2>&1 | fzf --nth 2.. +s | sed 's/^[0-9,.]* *//')"
+  _ZO_FZF_OPTS='--height 40% --layout=reverse' zi
   zle accept-line
 }
 zle -N fzf-z

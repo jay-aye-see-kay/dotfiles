@@ -91,6 +91,7 @@ Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
 
+Plug 'nvim-telescope/telescope-z.nvim'
 Plug 'phaazon/hop.nvim'
 call plug#end()
 " }}}
