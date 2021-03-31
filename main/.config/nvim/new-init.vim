@@ -90,6 +90,7 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
+Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'nvim-telescope/telescope-z.nvim'
 Plug 'phaazon/hop.nvim'
@@ -177,3 +178,5 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * Neoformat
 augroup END
+
+lua require'colorizer'.setup()
