@@ -6,5 +6,17 @@
   "const statement": {
     "prefix": "c",
     "body": "const ${1:name} = $2"
+  },
+  "throw new Error": {
+    "prefix": "tn",
+    "body": "throw new ${1:Error}(\"$2\")"
+  },
+  "simple type": {
+    "prefix": "t",
+    "body": "type ${1:Name} = $2"
+  },
+  "object type": {
+    "prefix": "ot",
+    "body": ["type ${1:Name} = {", "\t${2:key}: ${3:string}", "}", ""]
   }
 }
