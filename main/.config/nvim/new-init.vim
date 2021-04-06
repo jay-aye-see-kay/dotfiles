@@ -7,7 +7,7 @@ set title
 set mouse=a
 set splitbelow splitright " matches i3 behaviour
 set number relativenumber
-set showmatch hlsearch
+set showmatch nohlsearch
 set linebreak " don't break words when wrapping
 set hidden " leave buffers without abandoning
 set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
@@ -99,7 +99,7 @@ call plug#end()
 " }}}
 
 noremap <leader>h <cmd>HopWord<cr>
-noremap <leader>H <cmd>HopChar1<cr>
+noremap <leader>s <cmd>HopChar1<cr>
 
 let g:indentLine_char='▏'
 

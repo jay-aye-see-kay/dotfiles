@@ -19,14 +19,16 @@ require'compe'.setup({
   },
 })
 
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+map('n', 'gd', '<cmd>Telescope lsp_definitions<cr>')
 map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 map('n', 'gh', '<cmd>Lspsaga hover_doc<cr>')
-map('n', 'gr', '<cmd>Lspsaga lsp_finder<cr>')
+map('n', 'gr', '<cmd>Telescope lsp_references<cr>')
 map('n', '<leader>rn', '<cmd>Lspsaga rename<cr>')
 map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
 map('n', '<leader>la', '<cmd>Lspsaga code_action<cr>')
+map('n', 'sd', '<cmd>Telescope lsp_document_diagnostics<cr>')
+map('n', 'sD', '<cmd>Telescope lsp_workspace_diagnostics<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
