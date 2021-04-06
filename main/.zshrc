@@ -175,6 +175,11 @@ fman() {
   man -k . | fzf --height 100% --preview-window=right:66%:wrap --preview "echo {} | awk '{print $1}' | xargs -r man" | awk '{print $1}' | xargs -r man
 }
 
+fbook() {
+  local LIBRARY="$HOME/Calibre Library"
+  zathura "$(find $LIBRARY -type f | fzf)"
+}
+
 # make fzf history search unique by overriding this function and changing line 4
 fzf-history-widget() {
   local selected num
