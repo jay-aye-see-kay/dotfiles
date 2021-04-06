@@ -54,7 +54,6 @@ local servers = {
   "tsserver", -- `yarn global add typescript typescript-language-server`
   "vimls", -- `yarn global add vim-language-server`
   "yamlls", -- `yarn global add yaml-language-server`
-  -- TODO lua lsp
 }
 for _, lsp in ipairs(servers) do
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -124,7 +123,7 @@ map('n', '<leader>ll', '<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>')
 
 
 -- {{{ lua lang server set up
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+-- `yay lua-language-server`
 local sumneko_root_path = '/usr/bin'
 local sumneko_binary = sumneko_root_path..'/lua-language-server'
 require'lspconfig'.sumneko_lua.setup {
