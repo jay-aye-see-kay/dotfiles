@@ -12,7 +12,7 @@ telescope.setup {
 }
 
 telescope.load_extension('fzy_native')
-telescope.load_extension('z')
+Telescope_z = require('telescope_z')
 
 map('n', 'sg', '<cmd>Telescope git_files<cr>')
 map('n', 'sf', '<cmd>Telescope find_files<cr>')
@@ -24,7 +24,7 @@ map('n', 'so', '<cmd>Telescope oldfiles<cr>')
 map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 map('n', 'ss', '<cmd>Telescope symbols<cr>')
 map('n', 'sw', '<cmd>Telescope spell_suggest<cr>')
-map('n', 'sp', [[<cmd>lua require'telescope'.extensions.z.list{ cmd = { vim.o.shell, '-c', 'zoxide query -sl' } }<cr>]])
+map('n', 'sp', '<cmd>call v:lua.Telescope_z.list()<cr>')
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.api.nvim_command("set shada=!,'1000,<50,s10,h")

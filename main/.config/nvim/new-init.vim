@@ -93,7 +93,6 @@ Plug 'GutenYe/json5.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 
-Plug 'nvim-telescope/telescope-z.nvim'
 Plug 'phaazon/hop.nvim'
 call plug#end()
 " }}}
