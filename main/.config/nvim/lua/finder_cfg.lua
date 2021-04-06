@@ -25,6 +25,7 @@ map('n', 'sl', '<cmd>Telescope current_buffer_fuzzy_find<cr>')
 map('n', 'ss', '<cmd>Telescope symbols<cr>')
 map('n', 'sw', '<cmd>Telescope spell_suggest<cr>')
 map('n', 'sp', '<cmd>call v:lua.Telescope_z.list()<cr>')
+map('n', 'sn', '<cmd>lua require"telescope.builtin".grep_string{ cwd = "~/Documents/vimwiki" }<cr>')
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.api.nvim_command("set shada=!,'1000,<50,s10,h")

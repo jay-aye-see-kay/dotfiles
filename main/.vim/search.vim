@@ -43,14 +43,6 @@ let g:fzf_colors =
 "
 " Custom fzf functions
 "
-" Grep all text in my wiki
-command! -bang -nargs=* Notes
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '
-  \     .shellescape(<q-args>).' '.g:vimwiki_list[0]['path'], 1,
-  \   fzf#vim#with_preview(), <bang>0
-  \ )
-
 " Shows files edited on current branch (diffed with master)
 command! -bang EditedFiles
   \ call fzf#run(fzf#vim#with_preview(fzf#wrap({
@@ -70,7 +62,6 @@ command! -bang -nargs=* AllHelpText
 " FZF Keymaps
 "
 nnoremap sz :FZF<CR>
-nnoremap sn :Notes<CR>
 nnoremap se :EditedFiles<CR>
 
 " quick hack
