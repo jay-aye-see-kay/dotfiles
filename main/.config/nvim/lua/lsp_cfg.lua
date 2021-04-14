@@ -100,7 +100,6 @@ lspconfig.efm.setup {
 function Quiet_lsp ()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
-      signs = false,
       underline = false,
       virtual_text = false,
     }
