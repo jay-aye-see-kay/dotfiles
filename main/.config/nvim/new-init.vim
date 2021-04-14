@@ -92,6 +92,9 @@ Plug 'rafamadriz/friendly-snippets'
 Plug 'GutenYe/json5.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 
+ Plug 'moll/vim-bbye'
+Plug 'aymericbeaumet/vim-symlink'
+
 Plug 'phaazon/hop.nvim'
 call plug#end()
 " }}}
