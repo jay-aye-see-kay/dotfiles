@@ -48,6 +48,7 @@ local servers = {
   "bashls", -- `yarn global add bash-language-server`
   "clangd", -- should be installed
   "cssls", -- `yarn global add vscode-css-languageserver-bin`
+  "dhall_lsp_server", -- `yay dhall-lsp-server`
   "dockerls", -- `yarn global add dockerfile-language-server-nodejs`
   "pyls", -- `pacman -S python-language-server`
   "rust_analyzer", -- `pacman -S rust-analyzer`

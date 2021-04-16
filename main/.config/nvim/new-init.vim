@@ -96,6 +96,8 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'aymericbeaumet/vim-symlink'
 
 Plug 'phaazon/hop.nvim'
+
+Plug 'vmchale/dhall-vim'
 call plug#end()
 " }}}
 
