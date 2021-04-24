@@ -42,6 +42,12 @@ end
 
 
 local main_keymap = {
+    v = {
+        name = '+neovim config',
+        c = {'<cmd>edit $MYVIMRC<cr>', 'edit config file'},
+        d = {'<cmd>edit '..vim.fn.stdpath('config')..'<cr>', 'open config directory'},
+        r = {'<cmd>lua require("vimp").unmap_all()<cr><cmd>Reload<cr>', 'reload all config files'},
+    },
     r = {
         name = '+lsp/refactoring',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
