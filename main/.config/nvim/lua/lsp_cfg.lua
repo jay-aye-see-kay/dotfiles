@@ -24,10 +24,8 @@ vimp.nnoremap('gd', '<cmd>Telescope lsp_definitions<cr>')
 vimp.nnoremap('gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
 vimp.nnoremap('gh', '<cmd>Lspsaga hover_doc<cr>')
 vimp.nnoremap('gr', '<cmd>Telescope lsp_references<cr>')
-vimp.nnoremap('<leader>rn', '<cmd>Lspsaga rename<cr>')
 vimp.nnoremap('[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 vimp.nnoremap(']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-vimp.nnoremap('<leader>la', '<cmd>Lspsaga code_action<cr>')
 vimp.nnoremap('sd', '<cmd>Telescope lsp_document_diagnostics<cr>')
 vimp.nnoremap('sD', '<cmd>Telescope lsp_workspace_diagnostics<cr>')
 
@@ -116,11 +114,6 @@ function Louden_lsp ()
     }
   )
 end
-
--- HACK: pop into insert mode after to trigger lsp applying settings
-vimp.nnoremap('<leader>lq', '<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>')
-vimp.nnoremap('<leader>ll', '<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>')
-
 
 -- {{{ lua lang server set up
 -- `yay lua-language-server`
