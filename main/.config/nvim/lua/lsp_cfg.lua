@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local saga = require('lspsaga')
+local vimp = require('vimp')
 
 saga.init_lsp_saga {
   code_action_prompt = { enable = false }
@@ -19,16 +20,16 @@ require'compe'.setup({
   },
 })
 
-map('n', 'gd', '<cmd>Telescope lsp_definitions<cr>')
-map('n', 'gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-map('n', 'gh', '<cmd>Lspsaga hover_doc<cr>')
-map('n', 'gr', '<cmd>Telescope lsp_references<cr>')
-map('n', '<leader>rn', '<cmd>Lspsaga rename<cr>')
-map('n', '[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
-map('n', ']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-map('n', '<leader>la', '<cmd>Lspsaga code_action<cr>')
-map('n', 'sd', '<cmd>Telescope lsp_document_diagnostics<cr>')
-map('n', 'sD', '<cmd>Telescope lsp_workspace_diagnostics<cr>')
+vimp.nnoremap('gd', '<cmd>Telescope lsp_definitions<cr>')
+vimp.nnoremap('gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+vimp.nnoremap('gh', '<cmd>Lspsaga hover_doc<cr>')
+vimp.nnoremap('gr', '<cmd>Telescope lsp_references<cr>')
+vimp.nnoremap('<leader>rn', '<cmd>Lspsaga rename<cr>')
+vimp.nnoremap('[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+vimp.nnoremap(']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+vimp.nnoremap('<leader>la', '<cmd>Lspsaga code_action<cr>')
+vimp.nnoremap('sd', '<cmd>Telescope lsp_document_diagnostics<cr>')
+vimp.nnoremap('sD', '<cmd>Telescope lsp_workspace_diagnostics<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -117,8 +118,8 @@ function Louden_lsp ()
 end
 
 -- HACK: pop into insert mode after to trigger lsp applying settings
-map('n', '<leader>lq', '<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>')
-map('n', '<leader>ll', '<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>')
+vimp.nnoremap('<leader>lq', '<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>')
+vimp.nnoremap('<leader>ll', '<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>')
 
 
 -- {{{ lua lang server set up
