@@ -40,6 +40,14 @@ vim.api.nvim_command[[
 "  augroup END
 ]]
 
+-- Highlight on yank
+vim.api.nvim_exec([[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]], false)
+
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
 --Remap space as leader key
