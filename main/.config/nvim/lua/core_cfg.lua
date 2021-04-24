@@ -1,3 +1,45 @@
+local vimp = require('vimp')
+
+vim.g.python_host_prog  = '/usr/bin/python2'
+vim.g.python3_host_prog  = '/usr/bin/python3'
+
+-- faster window movements
+vimp.nnoremap('<c-h>', '<c-w>h')
+vimp.nnoremap('<c-j>', '<c-w>j')
+vimp.nnoremap('<c-k>', '<c-w>k')
+vimp.nnoremap('<c-l>', '<c-w>l')
+
+-- disable insert repeating
+vimp.inoremap('<c-a>', '<nop>')
+
+-- disable ex mode
+vimp.inoremap('Q', '<nop>')
+vimp.inoremap('gQ', '<nop>')
+
+-- make Y behave like C and D
+vimp.nnoremap('Y', 'y$')
+
+vim.api.nvim_command[[
+  set splitbelow splitright " matches i3 behaviour
+  set linebreak " don't break words when wrapping
+  set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+  set nojoinspaces " Use one space, not two, after punctuation.
+]]
+
+-- tabs vs spaces
+vim.api.nvim_command[[
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+  set expandtab
+"  augroup tabwidths
+"    autocmd!
+"    autocmd FileType elm,python set tabstop=4
+"    autocmd FileType elm,python set softtabstop=4
+"    autocmd FileType elm,python set shiftwidth=4
+"  augroup END
+]]
+
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
 --Remap space as leader key
@@ -32,7 +74,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 --Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 100
 vim.wo.signcolumn="yes"
 
 --Set colorscheme (order is important here)
