@@ -33,7 +33,10 @@ local function direction_action_maps(direction)
         name = '+action '..direction_description[direction],
         t = {'<Cmd>'..command_prefix[direction]..' | terminal<CR>', 'builtin terminal'},
         g = {'<Cmd>'..command_prefix[direction]..' | Gedit :<CR>', 'git status'},
-        ['.'] = {'<Cmd>'..command_prefix[direction]..' | Fern . -reveal=%<CR>', 'file tree'},
+        p = {'<Cmd>'..command_prefix[direction]..' | Fern . -reveal=%<CR>', 'file tree (cwd)'},
+        d = {'<Cmd>'..command_prefix[direction]..' | Fern %:h -reveal=%<CR>', 'file tree (of current file)'},
+        l = {'<Cmd>Git log<CR><Cmd>q<CR><Cmd>'..command_prefix[direction]..' | Gedit -<CR>', 'git log'},
+        -- TODO '.' should reopen the current buffer
     }
 end
 
@@ -93,4 +96,5 @@ whichkey.register_keymap(',', {
     g = main_keymap.f.g.f,
     f = main_keymap.f.f,
     a = main_keymap.f.a,
+    ['.'] = main_keymap['.'].p,
 })
