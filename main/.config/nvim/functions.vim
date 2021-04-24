@@ -28,22 +28,6 @@ augroup END
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-" TODO put this in a custom insert things mode. The only free ctrl-something
-" keys in insert mode are: <C-y>, <C-b>, and <C-;>, I like <C-;>. <C-y> is
-" out, going to use for clipboard.
-"
-" I'm thinking put an fzf menu of custom functions pop up. All the dates
-" formats could be in there, plus...
-augroup timestamps
-  " mnemonics: date, time, now, stamp
-  nnoremap <leader>dd "=strftime("%Y-%m-%d")<CR>p
-  nnoremap <leader>dt "=strftime("%H:%M:%S")<CR>p
-  nnoremap <leader>dn "=strftime("%Y-%m-%d %H:%M")<CR>p
-  nnoremap <leader>ds "=system("date --iso-8601=seconds")<CR>p
-augroup END
-
-
-
 "
 " focus floating window, if exists
 "

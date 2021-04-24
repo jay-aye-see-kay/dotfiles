@@ -48,6 +48,9 @@ vim.api.nvim_exec([[
   augroup end
 ]], false)
 
+-- Use hop for movements
+vimp.nnoremap('s', '<cmd>HopChar1<cr>')
+
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
 --Remap space as leader key

@@ -26,8 +26,6 @@ vimp.nnoremap('gh', '<cmd>Lspsaga hover_doc<cr>')
 vimp.nnoremap('gr', '<cmd>Telescope lsp_references<cr>')
 vimp.nnoremap('[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
 vimp.nnoremap(']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
-vimp.nnoremap('sd', '<cmd>Telescope lsp_document_diagnostics<cr>')
-vimp.nnoremap('sD', '<cmd>Telescope lsp_workspace_diagnostics<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

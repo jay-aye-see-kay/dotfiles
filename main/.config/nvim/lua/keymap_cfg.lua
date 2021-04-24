@@ -48,6 +48,7 @@ local main_keymap = {
         d = {'<cmd>edit '..vim.fn.stdpath('config')..'<cr>', 'open config directory'},
         r = {'<cmd>lua require("vimp").unmap_all()<cr><cmd>Reload<cr>', 'reload all config files'},
     },
+    s = {'<cmd>HopWord<cr>', 'Hop [search] Word'},
     r = {
         name = '+lsp/refactoring',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
@@ -73,14 +74,14 @@ local main_keymap = {
         a = {'<Cmd>Rg<CR>', 'search all text'},
         p = {'<Cmd>lua require("telescope_z").list()<CR>', 'jump to project with z'},
         n = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', 'search personal notes'},
-        g = {
-            name = '+git',
-            f = {'<Cmd>Telescope git_files<CR>', 'git files'},
-            g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
-            c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-            b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
-            s = {'<Cmd>Telescope git_status<CR>', 'status'},
-        },
+    },
+    g = {
+        name = '+git',
+        f = {'<Cmd>Telescope git_files<CR>', 'git files'},
+        g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
+        c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
+        b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
+        s = {'<Cmd>Telescope git_status<CR>', 'status'},
     },
     h = direction_action_maps('left'),
     j = direction_action_maps('below'),
@@ -98,9 +99,9 @@ whichkey.register_keymap('leader', main_keymap)
 
 whichkey.register_keymap(',', {
     name = 'quick keymaps',
-    b = main_keymap.f.b,
-    g = main_keymap.f.g.f,
-    f = main_keymap.f.f,
-    a = main_keymap.f.a,
-    ['.'] = main_keymap['.'].p,
+    b = main_keymap.f.b, -- buffers
+    g = main_keymap.g.f, -- git_files
+    f = main_keymap.f.f, -- find_files
+    a = main_keymap.f.a, -- Rg
+    ['.'] = main_keymap['.'].p, -- Fern .
 })

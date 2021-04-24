@@ -10,9 +10,6 @@ augroup fzfDefaultEscapeBehavior
   autocmd FileType fzf tnoremap <buffer> <ESC> <ESC>
 augroup END
 
-" Disable `s`, use `cl` instead
-nnoremap s <nop>
-
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
 " see https://github.com/junegunn/fzf/blob/master/README-VIM.md#configuration
@@ -49,9 +46,3 @@ command! -bang -nargs=* AllHelpText
   \     .shellescape(<q-args>).' '.dirs, 1,
   \   fzf#vim#with_preview(), <bang>0
   \ )
-
-"
-" FZF Keymaps
-"
-nnoremap sz :FZF<CR>
-nnoremap se :EditedFiles<CR>
