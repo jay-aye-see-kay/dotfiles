@@ -77,11 +77,12 @@ local main_keymap = {
     },
     g = {
         name = '+git',
-        f = {'<Cmd>Telescope git_files<CR>', 'git files'},
-        g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
-        c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-        b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
-        s = {'<Cmd>Telescope git_status<CR>', 'status'},
+        g = {'<Cmd>Telescope git_commits<CR>', '🔭 commits'},
+        c = {'<Cmd>Telescope git_bcommits<CR>', '🔭 buffer commits'},
+        b = {'<Cmd>Telescope git_branches<CR>', '🔭 branches'},
+        R = {'<Cmd>Gitsigns reset_hunk<CR>', 'reset hunk'},
+        p = {'<Cmd>Gitsigns preview_hunk<CR>', 'preview hunk'},
+        l = {'<Cmd>Gitsigns toggle_current_line_blame<CR>', 'toggle current line blame'},
     },
     h = direction_action_maps('left'),
     j = direction_action_maps('below'),
@@ -100,7 +101,7 @@ whichkey.register_keymap('leader', main_keymap)
 whichkey.register_keymap(',', {
     name = 'quick keymaps',
     b = main_keymap.f.b, -- buffers
-    g = main_keymap.g.f, -- git_files
+    g = main_keymap.f.g, -- git_files
     f = main_keymap.f.f, -- find_files
     a = main_keymap.f.a, -- Rg
     ['.'] = main_keymap['.'].p, -- Fern .

@@ -24,7 +24,7 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'rhysd/git-messenger.vim'
 
 Plug 'vimwiki/vimwiki'
@@ -51,7 +51,6 @@ Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/git-messenger.vim'
 Plug 'sedm0784/vim-resize-mode'
 
