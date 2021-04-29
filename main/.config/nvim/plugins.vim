@@ -5,9 +5,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'svermeulen/vimpeccable'
 Plug 'famiu/nvim-reload'
-
 Plug 'folke/which-key.nvim'
 
 Plug 'lambdalisue/fern.vim'

@@ -1,23 +1,28 @@
-local vimp = require('vimp')
+local function noremap(mode, lhs, rhs)
+  vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent=true })
+end
+
+local function inoremap(lhs, rhs) noremap('i', lhs, rhs) end
+local function nnoremap(lhs, rhs) noremap('n', lhs, rhs) end
 
 vim.g.python_host_prog  = '/usr/bin/python2'
 vim.g.python3_host_prog  = '/usr/bin/python3'
 
 -- faster window movements
-vimp.nnoremap('<c-h>', '<c-w>h')
-vimp.nnoremap('<c-j>', '<c-w>j')
-vimp.nnoremap('<c-k>', '<c-w>k')
-vimp.nnoremap('<c-l>', '<c-w>l')
+nnoremap('<c-h>', '<c-w>h')
+nnoremap('<c-j>', '<c-w>j')
+nnoremap('<c-k>', '<c-w>k')
+nnoremap('<c-l>', '<c-w>l')
 
 -- disable insert repeating
-vimp.inoremap('<c-a>', '<nop>')
+inoremap('<c-a>', '<nop>')
 
 -- disable ex mode
-vimp.inoremap('Q', '<nop>')
-vimp.inoremap('gQ', '<nop>')
+inoremap('Q', '<nop>')
+inoremap('gQ', '<nop>')
 
 -- make Y behave like C and D
-vimp.nnoremap('Y', 'y$')
+nnoremap('Y', 'y$')
 
 vim.api.nvim_command[[
   set splitbelow splitright " matches i3 behaviour
@@ -50,12 +55,12 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- Use hop for movements
-vimp.nnoremap('s', '<cmd>HopChar1<cr>')
+nnoremap('s', '<cmd>HopChar1<cr>')
 
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
 --Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true })
+noremap('', '<Space>', '<Nop>')
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
