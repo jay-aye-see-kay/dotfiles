@@ -24,6 +24,7 @@ vim.api.nvim_command[[
   set linebreak " don't break words when wrapping
   set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
   set nojoinspaces " Use one space, not two, after punctuation.
+  set linebreak
 ]]
 
 -- tabs vs spaces
