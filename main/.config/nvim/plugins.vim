@@ -64,6 +64,7 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
+Plug 'blankname/vim-fish'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'moll/vim-bbye'
