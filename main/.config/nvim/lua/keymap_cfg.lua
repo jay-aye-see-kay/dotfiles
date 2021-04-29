@@ -2,8 +2,6 @@ local whichkey = require('which-key')
 
 vim.cmd('set timeoutlen=300')
 
-whichkey.setup({ plugins = { presets = false } })
-
 local function direction_action_maps(direction)
     local direction_description = {
         left = 'left of buffer',
@@ -32,7 +30,7 @@ local function direction_action_maps(direction)
     }
 
     return {
-        name = 'action '..direction_description[direction],
+        name = '+action '..direction_description[direction],
         t = {'<Cmd>'..command_prefix[direction]..' | terminal<CR>', 'builtin terminal'},
         g = {'<Cmd>'..command_prefix[direction]..' | Gedit :<CR>', 'git status'},
         p = {'<Cmd>'..command_prefix[direction]..' | Fern . -reveal=%<CR>', 'file tree (cwd)'},
@@ -45,14 +43,14 @@ end
 
 local main_keymap = {
     v = {
-        name = 'neovim config',
+        name = '+neovim config',
         c = {'<cmd>edit $MYVIMRC<cr>', 'edit config file'},
         d = {'<cmd>edit '..vim.fn.stdpath('config')..'<cr>', 'open config directory'},
         r = {'<cmd>Reload<cr>', 'reload all config files'},
     },
     s = {'<cmd>HopWord<cr>', 'Hop [search] Word'},
     r = {
-        name = 'lsp/refactoring',
+        name = '+lsp/refactoring',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
         r = {'<cmd>Lspsaga rename<cr>', 'rename symbol'},
         d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'show document diagnostics'},
@@ -63,7 +61,7 @@ local main_keymap = {
         l = {'<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>', 'show lsp diagnostics'},
     },
     f = {
-        name = 'find',
+        name = '+find',
         b = {'<Cmd>Telescope buffers sort_lastused=true<CR>', '🔭 buffers'},
         f = {'<Cmd>Telescope find_files<CR>', '🔭 files'},
         g = {'<Cmd>Telescope git_files<CR>', '🔭 git files'},
@@ -79,7 +77,7 @@ local main_keymap = {
         n = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', '🔭 personal notes'},
     },
     g = {
-        name = 'git',
+        name = '+git',
         g = {'<Cmd>Telescope git_commits<CR>', '🔭 commits'},
         c = {'<Cmd>Telescope git_bcommits<CR>', '🔭 buffer commits'},
         b = {'<Cmd>Telescope git_branches<CR>', '🔭 branches'},
