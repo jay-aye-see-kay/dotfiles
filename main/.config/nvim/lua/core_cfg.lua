@@ -15,11 +15,11 @@ nnoremap('<c-k>', '<c-w>k')
 nnoremap('<c-l>', '<c-w>l')
 
 -- disable insert repeating
-inoremap('<c-a>', '')
+inoremap('<c-a>', '<nop>')
 
 -- disable ex mode
-nnoremap('Q', '')
-nnoremap('gQ', '')
+inoremap('Q', '<nop>')
+inoremap('gQ', '<nop>')
 
 -- make Y behave like C and D
 nnoremap('Y', 'y$')
