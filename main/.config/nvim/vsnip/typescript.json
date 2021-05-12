@@ -7,6 +7,14 @@
     "prefix": "c",
     "body": "const ${1:name} = $2"
   },
+  "skeleton function": {
+    "prefix": "sf",
+    "body": [
+      "const ${1:fnName} = ($2): ${3:void} => {",
+      "\t${0:throw new Error('not implemented')}",
+      "}"
+    ]
+  },
   "throw new Error": {
     "prefix": "tn",
     "body": "throw new ${1:Error}(\"$2\")"
