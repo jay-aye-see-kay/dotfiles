@@ -15,23 +15,22 @@ block = "networkmanager"
 on_click = "alacritty -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
-max_ssid_width = 12
-ap_format = "{ssid} ({strength}%)"
+ap_format = "{ssid^12} ({strength})"
 
 [[block]]
 block = "disk_space"
 path = "/"
 alias = ""
 info_type = "available"
-unit = "GiB"
 interval = 20
 warning = 20.0
 alert = 5.0
+format = "{icon} {available}"
 
 [[block]]
 block = "memory"
-format_mem = "{Mug} GiB"
-format_swap = "{SUg} GiB"
+format_mem = "{mem_used;G}"
+format_swap = "{swap_used;G}"
 display_type = "memory"
 icons = true
 clickable = true
