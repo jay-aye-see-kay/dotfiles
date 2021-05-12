@@ -13,8 +13,8 @@ vimp.nnoremap('<c-l>', '<c-w>l')
 vimp.inoremap('<c-a>', '<nop>')
 
 -- disable ex mode
-vimp.inoremap('Q', '<nop>')
-vimp.inoremap('gQ', '<nop>')
+vimp.nnoremap('Q', '<nop>')
+vimp.nnoremap('gQ', '<nop>')
 
 -- make Y behave like C and D
 vimp.nnoremap('Y', 'y$')
