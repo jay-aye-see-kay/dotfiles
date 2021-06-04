@@ -44,7 +44,7 @@ command_exists trash || {
   alias trash='gio trash'
 }
 alias sizes="du -csh * | sort -h"
-alias whoslistening="lsof -iTCP -sTCP:LISTEN -n -P"
+alias whoslistening="ss -lntu"
 
 # fzf and z
 export FZF_DEFAULT_OPTS="--height 40% --reverse --tac"
