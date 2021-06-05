@@ -56,6 +56,8 @@ function fzf-z {
 zle -N fzf-z
 bindkey '^G' fzf-z
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # vim
 alias v="$EDITOR"
 alias r="ranger"
@@ -74,10 +76,10 @@ alias kittyrc="$EDITOR ~/.config/kitty/kitty.conf"
 # python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
+command_exists && {
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
-fi
+}
 export PATH="$PATH:$HOME/.poetry/bin"
 
 # ruby
@@ -106,74 +108,10 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # }}} languages
 
-# allows ctrl+shift+t to open new tab same dir, from termite readme
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi
-
-# arch stuff from the zsh plugin
-function paclist() {
-  # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
-  LC_ALL=C pacman -Qei $(pacman -Qu | cut -d " " -f 1) | \
-    awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
-}
-if (( $+commands[xdg-open] )); then
-  function pacweb() {
-    pkg="$1"
-    infos="$(pacman -Si "$pkg")"
-    if [[ -z "$infos" ]]; then
-      return
-    fi
-    repo="$(grep '^Repo' <<< "$infos" | grep -oP '[^ ]+$')"
-    arch="$(grep '^Arch' <<< "$infos" | grep -oP '[^ ]+$')"
-    xdg-open "https://www.archlinux.org/packages/$repo/$arch/$pkg/" &>/dev/null
-  }
-fi
-
 # useful image resize/optimise function
 # usage: inputfile size outputdir
 smartresize() {
    mogrify -path $3 -filter Triangle -define filter:support=2 -thumbnail $2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB $1
-}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-# fco - checkout git branch/tag
-fco() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi) || return
-  git checkout $(awk '{print $2}' <<<"$target" )
-}
-
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-fco_preview() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
-  git checkout $(awk '{print $2}' <<<"$target" )
-}
-
-fman() {
-  man -k . | fzf --height 100% --preview-window=right:66%:wrap --preview "echo {} | awk '{print $1}' | xargs -r man" | awk '{print $1}' | xargs -r man
 }
 
 fbook() {
@@ -198,11 +136,6 @@ fzf-history-widget() {
   return $ret
 }
 
-fif() {
-  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
-  rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
-}
-
 # ripgrep config
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgreprc"
 
@@ -212,8 +145,6 @@ alias shopping_list='$EDITOR $HOME/Documents/shopping-lists/$(date --iso-8601).m
 # inflate zlib compressed stream from stdin, part of the building git book
 alias inflate='ruby -r zlib -e "STDOUT.write Zlib::Inflate.inflate(STDIN.read)"'
 
-# EXPERIMENTAL: make nvim my man page pager
-# TODO: breaks fman command
 command_exists nvim && {
   export MANPAGER='nvim +Man!'
   export MANWIDTH=999
@@ -222,21 +153,6 @@ command_exists nvim && {
 command_exists broot && {
   source $HOME/.config/broot/launcher/bash/br
 }
-
-# Completion for kitty
-[ $TERM = "xterm-kitty" ] && {
-  kitty + complete setup zsh | source /dev/stdin
-}
-
-# work MBP specific setup
-[ $HOST = "jrose-LVMD6M" ] && {
-  export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-  export PATH="/usr/local/opt/mongodb-community@3.6/bin:$PATH"
-  alias mysql=/usr/local/mysql/bin/mysql
-  alias mysqladmin=/usr/local/mysql/bin/mysqladmin
-  alias pc=perform-cli
-}
-
 
 # auto start sway after login on tty1
 [ "$TTY" = "/dev/tty1" ] && {
@@ -248,4 +164,3 @@ command_exists broot && {
 }
 
 eval "$(starship init zsh)"
-
