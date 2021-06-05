@@ -7,3 +7,33 @@ require'nvim-treesitter.configs'.setup {
   playground = { enable = true },
   context_commentstring = { enable = true },
 }
+
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>pl"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>ph"] = "@parameter.inner",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
+      },
+    },
+  },
+}

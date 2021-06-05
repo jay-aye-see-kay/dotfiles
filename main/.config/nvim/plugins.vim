@@ -46,6 +46,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
