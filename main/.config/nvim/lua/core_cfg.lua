@@ -24,6 +24,15 @@ vim.api.nvim_command[[ set linebreak ]] -- don't break words when wrapping
 vim.api.nvim_command[[ set list listchars=tab:»·,trail:·,nbsp:· ]] -- Display extra whitespace
 vim.api.nvim_command[[ set nojoinspaces ]] -- Use one space, not two, after punctuation.
 
+-- Only show cursorline on focued window
+vim.api.nvim_exec([[
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+]], false)
+
 -- tabs vs spaces
 vim.api.nvim_exec([[
   set tabstop=2
