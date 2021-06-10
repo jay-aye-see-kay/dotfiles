@@ -1,6 +1,6 @@
 local vimp = require('vimp')
 
-vim.g.python_host_prog  = '/usr/bin/python2'
+vim.g.python_host_prog  = '/usr/bin/python3'
 vim.g.python3_host_prog  = '/usr/bin/python3'
 
 -- faster window movements
@@ -86,6 +86,10 @@ vim.o.breakindent = true
 
 --Save undo history
 vim.cmd[[set undofile]]
+vimp.nnoremap('<leader>u', '<cmd>MundoToggle<cr>')
+vim.g.mundo_preview_bottom = 1
+vim.g.mundo_width = 40
+vim.g.mundo_preview_height = 20
 
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true

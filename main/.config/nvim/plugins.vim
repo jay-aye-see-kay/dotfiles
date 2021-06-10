@@ -71,6 +71,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'moll/vim-bbye'
 Plug 'aymericbeaumet/vim-symlink'
+Plug 'simnalamburt/vim-mundo'
 
 Plug 'phaazon/hop.nvim'
 call plug#end()
