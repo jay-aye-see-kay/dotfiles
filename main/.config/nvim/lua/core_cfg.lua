@@ -19,27 +19,24 @@ vimp.nnoremap('gQ', '<nop>')
 -- make Y behave like C and D
 vimp.nnoremap('Y', 'y$')
 
-vim.api.nvim_command[[
-  set splitbelow splitright " matches i3 behaviour
-  set linebreak " don't break words when wrapping
-  set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
-  set nojoinspaces " Use one space, not two, after punctuation.
-  set linebreak
-]]
+vim.api.nvim_command[[ set splitbelow splitright ]] -- matches i3 behaviour
+vim.api.nvim_command[[ set linebreak ]] -- don't break words when wrapping
+vim.api.nvim_command[[ set list listchars=tab:»·,trail:·,nbsp:· ]] -- Display extra whitespace
+vim.api.nvim_command[[ set nojoinspaces ]] -- Use one space, not two, after punctuation.
 
 -- tabs vs spaces
-vim.api.nvim_command[[
+vim.api.nvim_exec([[
   set tabstop=2
   set softtabstop=2
   set shiftwidth=2
   set expandtab
-"  augroup tabwidths
-"    autocmd!
-"    autocmd FileType elm,python set tabstop=4
-"    autocmd FileType elm,python set softtabstop=4
-"    autocmd FileType elm,python set shiftwidth=4
-"  augroup END
-]]
+  augroup tabwidths
+    autocmd!
+    autocmd FileType elm,python set tabstop=4
+    autocmd FileType elm,python set softtabstop=4
+    autocmd FileType elm,python set shiftwidth=4
+  augroup END
+]], false)
 
 -- Highlight on yank
 vim.api.nvim_exec([[
