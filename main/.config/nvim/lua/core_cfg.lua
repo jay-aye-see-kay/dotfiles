@@ -24,13 +24,20 @@ vim.api.nvim_command[[ set linebreak ]] -- don't break words when wrapping
 vim.api.nvim_command[[ set list listchars=tab:»·,trail:·,nbsp:· ]] -- Display extra whitespace
 vim.api.nvim_command[[ set nojoinspaces ]] -- Use one space, not two, after punctuation.
 
--- Only show cursorline on focued window
+vim.opt.cursorline = true
+
+-- darken active window background (my colorscheme resets syntax highlighting,
+-- so we have to create the group when it's needed)
+function DarkenActiveBg ()
+  vim.highlight.create('ActiveBg', { ctermbg=0, guibg="#181818" }, false)
+  vim.opt.winhighlight = "Normal:ActiveBg"
+end
 vim.api.nvim_exec([[
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+  augroup DarkenActiveBg
+    autocmd! *
+    autocmd VimEnter,WinEnter,BufWinEnter * call v:lua.DarkenActiveBg()
+    autocmd WinLeave * set winhighlight=Normal:Normal
+  augroup END
 ]], false)
 
 -- tabs vs spaces
