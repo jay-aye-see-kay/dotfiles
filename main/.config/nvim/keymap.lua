@@ -1,5 +1,5 @@
 local whichkey = require('which-key')
-local helpers = require('cfg_helpers')
+local helpers = require('helpers')
 
 vim.cmd('set timeoutlen=300')
 
@@ -54,7 +54,7 @@ local main_keymap = {
         name = '+neovim config',
         c = {'<cmd>edit $MYVIMRC<cr>', 'edit config file'},
         d = {'<cmd>edit '..vim.fn.stdpath('config')..'<cr>', 'open config directory'},
-        r = {'<cmd>lua require("vimp").unmap_all()<cr><cmd>Reload<cr>', 'reload all config files'},
+        r = {'<cmd>Reload<cr>', 'reload all config files'},
     },
     s = {'<cmd>HopWord<cr>', 'Hop [search] Word'},
     l = {

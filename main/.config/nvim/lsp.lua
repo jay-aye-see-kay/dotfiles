@@ -1,6 +1,6 @@
 local lspconfig = require('lspconfig')
 local saga = require('lspsaga')
-local vimp = require('vimp')
+local nnoremap = require('helpers').nnoremap
 
 saga.init_lsp_saga {
   code_action_prompt = { enable = false }
@@ -20,12 +20,12 @@ require'compe'.setup({
   },
 })
 
-vimp.nnoremap('gd', '<cmd>Telescope lsp_definitions<cr>')
-vimp.nnoremap('gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-vimp.nnoremap('gh', '<cmd>Lspsaga hover_doc<cr>')
-vimp.nnoremap('gr', '<cmd>Telescope lsp_references<cr>')
-vimp.nnoremap('[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
-vimp.nnoremap(']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
+nnoremap('gd', '<cmd>Telescope lsp_definitions<cr>')
+nnoremap('gy', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+nnoremap('gh', '<cmd>Lspsaga hover_doc<cr>')
+nnoremap('gr', '<cmd>Telescope lsp_references<cr>')
+nnoremap('[g', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
+nnoremap(']g', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
 
 local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end

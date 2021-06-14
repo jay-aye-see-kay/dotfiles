@@ -18,8 +18,3 @@ let g:vsnip_snippet_dir = "$HOME/.config/nvim/vsnip"
 " Avoid showing message extra message when using completion
 set shortmess+=c
 " }}}
-
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
