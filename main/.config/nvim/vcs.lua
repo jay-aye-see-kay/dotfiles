@@ -15,6 +15,8 @@ require('gitsigns').setup({
 
     -- Text objects
     ['o ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
-    ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>'
+    ['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
+    ['o ah'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
+    ['x ah'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
   }
 })
