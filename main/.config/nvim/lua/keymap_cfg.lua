@@ -1,6 +1,10 @@
 local whichkey = require('which-key')
+local helpers = require('cfg_helpers')
+
+vim.cmd('set timeoutlen=300')
 
 whichkey.setup {
+
     plugins = {
         spelling = { enabled = true },
     },
@@ -13,46 +17,37 @@ whichkey.setup {
     },
 }
 
-vim.cmd('set timeoutlen=300')
-
-local function direction_action_maps(direction)
-    local direction_description = {
-        left = 'left of buffer',
-        right = 'right of buffer',
-        above = 'above buffer',
-        below = 'below buffer',
-        leftmost = 'at left edge',
-        rightmost = 'at right edge',
-        top = 'at top edge',
-        bottom = 'at bottom edge',
-        in_place = 'in buffer',
-        tab = 'in new tab',
+local function make_directed_maps(command_desc, command)
+    local directions = {
+        left =      { key = 'h' , description = 'to left'        , command_prefix = 'aboveleft vsplit' }  ,
+        right =     { key = 'l' , description = 'to right'       , command_prefix = 'belowright vsplit' } ,
+        above =     { key = 'k' , description = 'above'          , command_prefix = 'aboveleft split' }   ,
+        below =     { key = 'j' , description = 'below'          , command_prefix = 'belowright split' }  ,
+        in_place =  { key = '.' , description = 'in place'       , command_prefix = '' }                  ,
+        tab =       { key = ',' , description = 'in new tab'     , command_prefix = 'tabnew' }            ,
+        -- leftmost =  { key = 'H' , description = 'to left edge'   , command_prefix = 'topleft vsplit' }    ,
+        -- rightmost = { key = 'L' , description = 'to right edge'  , command_prefix = 'botright vsplit' }   ,
+        -- top =       { key = 'K' , description = 'to top edge'    , command_prefix = 'topleft split' }     ,
+        -- bottom =    { key = 'J' , description = 'to bottom edge' , command_prefix = 'botright split' }    ,
     }
 
-    local command_prefix = {
-        left = 'aboveleft vsplit',
-        right = 'belowright vsplit',
-        above = 'aboveleft split',
-        below = 'belowright split',
-        leftmost = 'topleft vsplit',
-        rightmost = 'botright vsplit',
-        top = 'topleft split',
-        bottom = 'botright split',
-        in_place = '',
-        tab = 'tabnew',
-    }
-
-    return {
-        name = '+action '..direction_description[direction],
-        t = {'<Cmd>'..command_prefix[direction]..' | terminal<CR>', 'builtin terminal'},
-        g = {'<Cmd>'..command_prefix[direction]..' | Gedit :<CR>', 'git status'},
-        p = {'<Cmd>'..command_prefix[direction]..' | Fern . -reveal=%<CR>', 'file tree (cwd)'},
-        d = {'<Cmd>'..command_prefix[direction]..' | Fern %:h -reveal=%<CR>', 'file tree (of current file)'},
-        l = {'<Cmd>Git log<CR><Cmd>q<CR><Cmd>'..command_prefix[direction]..' | Gedit -<CR>', 'git log'},
-        -- TODO '.' should reopen the current buffer
-    }
+    local maps = {}
+    for _, d in pairs(directions) do
+        maps[d.key] = {
+            '<CMD>' .. d.command_prefix .. ' | ' .. command .. '<CR>',
+            command_desc .. ' ' .. d.description,
+        }
+    end
+    return maps
 end
 
+local directed = {
+    git_status = make_directed_maps('Git Status', 'Gedit :'),
+    new_terminal = make_directed_maps('New terminal', 'terminal'),
+    file_explorer = make_directed_maps('File explorer', 'Fern . -reveal=%'),
+    roaming_file_explorer = make_directed_maps('File explorer (focused on file\'s directory)', 'Fern %:h -reveal=%'),
+    todays_notepad = make_directed_maps('Today\'s notepad', 'VimwikiMakeDiaryNote')
+}
 
 local main_keymap = {
     v = {
@@ -62,8 +57,8 @@ local main_keymap = {
         r = {'<cmd>lua require("vimp").unmap_all()<cr><cmd>Reload<cr>', 'reload all config files'},
     },
     s = {'<cmd>HopWord<cr>', 'Hop [search] Word'},
-    r = {
-        name = '+lsp/refactoring',
+    l = {
+        name = '+lsp',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},
         r = {'<cmd>Lspsaga rename<cr>', 'rename symbol'},
         d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'show document diagnostics'},
@@ -89,25 +84,27 @@ local main_keymap = {
         p = {'<Cmd>lua require("telescope_z").list()<CR>', '🔭 jump to project with z'},
         n = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', '🔭 personal notes'},
     },
-    g = {
+    g = helpers.merge(directed.git_status, {
         name = '+git',
         g = {'<Cmd>Telescope git_commits<CR>', '🔭 commits'},
         c = {'<Cmd>Telescope git_bcommits<CR>', '🔭 buffer commits'},
         b = {'<Cmd>Telescope git_branches<CR>', '🔭 branches'},
         R = {'<Cmd>Gitsigns reset_hunk<CR>', 'reset hunk'},
         p = {'<Cmd>Gitsigns preview_hunk<CR>', 'preview hunk'},
-        l = {'<Cmd>Gitsigns toggle_current_line_blame<CR>', 'toggle current line blame'},
-    },
-    h = direction_action_maps('left'),
-    j = direction_action_maps('below'),
-    k = direction_action_maps('above'),
-    l = direction_action_maps('right'),
-    H = direction_action_maps('leftmost'),
-    J = direction_action_maps('bottom'),
-    K = direction_action_maps('top'),
-    L = direction_action_maps('rightmost'),
-    ['.'] = direction_action_maps('in_place'),
-    [','] = direction_action_maps('tab'),
+    }),
+    t = helpers.merge(directed.new_terminal, {
+        name = '+terminal',
+    }),
+    e = helpers.merge(directed.file_explorer, {
+        name = '+file explorer',
+        ['e'] = helpers.merge(directed.roaming_file_explorer, {
+            name = '+in current file\' directory',
+        }),
+    }),
+    n = helpers.merge(directed.todays_notepad, {
+        name = '+notes',
+        f = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', '🔭 search all notes'},
+    }),
 }
 
 whichkey.register(main_keymap, { prefix = '<leader>' })
@@ -117,6 +114,7 @@ whichkey.register({
     b = main_keymap.f.b, -- buffers
     g = main_keymap.f.g, -- git_files
     f = main_keymap.f.f, -- find_files
+    o = main_keymap.f.o, -- old_files
     a = main_keymap.f.a, -- Rg
-    ['.'] = main_keymap['.'].p, -- Fern .
+    ['.'] = main_keymap.e['.'], -- Fern .
 }, { prefix = ',' })
