@@ -58,6 +58,9 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 
+Plug 'rafcamlet/nvim-luapad'
+Plug 'godlygeek/tabular'
+
 Plug 'sbdchd/neoformat'
 
 Plug 'hrsh7th/vim-vsnip'
