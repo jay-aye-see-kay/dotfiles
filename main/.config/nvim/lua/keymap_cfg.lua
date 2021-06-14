@@ -1,4 +1,17 @@
-local whichkey = require('whichkey_setup')
+local whichkey = require('which-key')
+
+whichkey.setup {
+    plugins = {
+        spelling = { enabled = true },
+    },
+    window = {
+        border = "double",
+    },
+    layout = {
+        align = "center",
+        spacing = 6,
+    },
+}
 
 vim.cmd('set timeoutlen=300')
 
@@ -97,13 +110,13 @@ local main_keymap = {
     [','] = direction_action_maps('tab'),
 }
 
-whichkey.register_keymap('leader', main_keymap)
+whichkey.register(main_keymap, { prefix = '<leader>' })
 
-whichkey.register_keymap(',', {
+whichkey.register({
     name = 'quick keymaps',
     b = main_keymap.f.b, -- buffers
     g = main_keymap.f.g, -- git_files
     f = main_keymap.f.f, -- find_files
     a = main_keymap.f.a, -- Rg
     ['.'] = main_keymap['.'].p, -- Fern .
-})
+}, { prefix = ',' })

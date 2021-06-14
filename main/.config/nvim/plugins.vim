@@ -8,8 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'svermeulen/vimpeccable'
 Plug 'famiu/nvim-reload'
 
-Plug 'liuchengxu/vim-which-key'
-Plug 'AckslD/nvim-whichkey-setup.lua'
+Plug 'folke/which-key.nvim'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
