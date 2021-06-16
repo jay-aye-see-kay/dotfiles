@@ -19,6 +19,12 @@ unbind <C-f>
 unbind <C-d>
 unbind <C-u>
 
+" tree style tabs uses this
+unbind <F1>
+
+" bookmarks sidebar
+unbind <C-b>
+
 " But also support Tridactyl search too.
 bind / fillcmdline find
 bind ? fillcmdline find -?
