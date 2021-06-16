@@ -183,6 +183,10 @@ bar {
 bindsym Print --release exec "scrot -s ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 bindsym Shift+Print exec "scrot ~/Pictures/screenshot-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'"
 
+# assign programs to places
+assign [class="Slack"] $ws4
+assign [class="Spotify"] $ws10
+
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
