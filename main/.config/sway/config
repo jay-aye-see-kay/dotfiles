@@ -206,8 +206,10 @@ bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
 #
 # Layout stuff:
 #
-    bindsym $mod+shift+v splith
-    bindsym $mod+v splitv
+    bindsym $mod+backslash split h
+    bindsym $mod+bar split h
+    bindsym $mod+minus split v
+    bindsym $mod+underscore split v
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking

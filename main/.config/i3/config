@@ -50,8 +50,10 @@ bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org
 bindsym $mod+Ctrl+l exec --no-startup-id qdbus org.kde.ksmserver /ScreenSaver org.freedesktop.ScreenSaver.Lock
 
 # split in horizontal or vertical orientation
-bindsym $mod+Shift+v split h
-bindsym $mod+v split v
+bindsym $mod+backslash split h
+bindsym $mod+bar split h
+bindsym $mod+minus split v
+bindsym $mod+underscore split v
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
