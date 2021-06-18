@@ -1,0 +1,18 @@
+{
+  "code block": {
+    "prefix": "c",
+    "body": ["```$1", "$0", "```"]
+  },
+  "javascript code block": {
+    "prefix": "cj",
+    "body": ["```javascript", "$0", "```"]
+  },
+  "typescript code block": {
+    "prefix": "ct",
+    "body": ["```typescript", "$0", "```"]
+  },
+  "python code block": {
+    "prefix": "cp",
+    "body": ["```python", "$0", "```"]
+  }
+}

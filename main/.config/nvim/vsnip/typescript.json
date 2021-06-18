@@ -7,6 +7,14 @@
     "prefix": "c",
     "body": "const ${1:name} = $2"
   },
+  "arrow function": {
+    "prefix": "f",
+    "body": "($1) => {\n\t$0\n}"
+  },
+  "arrow function (one line)": {
+    "prefix": "af",
+    "body": "($1) => $0"
+  },
   "skeleton function": {
     "prefix": "sf",
     "body": [
