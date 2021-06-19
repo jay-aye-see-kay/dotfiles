@@ -101,3 +101,12 @@ function take -d "Create a directory and set CWD" -a directory
     mkdir -p "$DIR"; and cd "$DIR"
 end
 # }}} END functions
+
+# auto start sway after login on tty1
+if test (tty) = /dev/tty1
+    # what a display manager normally sets
+    set -x XDG_SESSION_TYPE wayland
+    set -x _JAVA_AWT_WM_NONREPARENTING 1
+    set -x MOZ_ENABLE_WAYLAND 1
+    exec sway
+end
