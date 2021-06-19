@@ -56,6 +56,7 @@ alias vw="$EDITOR -c VimwikiIndex"
 alias vwt="$EDITOR -c VimwikiMakeDiaryNote"
 alias shopping_list="$EDITOR $HOME/Documents/shopping-lists/(date --iso-8601).md"
 
+abbr -a -- _ sudo
 abbr -a -- \~ "cd ~"
 abbr -a -- - "cd -"
 abbr -a -- .. "cd .."
