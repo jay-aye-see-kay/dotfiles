@@ -40,6 +40,8 @@ set -x MANPAGER 'nvim +Man!'
 set -x MANWIDTH 80
 set -x RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -x FZF_DEFAULT_OPTS "--height 40% --reverse --tac"
+
+bind \cx\ce edit_command_buffer
 # }}} END misc config
 
 

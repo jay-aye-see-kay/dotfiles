@@ -39,4 +39,4 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/home/jack/Android/Sdk/emulator\x1e/home/jack/Android/Sdk/tools\x1e/home/jack/Android/Sdk/tools/bin\x1e/home/jack/Android/Sdk/platform\x2dtools\x1e/usr/lib/go\x1e/home/jack/\x2ecargo/bin\x1e/home/jack/\x2eyarn/bin\x1e/home/jack/\x2epoetry/bin\x1e/home/jack/\x2elocal/bin
+SETUVAR fish_user_paths:/home/jack/go/bin\x1e/home/jack/Android/Sdk/emulator\x1e/home/jack/Android/Sdk/tools\x1e/home/jack/Android/Sdk/tools/bin\x1e/home/jack/Android/Sdk/platform\x2dtools\x1e/usr/lib/go\x1e/home/jack/\x2ecargo/bin\x1e/home/jack/\x2eyarn/bin\x1e/home/jack/\x2epoetry/bin\x1e/home/jack/\x2elocal/bin
