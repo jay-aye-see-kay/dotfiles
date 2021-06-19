@@ -3,7 +3,7 @@
 while true; do
    BATT_STATUS=$(cat /sys/class/power_supply/BAT0/status)
    BATT_PERCENT=$(cat /sys/class/power_supply/BAT0/capacity)
-   if { [ "$BATT_STATUS" = 'Discharging' ] && [ "$BATT_PERCENT" -le 50 ]; }
+   if { [ "$BATT_STATUS" = 'Discharging' ] && [ "$BATT_PERCENT" -le 5 ]; }
    then
       notify-send "Low battery: $BATT_PERCENT%"
    fi
