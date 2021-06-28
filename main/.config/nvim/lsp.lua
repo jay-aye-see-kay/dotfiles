@@ -15,7 +15,6 @@ require'compe'.setup({
     buffer = true,
     nvim_lua = true,
     nvim_lsp = true,
-    spell = true,
     vsnip = true,
   },
 })

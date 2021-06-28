@@ -23,7 +23,7 @@ local function make_directed_maps(command_desc, command)
         right =     { key = 'l' , description = 'to right'       , command_prefix = 'belowright vsplit' } ,
         above =     { key = 'k' , description = 'above'          , command_prefix = 'aboveleft split' }   ,
         below =     { key = 'j' , description = 'below'          , command_prefix = 'belowright split' }  ,
-        in_place =  { key = '.' , description = 'in place'       , command_prefix = '' }                  ,
+        in_place =  { key = '.' , description = 'in place'       , command_prefix = nil }                  ,
         tab =       { key = ',' , description = 'in new tab'     , command_prefix = 'tabnew' }            ,
         -- leftmost =  { key = 'H' , description = 'to left edge'   , command_prefix = 'topleft vsplit' }    ,
         -- rightmost = { key = 'L' , description = 'to right edge'  , command_prefix = 'botright vsplit' }   ,
@@ -33,10 +33,12 @@ local function make_directed_maps(command_desc, command)
 
     local maps = {}
     for _, d in pairs(directions) do
-        maps[d.key] = {
-            '<CMD>' .. d.command_prefix .. ' | ' .. command .. '<CR>',
-            command_desc .. ' ' .. d.description,
-        }
+        local full_description = command_desc .. ' ' .. d.description
+        local full_command = d.command_prefix -- approximating a ternary
+            and '<CMD>' .. d.command_prefix .. ' | ' .. command .. '<CR>'
+            or '<CMD>' .. command .. '<CR>'
+
+        maps[d.key] = { full_command, full_description  }
     end
     return maps
 end
@@ -117,4 +119,5 @@ whichkey.register({
     o = main_keymap.f.o, -- old_files
     a = main_keymap.f.a, -- Rg
     ['.'] = main_keymap.e['.'], -- Fern .
+    ['>'] = main_keymap.e.e['.'], -- Fern . (relative to file)
 }, { prefix = ',' })
