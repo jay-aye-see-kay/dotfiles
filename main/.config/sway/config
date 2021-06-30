@@ -58,7 +58,7 @@ default_border pixel 4
 # notifications
 exec mako
 bindsym Control+Space exec makoctl dismiss
-
+exec $HOME/.config/scripts/low-battery-check.sh
 
 exec udiskie # automount usb drives
 exec redshift # redshift

@@ -40,6 +40,8 @@ set -x MANPAGER 'nvim +Man!'
 set -x MANWIDTH 80
 set -x RIPGREP_CONFIG_PATH "$HOME/.config/ripgreprc"
 set -x FZF_DEFAULT_OPTS "--height 40% --reverse --tac"
+
+bind \cx\ce edit_command_buffer
 # }}} END misc config
 
 
@@ -54,6 +56,7 @@ alias vw="$EDITOR -c VimwikiIndex"
 alias vwt="$EDITOR -c VimwikiMakeDiaryNote"
 alias shopping_list="$EDITOR $HOME/Documents/shopping-lists/(date --iso-8601).md"
 
+abbr -a -- _ sudo
 abbr -a -- \~ "cd ~"
 abbr -a -- - "cd -"
 abbr -a -- .. "cd .."
@@ -101,3 +104,12 @@ function take -d "Create a directory and set CWD" -a directory
     mkdir -p "$DIR"; and cd "$DIR"
 end
 # }}} END functions
+
+# auto start sway after login on tty1
+if test (tty) = /dev/tty1
+    # what a display manager normally sets
+    set -x XDG_SESSION_TYPE wayland
+    set -x _JAVA_AWT_WM_NONREPARENTING 1
+    set -x MOZ_ENABLE_WAYLAND 1
+    exec sway
+end
