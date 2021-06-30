@@ -4,7 +4,6 @@ local helpers = require('helpers')
 vim.cmd('set timeoutlen=300')
 
 whichkey.setup {
-
     plugins = {
         spelling = { enabled = true },
     },
@@ -48,7 +47,9 @@ local directed = {
     new_terminal = make_directed_maps('New terminal', 'terminal'),
     file_explorer = make_directed_maps('File explorer', 'Fern . -reveal=%'),
     roaming_file_explorer = make_directed_maps('File explorer (focused on file\'s directory)', 'Fern %:h -reveal=%'),
-    todays_notepad = make_directed_maps('Today\'s notepad', 'VimwikiMakeDiaryNote')
+    todays_notepad = make_directed_maps('Today\'s notepad', 'VimwikiMakeDiaryNote'),
+    yesterdays_notepad = make_directed_maps('Yesterday\'s notepad', 'VimwikiMakeYesterdayDiaryNote'),
+    tomorrows_notepad = make_directed_maps('Tomorrow\'s notepad', 'VimwikiMakeTomorrowDiaryNote'),
 }
 
 local main_keymap = {
@@ -106,6 +107,12 @@ local main_keymap = {
     n = helpers.merge(directed.todays_notepad, {
         name = '+notes',
         f = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', '🔭 search all notes'},
+        y = helpers.merge(directed.yesterdays_notepad, {
+            name = '+Yesterday\' notepad',
+        }),
+        t = helpers.merge(directed.tomorrows_notepad, {
+            name = '+Tomorrow\' notepad',
+        }),
     }),
 }
 
