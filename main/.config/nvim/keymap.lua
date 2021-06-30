@@ -127,4 +127,5 @@ whichkey.register({
     a = main_keymap.f.a, -- Rg
     ['.'] = main_keymap.e['.'], -- Fern .
     ['>'] = main_keymap.e.e['.'], -- Fern . (relative to file)
+    s = {'<Cmd>:wa<CR>', 'save all'},
 }, { prefix = ',' })
