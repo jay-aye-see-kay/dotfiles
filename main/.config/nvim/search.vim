@@ -37,12 +37,3 @@ command! -bang EditedFiles
   \ call fzf#run(fzf#vim#with_preview(fzf#wrap({
   \   'source': 'git diff --name-only `git merge-base origin/develop HEAD`'
   \ })))
-
-" loads _all_ help text in fzf
-let dirs = join(globpath(&runtimepath, '**/doc/*.txt', 0, 1), " ")
-command! -bang -nargs=* AllHelpText
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '
-  \     .shellescape(<q-args>).' '.dirs, 1,
-  \   fzf#vim#with_preview(), <bang>0
-  \ )
