@@ -13,7 +13,8 @@
     df = diff
     dfs = diff --staged
     st = status
-    fpl = push --force-with-lease
+    pu = push
+    pfl = push --force-with-lease
     pop = stash pop
     unstage = reset HEAD --
     brt = "!git for-each-ref refs/heads --color=always --sort -committerdate --format='%(HEAD)%(color:reset) %(color:yellow)%(refname:short)%(color:reset) %(contents:subject) %(color:green)(%(committerdate:relative))%(color:blue) <%(authorname)>'"
