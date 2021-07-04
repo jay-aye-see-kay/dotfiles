@@ -9,6 +9,7 @@ source('search.vim')
 source('snippets.vim')
 source('terminal.vim')
 source('wiki.vim')
+source('de-nest.vim')
 
 source('finder.lua')
 source('keymap.lua')
