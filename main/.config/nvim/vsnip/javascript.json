@@ -6,5 +6,13 @@
   "const statement": {
     "prefix": "c",
     "body": "const ${1:name} = $2"
+  },
+  "multi-line comment": {
+    "prefix": "/",
+    "body": "/* $0 */"
+  },
+  "jsdoc": {
+    "prefix": "jsdoc",
+    "body": ["/**", " * $0", " */"]
   }
 }
