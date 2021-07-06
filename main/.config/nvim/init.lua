@@ -1,6 +1,7 @@
 local noremap = require('helpers').noremap
 local nnoremap = require('helpers').nnoremap
 local inoremap = require('helpers').inoremap
+local vnoremap = require('helpers').vnoremap
 local source = require('helpers').source
 
 source('file-tree.vim')
@@ -77,10 +78,14 @@ vim.api.nvim_exec([[
 require('hop').setup()
 noremap('s', '<cmd>HopWord<cr>')
 
+-- modern copy paste keymaps
+inoremap('<C-v>', '<C-r>+')
+vnoremap('<C-c>', '"+y')
+
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
 --Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true })
+noremap('<Space>', '')
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

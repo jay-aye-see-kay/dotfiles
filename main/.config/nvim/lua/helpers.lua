@@ -12,17 +12,14 @@ function M.merge(t1, t2)
     return t1
 end
 
-function M.noremap(from, to)
-    vim.api.nvim_set_keymap('', from, to, { noremap = true, silent=true })
+local function _noremap(mode, from, to)
+    vim.api.nvim_set_keymap(mode, from, to, { noremap = true, silent=true })
 end
 
-function M.nnoremap(from, to)
-    vim.api.nvim_set_keymap('n', from, to, { noremap = true, silent=true })
-end
-
-function M.inoremap(from, to)
-    vim.api.nvim_set_keymap('i', from, to, { noremap = true, silent=true })
-end
+function M.noremap(from, to) _noremap('', from, to) end
+function M.nnoremap(from, to) _noremap('n', from, to) end
+function M.inoremap(from, to) _noremap('i', from, to) end
+function M.vnoremap(from, to) _noremap('v', from, to) end
 
 function M.source(filename)
     vim.cmd('source' .. vim.fn.stdpath('config') .. '/' .. filename)
