@@ -59,7 +59,6 @@ local main_keymap = {
         d = {'<cmd>edit '..vim.fn.stdpath('config')..'<cr>', 'open config directory'},
         r = {'<cmd>Reload<cr>', 'reload all config files'},
     },
-    s = {'<cmd>HopWord<cr>', 'Hop [search] Word'},
     l = {
         name = '+lsp',
         a = {'<cmd>Lspsaga code_action<cr>', 'code action'},

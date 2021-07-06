@@ -1,3 +1,4 @@
+local noremap = require('helpers').noremap
 local nnoremap = require('helpers').nnoremap
 local inoremap = require('helpers').inoremap
 local source = require('helpers').source
@@ -73,7 +74,8 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- Use hop for movements
-nnoremap('s', '<cmd>HopChar1<cr>')
+require('hop').setup()
+noremap('s', '<cmd>HopWord<cr>')
 
 -- stuff from https://github.com/mjlbach/defaults.nvim
 
@@ -145,4 +147,3 @@ augroup fmt
   autocmd BufWritePre * Neoformat
 augroup END
 ]], false)
-

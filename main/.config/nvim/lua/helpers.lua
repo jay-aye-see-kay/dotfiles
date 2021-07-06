@@ -12,6 +12,10 @@ function M.merge(t1, t2)
     return t1
 end
 
+function M.noremap(from, to)
+    vim.api.nvim_set_keymap('', from, to, { noremap = true, silent=true })
+end
+
 function M.nnoremap(from, to)
     vim.api.nvim_set_keymap('n', from, to, { noremap = true, silent=true })
 end
