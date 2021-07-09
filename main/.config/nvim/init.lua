@@ -6,7 +6,6 @@ local source = require('helpers').source
 
 source('file-tree.vim')
 source('functions.vim')
-source('plugins.vim')
 source('search.vim')
 source('snippets.vim')
 source('terminal.vim')
@@ -16,6 +15,7 @@ source('de-nest.vim')
 source('finder.lua')
 source('keymap.lua')
 source('lsp.lua')
+source('packer.lua')
 source('treesitter.lua')
 source('vcs.lua')
 
