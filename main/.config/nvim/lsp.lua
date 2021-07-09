@@ -138,12 +138,6 @@ for _, server in pairs(desired_servers) do
   require'lspinstall'.install_server(server)
   end
 end
-
-for _, server in pairs(installed_servers) do
-  if not table_has_value(desired_servers, server) then
-    require'lspinstall'.uninstall_server(server)
-  end
-end
 -- }}} END auto install
 
 
