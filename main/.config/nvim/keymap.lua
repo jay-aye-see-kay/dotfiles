@@ -72,7 +72,7 @@ local main_keymap = {
     },
     f = {
         name = '+find',
-        b = {'<Cmd>Telescope buffers sort_lastused=true<CR>', '🔭 buffers'},
+        b = {'<Cmd>Buffers<CR>', '🔭 buffers'},
         f = {'<Cmd>Telescope find_files<CR>', '🔭 files'},
         g = {'<Cmd>Telescope git_files<CR>', '🔭 git files'},
         h = {'<Cmd>Telescope help_tags<CR>', '🔭 help tags'},

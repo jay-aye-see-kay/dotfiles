@@ -15,3 +15,11 @@ telescope.load_extension('fzy_native')
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.api.nvim_command("set shada=!,'1000,<50,s10,h")
+
+-- fzf setup
+vim.api.nvim_exec([[
+  augroup fzfDefaultEscapeBehavior
+    autocmd!
+    autocmd FileType fzf tnoremap <buffer> <ESC> <ESC>
+  augroup END
+]], false)

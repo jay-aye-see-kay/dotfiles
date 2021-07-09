@@ -7,7 +7,6 @@ local source = require('helpers').source
 source('file-tree.vim')
 source('functions.vim')
 source('plugins.vim')
-source('search.vim')
 source('snippets.vim')
 source('terminal.vim')
 source('wiki.vim')
@@ -19,8 +18,8 @@ source('lsp.lua')
 source('treesitter.lua')
 source('vcs.lua')
 
-vim.g.python_host_prog  = '/usr/bin/python3'
-vim.g.python3_host_prog  = '/usr/bin/python3'
+vim.g.python_host_prog = '/usr/bin/python3'
+vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- faster window movements
 nnoremap('<c-h>', '<c-w>h')
