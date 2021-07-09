@@ -21,6 +21,7 @@ function! s:init_fern() abort
   nmap <buffer> N <Plug>(fern-action-new-path)
   nmap <buffer> D <Plug>(fern-action-trash)
   nmap <buffer> R <Plug>(fern-action-rename)
+  nmap <buffer> C <Plug>(fern-action-copy)
 
   " navigate file tree
   nmap <buffer> h <Plug>(fern-action-collapse)
@@ -38,9 +39,18 @@ function! s:init_fern() abort
   nmap <buffer> ol <Plug>(fern-action-open:right)
 endfunction
 
+function! s:init_fern_replacer() abort
+  " enter confirms and exits renaming
+  nmap <buffer> <cr> <cmd>w<cr>
+  imap <buffer> <cr> <cmd>w<cr>
+
+  " covering up a quirk: w writes and closes, so wq closes an extra window
+  cnoremap <buffer> wq w
+endfunction
+
 augroup fern
   autocmd! *
   autocmd FileType fern call s:init_fern()
   " covering up a quirk: w writes and closes, so wq closes an extra window
-  autocmd FileType fern-renamer cnoremap <buffer> wq w
+  autocmd FileType fern-replacer call s:init_fern_replacer()
 augroup END
