@@ -1,4 +1,11 @@
 vim.api.nvim_exec([[
+  augroup fugitiveMap
+    autocmd!
+    autocmd FileType fugitive nnoremap <buffer> cN <cmd>Git commit -n<cr>
+  augroup end
+]], false)
+
+vim.api.nvim_exec([[
   augroup commitMessageSettings
     autocmd!
     autocmd FileType gitcommit setlocal spell
