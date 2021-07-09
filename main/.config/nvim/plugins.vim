@@ -54,6 +54,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'sedm0784/vim-resize-mode'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 

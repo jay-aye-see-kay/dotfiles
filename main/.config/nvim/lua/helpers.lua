@@ -12,6 +12,16 @@ function M.merge(t1, t2)
     return t1
 end
 
+function M.table_has_value(tbl, val)
+  for _, value in pairs(tbl) do
+   if value == val then
+      return true
+    end
+  end
+  return false
+end
+
+
 local function _noremap(mode, from, to)
     vim.api.nvim_set_keymap(mode, from, to, { noremap = true, silent=true })
 end
