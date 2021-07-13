@@ -10,6 +10,8 @@ Plug 'famiu/nvim-reload'
 Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
+Plug 'folke/lua-dev.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'

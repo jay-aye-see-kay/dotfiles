@@ -53,22 +53,18 @@ local on_attach = function(client, bufnr)
     augroup END
     ]], false)
   end
+
+  require'lsp_signature'.on_attach()
 end
 
--- Configure lua language server for neovim development
 local lua_settings = {
   Lua = {
     runtime = {
-      -- LuaJIT in the case of Neovim
       version = 'LuaJIT',
       path = vim.split(package.path, ';'),
     },
-    diagnostics = {
-      -- Get the language server to recognize the `vim` global
-      globals = {'vim'},
-    },
+    diagnostics = { globals = {'vim'} },
     workspace = {
-      -- Make the server aware of Neovim runtime files
       library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
@@ -118,6 +114,8 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
+local luadev = require("lua-dev").setup()
+require('lspconfig').sumneko_lua.setup(luadev)
 
 -- {{{ START auto install
 local installed_servers = require'lspinstall'.installed_servers()
