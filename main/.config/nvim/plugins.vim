@@ -8,6 +8,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'famiu/nvim-reload'
 
 Plug 'folke/which-key.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'

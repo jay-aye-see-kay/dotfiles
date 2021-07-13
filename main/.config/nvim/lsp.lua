@@ -15,6 +15,8 @@ require'compe'.setup({
   },
 })
 
+require("trouble").setup()
+
 vim.o.completeopt = 'menuone,noselect'
 
 -- keymaps

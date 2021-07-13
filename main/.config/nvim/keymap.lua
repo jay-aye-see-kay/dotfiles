@@ -1,7 +1,7 @@
 local whichkey = require('which-key')
 local helpers = require('helpers')
 
-vim.cmd('set timeoutlen=300')
+vim.cmd('set timeoutlen=500')
 
 whichkey.setup {
     plugins = {
@@ -65,6 +65,7 @@ local main_keymap = {
         r = {'<cmd>Lspsaga rename<cr>', 'rename symbol'},
         d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'show document diagnostics'},
         D = {'<cmd>Telescope lsp_workspace_diagnostics<cr>', 'show workspace diagnostics'},
+        t = {'<cmd>TroubleToggle<cr>', 'show workspace diagnostics'},
 
         -- HACK: pop into insert mode after to trigger lsp applying settings
         q = {'<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>', 'hide lsp diagnostics'},
