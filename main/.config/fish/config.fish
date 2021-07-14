@@ -94,7 +94,7 @@ end
 
 # {{{ functions
 function fbook -d "find and open book from calibre library"
-    set -l BOOK_PATH (find "$HOME/Calibre Library" -type f | fzf) &
+    set -l BOOK_PATH (find "$HOME/Calibre Library" -type f -not -name "*.opf" -not -name "*.jpg" | fzf --keep-right) &
     if test -f "$BOOK_PATH"
         zathura "$BOOK_PATH" &
         disown
