@@ -15,8 +15,8 @@ let g:vimwiki_key_mappings =
 
 augroup naturalMovementInTextFiles
   autocmd!
-  autocmd FileType vimwiki nnoremap <cr> <cmd>VimwikiFollowLink<cr>
+  autocmd FileType vimwiki nnoremap <buffer> <cr> <cmd>VimwikiFollowLink<cr>
   autocmd FileType text,markdown,vimwiki nnoremap j gj
   autocmd FileType text,markdown,vimwiki nnoremap k gk
-  autocmd FileType text,markdown,vimwiki set wrap
+  autocmd FileType text,markdown,vimwiki setlocal wrap
 augroup END
