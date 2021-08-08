@@ -15,6 +15,7 @@ function! s:init_fern() abort
 
   " mark for bulk renamer
   nmap <buffer> m <Plug>(fern-action-mark)
+  vmap <buffer> m <Plug>(fern-action-mark)
   nmap <buffer> M <Plug>(fern-action-mark:clear)
 
   " modify file system

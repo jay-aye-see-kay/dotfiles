@@ -34,5 +34,9 @@
   "object type": {
     "prefix": "ot",
     "body": ["type ${1:Name} = {", "\t${2:key}: ${3:string}", "}", ""]
+  },
+  "template literal value": {
+    "prefix": "v",
+    "body": "\\${$1}$0"
   }
 }
