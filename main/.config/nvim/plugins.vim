@@ -73,6 +73,7 @@ Plug 'rafamadriz/friendly-snippets'
 
 Plug 'GutenYe/json5.vim'
 Plug 'blankname/vim-fish'
+Plug 'vuki656/package-info.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'moll/vim-bbye'

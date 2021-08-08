@@ -17,6 +17,9 @@ require'compe'.setup({
 
 require("trouble").setup()
 
+-- not really lsp, but language specific
+require('package-info').setup()
+
 vim.o.completeopt = 'menuone,noselect'
 
 -- keymaps
