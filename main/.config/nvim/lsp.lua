@@ -117,8 +117,8 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-local luadev = require("lua-dev").setup()
-require('lspconfig').sumneko_lua.setup(luadev)
+-- local luadev = require("lua-dev").setup()
+-- require('lspconfig').sumneko_lua.setup(luadev)
 
 -- {{{ START auto install
 local installed_servers = require'lspinstall'.installed_servers()
