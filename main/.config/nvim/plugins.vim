@@ -61,6 +61,10 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'mfussenegger/nvim-jdtls'
+
+Plug 'David-Kunz/jester'
+Plug 'mfussenegger/nvim-dap'
 
 Plug 'rafcamlet/nvim-luapad'
 Plug 'godlygeek/tabular'

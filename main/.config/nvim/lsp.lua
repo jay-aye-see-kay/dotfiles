@@ -103,9 +103,17 @@ local function setup_servers()
     -- language specific config
     if server == "lua" then
       config.settings = lua_settings
+    elseif server == "java"  then
+      config.cmd = {
+        require('lspinstall/util').install_path('java') .. '/jdtls.sh',
+        vim.env.HOME .. '/.jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      }
+      config.filetypes = { "java" }
     end
 
-    require'lspconfig'[server].setup(config)
+    if server ~= "java"  then
+      require'lspconfig'[server].setup(config)
+    end
   end
 end
 
