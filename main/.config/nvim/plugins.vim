@@ -29,8 +29,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'rhysd/git-messenger.vim'
 
-Plug 'vimwiki/vimwiki'
-
 " tpope/core stuff
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -64,6 +62,10 @@ Plug 'glepnir/lspsaga.nvim'
 
 Plug 'rafcamlet/nvim-luapad'
 Plug 'godlygeek/tabular'
+
+Plug 'tpope/vim-markdown'
+Plug 'lervag/wiki.vim'
+Plug 'dkarter/bullets.vim'
 
 Plug 'sbdchd/neoformat'
 

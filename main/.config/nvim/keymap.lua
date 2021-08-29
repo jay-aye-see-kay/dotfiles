@@ -47,9 +47,9 @@ local directed = {
     new_terminal = make_directed_maps('New terminal', 'terminal'),
     file_explorer = make_directed_maps('File explorer', 'Fern . -reveal=%'),
     roaming_file_explorer = make_directed_maps('File explorer (focused on file\'s directory)', 'Fern %:h -reveal=%'),
-    todays_notepad = make_directed_maps('Today\'s notepad', 'VimwikiMakeDiaryNote'),
-    yesterdays_notepad = make_directed_maps('Yesterday\'s notepad', 'VimwikiMakeYesterdayDiaryNote'),
-    tomorrows_notepad = make_directed_maps('Tomorrow\'s notepad', 'VimwikiMakeTomorrowDiaryNote'),
+    todays_notepad = make_directed_maps('Today\'s notepad', 'LogbookToday'),
+    yesterdays_notepad = make_directed_maps('Yesterday\'s notepad', 'LogbookYesterday'),
+    tomorrows_notepad = make_directed_maps('Tomorrow\'s notepad', 'LogbookTomorrow'),
 }
 
 local main_keymap = {
@@ -85,7 +85,7 @@ local main_keymap = {
         s = {'<Cmd>Telescope symbols<CR>', '🔭 unicode and emoji symbols'},
         a = {'<Cmd>Rg<CR>', 'FZF full text search'},
         p = {'<Cmd>lua require("telescope_z").list()<CR>', '🔭 jump to project with z'},
-        n = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Documents/vimwiki" })<CR>', '🔭 personal notes'},
+        n = {'<Cmd>lua require("telescope.builtin").grep_string({ cwd = "~/notes", file_ignore_patterns = {"./.obsidian/*"} })<CR>', '🔭 personal notes'},
     },
     g = helpers.merge(directed.git_status, {
         name = '+git',

@@ -9,7 +9,6 @@ source('functions.vim')
 source('plugins.vim')
 source('snippets.vim')
 source('terminal.vim')
-source('wiki.vim')
 source('de-nest.vim')
 
 source('finder.lua')
@@ -17,6 +16,7 @@ source('keymap.lua')
 source('lsp.lua')
 source('treesitter.lua')
 source('vcs.lua')
+source('wiki.lua')
 
 vim.g.python_host_prog = '/usr/bin/python3'
 vim.g.python3_host_prog = '/usr/bin/python3'
