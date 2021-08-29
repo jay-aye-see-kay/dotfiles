@@ -54,8 +54,7 @@ abbr -a -- y yarn
 
 alias sizes="du -csh * | sort -h"
 alias whoslistening="ss -lntu"
-alias vw="$EDITOR -c VimwikiIndex"
-alias vwt="$EDITOR -c VimwikiMakeDiaryNote"
+alias vwt="$EDITOR -c LogbookToday"
 alias shopping_list="$EDITOR $HOME/Documents/shopping-lists/(date --iso-8601).md"
 
 abbr -a -- _ sudo
