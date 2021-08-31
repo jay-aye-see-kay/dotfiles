@@ -1,6 +1,0 @@
-{
-  "return": {
-    "prefix": "r",
-    "body": "return $0"
-  }
-}
