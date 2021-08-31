@@ -5,12 +5,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'famiu/nvim-reload'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
-Plug 'folke/lua-dev.nvim'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
@@ -49,33 +47,25 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
 
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'rhysd/git-messenger.vim'
 Plug 'sedm0784/vim-resize-mode'
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
-Plug 'hrsh7th/nvim-compe'
-Plug 'glepnir/lspsaga.nvim'
-
 Plug 'rafcamlet/nvim-luapad'
-Plug 'godlygeek/tabular'
 
 Plug 'tpope/vim-markdown'
 Plug 'lervag/wiki.vim'
 Plug 'dkarter/bullets.vim'
+Plug 'godlygeek/tabular'
 
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 
+Plug 'kevinoid/vim-jsonc'
 Plug 'GutenYe/json5.vim'
 Plug 'blankname/vim-fish'
-Plug 'vuki656/package-info.nvim'
-Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'moll/vim-bbye'
 Plug 'aymericbeaumet/vim-symlink'

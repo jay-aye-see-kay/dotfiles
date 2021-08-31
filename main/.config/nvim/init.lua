@@ -4,15 +4,14 @@ local inoremap = require('helpers').inoremap
 local vnoremap = require('helpers').vnoremap
 local source = require('helpers').source
 
+source('coc.vim')
 source('file-tree.vim')
 source('functions.vim')
 source('plugins.vim')
-source('snippets.vim')
 source('terminal.vim')
 
 source('finder.lua')
 source('keymap.lua')
-source('lsp.lua')
 source('treesitter.lua')
 source('vcs.lua')
 source('wiki.lua')
@@ -120,8 +119,6 @@ vim.g.mundo_preview_height = 20
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
---Decrease update time
-vim.o.updatetime = 100
 vim.wo.signcolumn="yes"
 
 --Set colorscheme (order is important here)
@@ -145,11 +142,3 @@ vim.g.lightline = {
     gitbranch = 'FugitiveHead',
   };
 }
-
--- Format on save
-vim.api.nvim_exec([[
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * Neoformat
-augroup END
-]], false)
