@@ -22,12 +22,16 @@ telescope.setup {
       }
     },
   },
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = false,
+      override_file_sorter = true,
+    }
+  }
 }
 
-telescope.load_extension('fzy_native')
-
--- increase oldfile saved ( default is !,'100,<50,s10,h )
-vim.api.nvim_command("set shada=!,'1000,<50,s10,h")
+telescope.load_extension('fzf')
 
 -- fzf setup
 vim.api.nvim_exec([[

@@ -41,6 +41,9 @@ vim.cmd[[ set linebreak ]]                            -- don't break words when 
 vim.cmd[[ set list listchars=tab:»·,trail:·,nbsp:· ]] -- Display extra whitespace
 vim.cmd[[ set nojoinspaces ]]                         -- Use one space, not two, after punctuation.
 
+-- increase oldfile saved ( default is !,'100,<50,s10,h )
+vim.cmd[["set shada=!,'1000,<50,s10,h"]]
+
 -- Only show cursorline on focued window
 vim.api.nvim_exec([[
 augroup CursorLine
