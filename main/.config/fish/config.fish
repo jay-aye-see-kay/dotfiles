@@ -10,7 +10,9 @@ end
 bind \cg fzf-z
 
 set -x ASDF_CONFIG_FILE "$HOME/.config/asdfrc"
-source /opt/asdf-vm/asdf.fish
+if [ -e /opt/asdf-vm/asdf.fish ]
+    source /opt/asdf-vm/asdf.fish
+end
 # }}} END shell utils setup
 
 
@@ -27,6 +29,8 @@ set -x GOROOT /usr/lib/go
 fish_add_path "$GOPATH" "$GOROOT"
 
 set -x ANDROID_HOME "$HOME/Android/Sdk"
+[ (uname) = "Darwin" ] && set -x ANDROID_HOME "$HOME/Library/Android/Sdk"
+
 fish_add_path \
     "$ANDROID_HOME/emulator" \
     "$ANDROID_HOME/tools" \
