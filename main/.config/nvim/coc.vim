@@ -1,3 +1,5 @@
+let g:coc_node_path = '/usr/bin/node'
+
 let g:coc_global_extensions = [
 \   'coc-clangd',
 \   'coc-calc',
@@ -92,7 +94,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
