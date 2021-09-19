@@ -52,6 +52,7 @@ abbr -a -- e "$EDITOR"
 abbr -a -- g git
 abbr -a -- y yarn
 
+alias rg="rg --hidden"
 alias sizes="du -csh * | sort -h"
 alias whoslistening="ss -lntu"
 alias vwt="$EDITOR -c LogbookToday"
