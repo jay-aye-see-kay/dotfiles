@@ -1,3 +1,5 @@
+local which_key = require("which-key")
+
 -- Helpers {{{
 -- https://stackoverflow.com/a/7470789/7164888
 local function merge(t1, t2)
@@ -35,6 +37,20 @@ local function make_directed_maps(command_desc, command)
 		maps[d.key] = { full_command, full_description }
 	end
 	return maps
+end
+
+local function _noremap(mode, from, to)
+	vim.api.nvim_set_keymap(mode, from, to, { noremap = true, silent = true })
+end
+
+local function nnoremap(from, to)
+	_noremap("n", from, to)
+end
+local function inoremap(from, to)
+	_noremap("i", from, to)
+end
+local function vnoremap(from, to)
+	_noremap("v", from, to)
 end
 -- }}}
 
@@ -112,6 +128,18 @@ lvim.builtin.dashboard = {
 -- }}}
 
 -- Lsp etc. {{{
+lvim.lsp.on_attach_callback = function(_, bufnr)
+	vim.defer_fn(function()
+		local keys = {
+			["gh"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show hover" },
+			["gd"] = { "<cmd>Telescope lsp_definitions<CR>", "Goto Definition" },
+			["gr"] = { "<cmd>Telescope lsp_references<CR>", "Goto references" },
+			["gI"] = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
+		}
+		which_key.register(keys, { mode = "n", buffer = bufnr })
+	end, 0)
+end
+
 vim.g.symbols_outline = {
 	auto_preview = false,
 	keymaps = {
@@ -152,13 +180,6 @@ lvim.builtin.telescope.defaults = {
 	layout_strategy = "flex",
 }
 -- }}}
-
--- Fern {{{
-vim.g["fern#default_hidden"] = 1
-vim.g["fern#disable_default_mappings"] = 1
-vim.g["fern#hide_cursor"] = 1
-vim.g["fern#renderer"] = "nerdfont"
---}}}
 
 -- Plugins {{{
 lvim.plugins = {
@@ -225,13 +246,13 @@ lvim.plugins = {
 		config = function()
 			local dial = require("dial")
 			vim.cmd([[
-        nmap <C-a> <Plug>(dial-increment)
-        nmap <C-x> <Plug>(dial-decrement)
-        vmap <C-a> <Plug>(dial-increment)
-        vmap <C-x> <Plug>(dial-decrement)
-        vmap g<C-a> <Plug>(dial-increment-additional)
-        vmap g<C-x> <Plug>(dial-decrement-additional)
-      ]])
+				nmap <C-a> <Plug>(dial-increment)
+				nmap <C-x> <Plug>(dial-decrement)
+				vmap <C-a> <Plug>(dial-increment)
+				vmap <C-x> <Plug>(dial-decrement)
+				vmap g<C-a> <Plug>(dial-increment-additional)
+				vmap g<C-x> <Plug>(dial-decrement-additional)
+			]])
 
 			dial.augends["custom#boolean"] = dial.common.enum_cyclic({
 				name = "boolean",
@@ -283,6 +304,7 @@ lvim.plugins = {
 	{ "lambdalisue/fern-hijack.vim" },
 	{ "lambdalisue/fern-renderer-nerdfont.vim" },
 	{ "lambdalisue/nerdfont.vim" },
+	{ "aymericbeaumet/vim-symlink" },
 
 	{ "tpope/vim-markdown" },
 	{ "lervag/wiki.vim" },
@@ -406,20 +428,6 @@ lvim.keys.insert_mode["<c-e>"] = "<end>"
 lvim.keys.normal_mode["<C-s>"] = "<cmd>w<cr>"
 lvim.keys.normal_mode["<leader>u"] = "<cmd>MundoToggle<cr>"
 
-lvim.lsp.on_attach_callback = function()
-	local wk = require("which-key")
-	wk.register({
-		gh = "<cmd>lua vim.lsp.buf.hover()<CR>",
-		gd = "<cmd>Telescope lsp_definitions<CR>",
-	}, {
-		mode = "n",
-	})
-end
--- lvim.keys.normal_mode.gh = "<cmd>lua vim.lsp.buf.hover()<CR>"
--- lvim.keys.normal_mode.gd = "<cmd>Telescope lsp_definitions<CR>"
--- lvim.keys.normal_mode.gr = "<cmd>Telescope lsp_references<CR>"
--- lvim.keys.normal_mode.gI = "<cmd>Telescope lsp_implementations<CR>"
-
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
 	new_terminal = make_directed_maps("New terminal", "terminal"),
@@ -508,7 +516,7 @@ lvim.builtin.which_key.mappings.t = main_keymap.terminal
 lvim.builtin.which_key.mappings.e = main_keymap.explorer
 lvim.builtin.which_key.mappings.l = main_keymap.lsp
 
-require("which-key").register({
+which_key.register({
 	name = "quick keymaps",
 	b = main_keymap.finder.b, -- buffers
 	g = main_keymap.finder.g, -- git_files
