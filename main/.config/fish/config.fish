@@ -52,6 +52,7 @@ bind \cx\ce edit_command_buffer
 # {{{ aliases and abbreviations
 set -x EDITOR nvim
 abbr -a -- v nvim
+abbr -a -- l lvim
 abbr -a -- e "$EDITOR"
 abbr -a -- g git
 abbr -a -- y yarn
