@@ -203,3 +203,5 @@ for_window [class="Klipper"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable; border none
 for_window [class="(?i)*nextcloud*"] floating disable
 for_window [title="Desktop — Plasma"] kill;
+
+for_window [class="zoom"] floating enable
