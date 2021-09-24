@@ -10,7 +10,9 @@ end
 bind \cg fzf-z
 
 set -x ASDF_CONFIG_FILE "$HOME/.config/asdfrc"
-source /opt/asdf-vm/asdf.fish
+if [ -e /opt/asdf-vm/asdf.fish ]
+    source /opt/asdf-vm/asdf.fish
+end
 # }}} END shell utils setup
 
 
@@ -27,6 +29,8 @@ set -x GOROOT /usr/lib/go
 fish_add_path "$GOPATH" "$GOROOT"
 
 set -x ANDROID_HOME "$HOME/Android/Sdk"
+[ (uname) = "Darwin" ] && set -x ANDROID_HOME "$HOME/Library/Android/Sdk"
+
 fish_add_path \
     "$ANDROID_HOME/emulator" \
     "$ANDROID_HOME/tools" \
@@ -48,6 +52,7 @@ bind \cx\ce edit_command_buffer
 # {{{ aliases and abbreviations
 set -x EDITOR nvim
 abbr -a -- v nvim
+abbr -a -- l lvim
 abbr -a -- e "$EDITOR"
 abbr -a -- g git
 abbr -a -- y yarn
@@ -56,7 +61,7 @@ alias rg="rg --hidden"
 alias sizes="du -csh * | sort -h"
 alias whoslistening="ss -lntu"
 alias vwt="$EDITOR -c LogbookToday"
-alias shopping_list="$EDITOR $HOME/Documents/shopping-lists/(date --iso-8601).md"
+alias shopping_list="$EDITOR $HOME/notes/shopping-lists/(date --iso-8601).md"
 
 abbr -a -- _ sudo
 abbr -a -- \~ "cd ~"
