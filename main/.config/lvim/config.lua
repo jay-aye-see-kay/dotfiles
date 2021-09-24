@@ -219,7 +219,6 @@ lvim.plugins = {
 	},
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "tpope/vim-repeat" },
-	{ "tpope/vim-surround" },
 	{
 		"monaqa/dial.nvim",
 		event = "BufRead",
@@ -283,6 +282,7 @@ lvim.plugins = {
 	{ "lambdalisue/fern-git-status.vim" },
 	{ "lambdalisue/fern-hijack.vim" },
 	{ "lambdalisue/fern-renderer-nerdfont.vim" },
+	{ "lambdalisue/nerdfont.vim" },
 
 	{ "tpope/vim-markdown" },
 	{ "lervag/wiki.vim" },
@@ -405,6 +405,8 @@ lvim.keys.insert_mode["<c-e>"] = "<end>"
 lvim.keys.normal_mode["<C-s>"] = "<cmd>w<cr>"
 lvim.keys.normal_mode["<leader>u"] = "<cmd>MundoToggle<cr>"
 
+lvim.keys.normal_mode.gh = "<cmd>lua vim.lsp.buf.hover()<CR>"
+
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
 	new_terminal = make_directed_maps("New terminal", "terminal"),
@@ -422,11 +424,20 @@ local main_keymap = {
 	lsp = {
 		name = "+Lsp",
 		s = { "<cmd>SymbolsOutline<cr>", "SymbolsOutline" },
-		a = { "<cmd>Lspsaga code_action<cr>", "code action" },
-		r = { "<cmd>Lspsaga rename<cr>", "rename symbol" },
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename symbol" },
 		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "show document diagnostics" },
 		D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "show workspace diagnostics" },
 		t = { "<cmd>TroubleToggle<cr>", "show workspace diagnostics" },
+		i = { "<cmd>LspInfo<cr>", "Info" },
+		j = {
+			"<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
+			"Next Diagnostic",
+		},
+		k = {
+			"<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
+			"Prev Diagnostic",
+		},
 
 		-- HACK: pop into insert mode after to trigger lsp applying settings
 		q = { "<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
