@@ -296,6 +296,7 @@ lvim.plugins = {
 
 	{ "tpope/vim-abolish" },
 	{ "tpope/vim-unimpaired" },
+	{ "tpope/vim-surround" },
 
 	{ "kevinoid/vim-jsonc" },
 	{ "GutenYe/json5.vim" },
@@ -405,7 +406,19 @@ lvim.keys.insert_mode["<c-e>"] = "<end>"
 lvim.keys.normal_mode["<C-s>"] = "<cmd>w<cr>"
 lvim.keys.normal_mode["<leader>u"] = "<cmd>MundoToggle<cr>"
 
-lvim.keys.normal_mode.gh = "<cmd>lua vim.lsp.buf.hover()<CR>"
+lvim.lsp.on_attach_callback = function()
+	local wk = require("which-key")
+	wk.register({
+		gh = "<cmd>lua vim.lsp.buf.hover()<CR>",
+		gd = "<cmd>Telescope lsp_definitions<CR>",
+	}, {
+		mode = "n",
+	})
+end
+-- lvim.keys.normal_mode.gh = "<cmd>lua vim.lsp.buf.hover()<CR>"
+-- lvim.keys.normal_mode.gd = "<cmd>Telescope lsp_definitions<CR>"
+-- lvim.keys.normal_mode.gr = "<cmd>Telescope lsp_references<CR>"
+-- lvim.keys.normal_mode.gI = "<cmd>Telescope lsp_implementations<CR>"
 
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
