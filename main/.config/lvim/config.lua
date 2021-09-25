@@ -39,18 +39,18 @@ local function make_directed_maps(command_desc, command)
 	return maps
 end
 
-local function _noremap(mode, from, to)
-	vim.api.nvim_set_keymap(mode, from, to, { noremap = true, silent = true })
+local function exec(command)
+	local file = io.popen(command, "r")
+	local res = {}
+	for line in file:lines() do
+		table.insert(res, line)
+	end
+	return res
 end
 
-local function nnoremap(from, to)
-	_noremap("n", from, to)
-end
-local function inoremap(from, to)
-	_noremap("i", from, to)
-end
-local function vnoremap(from, to)
-	_noremap("v", from, to)
+local function uuid()
+	local res = exec([[ python -c "import uuid, sys; sys.stdout.write(str(uuid.uuid4()))" ]])
+	return res[1]
 end
 -- }}}
 
@@ -129,6 +129,7 @@ lvim.builtin.dashboard = {
 
 -- Lsp etc. {{{
 lvim.lsp.on_attach_callback = function(_, bufnr)
+	-- using defer_fn to call this code after LunarVim sets default keybinds
 	vim.defer_fn(function()
 		local keys = {
 			["gh"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Show hover" },
@@ -139,6 +140,10 @@ lvim.lsp.on_attach_callback = function(_, bufnr)
 		which_key.register(keys, { mode = "n", buffer = bufnr })
 	end, 0)
 end
+
+-- disable LunarVim's default up and down in pum keys, <C-n> and <C-p> are fine
+lvim.keys.insert_mode["<C-j>"] = nil
+lvim.keys.insert_mode["<C-k>"] = nil
 
 vim.g.symbols_outline = {
 	auto_preview = false,
@@ -304,7 +309,6 @@ lvim.plugins = {
 	{ "lambdalisue/fern-hijack.vim" },
 	{ "lambdalisue/fern-renderer-nerdfont.vim" },
 	{ "lambdalisue/nerdfont.vim" },
-	{ "aymericbeaumet/vim-symlink" },
 
 	{ "tpope/vim-markdown" },
 	{ "lervag/wiki.vim" },
@@ -323,6 +327,7 @@ lvim.plugins = {
 	{ "kevinoid/vim-jsonc" },
 	{ "GutenYe/json5.vim" },
 	{ "blankname/vim-fish" },
+	{ "rafcamlet/nvim-luapad", cmd = { "Luapad", "LuaRun" } },
 }
 -- }}}
 
@@ -415,6 +420,73 @@ end
 vim.cmd([[command! LogbookToday :call v:lua.LogbookToday()]])
 vim.cmd([[command! LogbookYesterday :call v:lua.LogbookYesterday()]])
 vim.cmd([[command! LogbookTomorrow :call v:lua.LogbookTomorrow()]])
+-- }}}
+
+-- snippets {{{
+local function snip_map(from, to)
+	vim.api.nvim_set_keymap("i", from, to, {})
+	vim.api.nvim_set_keymap("s", from, to, {})
+end
+snip_map("<C-j>", "<Plug>luasnip-expand-snippet")
+snip_map("<C-l>", "<Plug>luasnip-jump-next")
+snip_map("<C-h>", "<Plug>luasnip-jump-prev")
+
+local ls = require("luasnip")
+local l = require("luasnip.extras").lambda
+local f = ls.function_node
+local i = ls.insert_node
+local s = ls.snippet
+local t = ls.text_node
+local vsc = ls.parser.parse_snippet
+
+local js_snippets = {
+	-- React.useState()
+	s("us", {
+		t("const ["),
+		i(1, "foo"),
+		t(", set"),
+		l(l._1:gsub("^%l", string.upper), 1),
+		t("] = useState("),
+		i(2),
+		t(")"),
+	}),
+	-- standard function
+	vsc("f", "function ${1}(${2}) {\n\t${3}\n}"),
+	-- skeleton function
+	vsc("sf", "function ${1}(${2}): ${3:void} {\n\t${0:throw new Error('Not implemented')}\n}"),
+	-- throw
+	vsc("tn", "throw new Error(${0})"),
+	-- comments
+	vsc("jsdoc", "/**\n * ${0}\n */"),
+	vsc("/", "/* ${0} */"),
+	-- template string variable
+	vsc({ trig = "v", wordTrig = false }, "\\${${1}}"),
+}
+
+ls.snippets = {
+	all = {
+		s("date", { i(1, os.date("%Y-%m-%d")) }),
+		s("uuid", { f(uuid, {}) }),
+		vsc("filename", "$TM_FILENAME"),
+		vsc("filepath", "$TM_FILEPATH"),
+		vsc({ trig = "v", wordTrig = false }, "\\${${1}}"),
+	},
+	markdown = {
+		-- task
+		vsc("t", "- [ ] ${0}"),
+		-- code blocks
+		vsc("c", "```\n${1}\n```"),
+		vsc("cj", "```json\n${1}\n```"),
+		vsc("ct", "```typescript\n${1}\n```"),
+		vsc("cp", "```python\n${1}\n```"),
+		vsc("cs", "```sh\n${1}\n```"),
+	},
+	javascript = js_snippets,
+	typescript = js_snippets,
+	javascriptreact = js_snippets,
+	typescriptreact = js_snippets,
+}
+
 -- }}}
 
 -- keymaps {{{
