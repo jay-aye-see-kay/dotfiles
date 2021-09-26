@@ -1,0 +1,35 @@
+@-moz-document domain("news.ycombinator.com") {
+  .pagetop, .title {
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+  }
+
+  .comment {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .subtext {
+    font-size: 12px !important;;
+  }
+
+  tr.spacer {
+    height: 8px !important;;
+  }
+
+  .togg {
+    padding: 8px !important;
+  }
+}
+
+@-moz-document domain("danluu.com") {
+  body {
+    max-width: 600px;
+    line-height: 1.2;
+    margin: 12px auto;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+}
