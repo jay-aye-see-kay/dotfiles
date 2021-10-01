@@ -62,6 +62,8 @@ lvim.colorscheme = "nvcode"
 
 lvim.builtin.dashboard.active = true
 lvim.builtin.nvimtree.active = false
+lvim.builtin.bufferline.active = false
+vim.opt.showtabline = 1
 lvim.builtin.which_key.setup.layout = { align = "center", spacing = 6 }
 lvim.builtin.which_key.setup.window.padding = { 1, 1, 1, 1 }
 
@@ -72,6 +74,8 @@ vim.cmd([["set shada=!,'1000,<50,s10,h"]]) -- increase oldfile saved ( default i
 lvim.keys.normal_mode["Q"] = "" -- disable ex mode
 lvim.keys.normal_mode["gQ"] = "" -- disable ex mode
 lvim.keys.normal_mode["Y"] = "y$" -- make Y behave like C and D
+
+vim.opt.linebreak = true
 
 vim.g.python_host_prog = "/usr/bin/python3"
 vim.g.python3_host_prog = "/usr/bin/python3"
