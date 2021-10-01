@@ -62,4 +62,4 @@
       org-journal-date-format "%a, %Y-%m-%d"
       org-journal-file-format "%Y-%m-%d.org")
 
-(setq lsp-ui-doc-use-webkit t)
+(set-face-attribute 'default nil :height 120)
