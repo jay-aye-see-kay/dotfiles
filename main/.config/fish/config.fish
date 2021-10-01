@@ -23,6 +23,7 @@ fish_add_path "(ruby -e 'puts Gem.user_dir')/bin" # ruby
 fish_add_path "$HOME/.npm_global/bin" # npm
 fish_add_path "$HOME/.yarn/bin" # yarn
 fish_add_path "$HOME/.cargo/bin" # rust
+fish_add_path "$HOME/.emacs.d/bin" # doom/emacs
 
 set -x GOPATH "$HOME/go/bin"
 set -x GOROOT /usr/lib/go
