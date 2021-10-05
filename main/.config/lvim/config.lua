@@ -314,6 +314,8 @@ lvim.plugins = {
 	{ "lambdalisue/fern-renderer-nerdfont.vim" },
 	{ "lambdalisue/nerdfont.vim" },
 
+	{ "tpope/vim-sleuth" },
+
 	{ "tpope/vim-markdown" },
 	{ "lervag/wiki.vim" },
 	{ "dkarter/bullets.vim" },
