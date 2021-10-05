@@ -63,3 +63,5 @@
       org-journal-file-format "%Y-%m-%d.org")
 
 (set-face-attribute 'default nil :height 120)
+
+(setq which-key-idle-delay 0.1)
