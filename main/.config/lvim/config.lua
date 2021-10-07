@@ -75,6 +75,9 @@ lvim.keys.normal_mode["Q"] = "" -- disable ex mode
 lvim.keys.normal_mode["gQ"] = "" -- disable ex mode
 lvim.keys.normal_mode["Y"] = "y$" -- make Y behave like C and D
 
+lvim.keys.visual_block_mode.J = nil
+lvim.keys.visual_block_mode.K = nil
+
 vim.opt.linebreak = true
 
 vim.g.python_host_prog = "/usr/bin/python3"
