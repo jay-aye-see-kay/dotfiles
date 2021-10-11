@@ -337,6 +337,10 @@ lvim.plugins = {
 	{ "GutenYe/json5.vim" },
 	{ "blankname/vim-fish" },
 	{ "rafcamlet/nvim-luapad", cmd = { "Luapad", "LuaRun" } },
+	{
+		"ibhagwan/fzf-lua",
+		requires = { "vijaymarupudi/nvim-fzf" },
+	},
 }
 -- }}}
 
@@ -547,18 +551,17 @@ local main_keymap = {
 	},
 	finder = {
 		name = "+find",
-		b = { "<Cmd>Telescope buffers<CR>", "🔭 buffers" },
-		f = { "<Cmd>Telescope find_files<CR>", "🔭 files" },
-		g = { "<Cmd>Telescope git_files<CR>", "🔭 git files" },
-		h = { "<Cmd>Telescope help_tags<CR>", "🔭 help tags" },
-		c = { "<Cmd>Telescope commands<CR>", "🔭 commands" },
-		q = { "<Cmd>Telescope quickfix<CR>", "🔭 quickfix" },
-		o = { "<Cmd>Telescope oldfiles<CR>", "🔭 oldfiles" },
-		l = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "🔭 buffer lines" },
+		b = { "<Cmd>FzfLua buffers<CR>", "🔭 buffers" },
+		f = { "<Cmd>FzfLua files<CR>", "🔭 files" },
+		g = { "<Cmd>FzfLua git_files<CR>", "🔭 git files" },
+		h = { "<Cmd>FzfLua help_tags<CR>", "🔭 help tags" },
+		c = { "<Cmd>FzfLua commands<CR>", "🔭 commands" },
+		q = { "<Cmd>FzfLua quickfix<CR>", "🔭 quickfix" },
+		o = { "<Cmd>FzfLua oldfiles<CR>", "🔭 oldfiles" },
+		l = { "<Cmd>FzfLua blines<CR>", "🔭 buffer lines" },
 		w = { "<Cmd>Telescope spell_suggest<CR>", "🔭 spelling suggestions" },
 		s = { "<Cmd>Telescope symbols<CR>", "🔭 unicode and emoji symbols" },
 		a = { "<Cmd>Rg<CR>", "FZF full text search" },
-		p = { '<Cmd>lua require("telescope_z").list()<CR>', "🔭 jump to project with z" },
 		n = { grep_notes_cmd, "🔭 personal notes" },
 	},
 	git = merge(directed_keymaps.git_status, {
