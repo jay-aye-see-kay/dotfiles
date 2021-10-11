@@ -69,7 +69,7 @@ lvim.builtin.which_key.setup.window.padding = { 1, 1, 1, 1 }
 
 vim.opt.clipboard = "" -- use vim's clipboard normally
 vim.cmd([[ set list listchars=tab:»·,trail:·,nbsp:· ]]) -- Display extra whitespace
-vim.cmd([["set shada=!,'1000,<50,s10,h"]]) -- increase oldfile saved ( default is !,'100,<50,s10,h )
+vim.cmd([[ set shada=!,'1000,<50,s10,h ]]) -- increase oldfile saved ( default is !,'100,<50,s10,h )
 
 lvim.keys.normal_mode["Q"] = "" -- disable ex mode
 lvim.keys.normal_mode["gQ"] = "" -- disable ex mode
