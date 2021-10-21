@@ -192,6 +192,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Emoji Picker"] floating enable
 for_window [title="Android Emulator*"] floating enable
+for_window [title="1Password"] floating enable
 
 for_window [class="plasmashell"] floating enable;
 for_window [class="Plasma"] floating enable; border none
