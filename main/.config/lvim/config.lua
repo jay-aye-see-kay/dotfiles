@@ -1,4 +1,6 @@
 local which_key = require("which-key")
+local cmp = require("cmp")
+local luasnip = require("luasnip")
 
 -- Helpers {{{
 -- https://stackoverflow.com/a/7470789/7164888
@@ -164,6 +166,22 @@ vim.g.symbols_outline = {
 		code_actions = "a",
 	},
 }
+
+-- disable all LunarVim's "modern" completion keymaps, make them more predictable
+lvim.builtin.cmp.mapping["<CR>"] = nil
+lvim.builtin.cmp.mapping["<Tab>"] = nil
+lvim.builtin.cmp.mapping["<S-Tab>"] = nil
+lvim.builtin.cmp.mapping["<C-n>"] = cmp.mapping.select_next_item()
+lvim.builtin.cmp.mapping["<C-p>"] = cmp.mapping.select_prev_item()
+lvim.builtin.cmp.mapping["<C-j>"] = cmp.mapping(function()
+	luasnip.expand()
+end, { "i", "s" })
+lvim.builtin.cmp.mapping["<C-l>"] = cmp.mapping(function()
+	luasnip.jump(1)
+end, { "i", "s" })
+lvim.builtin.cmp.mapping["<C-h>"] = cmp.mapping(function()
+	luasnip.jump(-1)
+end, { "i", "s" })
 --- }}}
 
 -- Linting & formatting {{{
