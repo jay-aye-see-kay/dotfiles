@@ -492,6 +492,11 @@ local js_snippets = {
 	vsc("/", "/* ${0} */"),
 	-- template string variable
 	vsc({ trig = "v", wordTrig = false }, "\\${${1}}"),
+	-- anonymous function
+	vsc("af", "(${1}) => $0"),
+	-- verbose undefined checks
+	vsc("=u", "=== undefined"),
+	vsc("!u", "!== undefined"),
 }
 
 ls.snippets = {
