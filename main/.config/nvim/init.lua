@@ -1,7 +1,7 @@
--- Helpers {{{
+-- helpers {{{
 
 -- usage:
--- augroup('MyGroup', {
+-- augroup('my_group', {
 --   { "BufEnter", "*.md", "set filetype=markdown" },
 -- })
 local function augroup(group_name, definition)
@@ -86,13 +86,18 @@ end
 -- }}}
 
 -- init file setup {{{
-augroup("initFileSetup", {
-	{ "BufNewFile,BufRead", "*/nvim/init.lua", "setlocal foldmethod=marker" },
-	{ "BufWritePre", "*/nvim/init.lua", "Neoformat stylua" },
-	{ "BufWritePost", "*/nvim/init.lua", "source %" },
+vim.cmd([[ source plugins.lua ]])
+
+local all_config_files = "*/nvim/init.lua,*/nvim/plugins.lua"
+local plugin_file = "*/nvim/plugins.lua"
+augroup("init_file_setup", {
+	{ "BufNewFile,BufRead", all_config_files, "setlocal foldmethod=marker" },
+	{ "BufWritePre", all_config_files, "Neoformat stylua" },
+	{ "BufWritePost", all_config_files, "source %" },
+	{ "BufWritePost", plugin_file, "PackerCompile" },
 })
 -- TODO move somewhere?
-augroup("naturalMovementInTextFiles", {
+augroup("natural_movement_in_text_files", {
 	{ "FileType", "text,markdown", "nnoremap j gj" },
 	{ "FileType", "text,markdown", "nnoremap k gk" },
 	{ "FileType", "text,markdown", "setlocal wrap" },
@@ -109,63 +114,37 @@ nnoremap("<c-j>", "<c-w>j")
 nnoremap("<c-k>", "<c-w>k")
 nnoremap("<c-l>", "<c-w>l")
 
--- disable insert repeating
-inoremap("<c-a>", "<nop>")
-
 -- disable ex mode
 nnoremap("Q", "<nop>")
 nnoremap("gQ", "<nop>")
 
--- make Y behave like C and D
-nnoremap("Y", "y$")
+inoremap("<c-a>", "<nop>") -- disable insert repeating
+nnoremap("Y", "y$") -- make Y behave like C and D
 
 vim.cmd([[ set splitbelow splitright ]]) -- matches i3 behaviour
 vim.cmd([[ set linebreak ]]) -- don't break words when wrapping
 vim.cmd([[ set list listchars=tab:»·,trail:·,nbsp:· ]]) -- Display extra whitespace
 vim.cmd([[ set nojoinspaces ]]) -- Use one space, not two, after punctuation.
 
+vim.cmd([[ set undofile ]])
+
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
 vim.cmd([["set shada=!,'1000,<50,s10,h"]])
 
--- Only show cursorline on focued window
-vim.api.nvim_exec(
-	[[
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
-]],
-	false
-)
+augroup("only_show_cursorline_on_focued_window", {
+	{ "VimEnter,WinEnter,BufWinEnter ", "*", "setlocal cursorline" },
+	{ "WinLeave", "*", "setlocal nocursorline" },
+})
 
--- tabs vs spaces
-vim.api.nvim_exec(
-	[[
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-  augroup tabwidths
-    autocmd!
-    autocmd FileType elm,python set tabstop=4
-    autocmd FileType elm,python set softtabstop=4
-    autocmd FileType elm,python set shiftwidth=4
-  augroup END
-]],
-	false
-)
+-- prefer spaces over tabs, vim-sleuth handles files with tabs
+vim.cmd([[ set tabstop=2 ]])
+vim.cmd([[ set softtabstop=2 ]])
+vim.cmd([[ set shiftwidth=2 ]])
+vim.cmd([[ set expandtab ]])
 
--- Highlight on yank
-vim.api.nvim_exec(
-	[[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]],
-	false
-)
+augroup("highlight_on_yank", {
+	{ "TextYankPost", "*", "silent! lua vim.highlight.on_yank()" },
+})
 
 -- modern copy paste keymaps
 inoremap("<C-v>", "<C-r>+")
@@ -178,251 +157,43 @@ noremap("<Space>", "")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---Incremental live completion
-vim.o.inccommand = "nosplit"
-
 --Set highlight on search
 vim.o.hlsearch = false
 vim.o.incsearch = true
 
---Make line numbers default
-vim.wo.number = true
-
---Do not save when switching buffers
-vim.o.hidden = true
-
---Enable mouse mode
-vim.o.mouse = "a"
-
---Enable break indent
-vim.o.breakindent = true
+vim.o.inccommand = "nosplit" --Incremental live completion
+vim.wo.number = true --Make line numbers default
+vim.o.hidden = true --Do not save when switching buffers
+vim.o.mouse = "a" --Enable mouse mode
+vim.o.breakindent = true --Enable break indent
+vim.wo.signcolumn = "yes"
 
 --Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-vim.wo.signcolumn = "yes"
-
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
-vim.cmd([[colorscheme nvcode]])
+vim.cmd([[ colorscheme nvcode ]])
+
+augroup("fzfDefaultEscapeBehavior", {
+	{ "FileType", "fzf", "tnoremap <buffer> <ESC> <ESC>" },
+})
 -- }}}
 
 -- old vimscript code that hasn't been converted {{{
-vim.cmd([[source file-tree.vim]])
-vim.cmd([[source terminal.vim]])
+vim.cmd([[ source file-tree.vim ]])
+vim.cmd([[ source terminal.vim ]])
+vim.cmd([[ source functions.vim ]])
 -- }}}
-
--- packer and basic plugins {{{
-local packer = require("packer")
-packer.reset()
-packer.init()
-
-packer.use({ "wbthomason/packer.nvim" })
-packer.use({ "christianchiarulli/nvcode-color-schemes.vim" })
-packer.use({ "sbdchd/neoformat" })
-
-packer.use({ "lambdalisue/fern-git-status.vim" })
-packer.use({ "lambdalisue/fern-hijack.vim" })
-packer.use({ "lambdalisue/fern-renderer-nerdfont.vim" })
-packer.use({ "lambdalisue/fern.vim" })
-packer.use({ "lambdalisue/nerdfont.vim" })
-
-packer.use({ "JoosepAlviste/nvim-ts-context-commentstring" })
-packer.use({ "aymericbeaumet/vim-symlink" })
-packer.use({ "dkarter/bullets.vim" })
-packer.use({ "godlygeek/tabular" })
-packer.use({ "itchyny/lightline.vim" })
-packer.use({ "junegunn/fzf" })
-packer.use({ "junegunn/fzf.vim" })
-packer.use({ "kyazdani42/nvim-web-devicons" })
-packer.use({ "lervag/wiki.vim" })
-packer.use({ "moll/vim-bbye" })
-packer.use({ "nvim-lua/plenary.nvim" })
-packer.use({ "nvim-lua/popup.nvim" })
-packer.use({ "nvim-telescope/telescope.nvim" })
-packer.use({ "rafamadriz/friendly-snippets" })
-packer.use({ "rafcamlet/nvim-luapad", cmd = { "Luapad", "LuaRun" } })
-packer.use({ "rhysd/git-messenger.vim" })
-packer.use({ "sedm0784/vim-resize-mode" })
-
-packer.use({ "sindrets/diffview.nvim", event = "BufRead" })
-packer.use({ "folke/trouble.nvim", cmd = "TroubleToggle" })
-packer.use({ "simrat39/symbols-outline.nvim", cmd = "SymbolsOutline" })
-
-packer.use({ "tpope/vim-abolish" })
-packer.use({ "tpope/vim-commentary" })
-packer.use({ "tpope/vim-fugitive" })
-packer.use({ "tpope/vim-markdown" })
-packer.use({ "tpope/vim-repeat" })
-packer.use({ "tpope/vim-rhubarb" })
-packer.use({ "tpope/vim-sleuth" })
-packer.use({ "tpope/vim-surround" })
-packer.use({ "tpope/vim-unimpaired" })
-
-packer.use({ "kevinoid/vim-jsonc" })
-packer.use({ "blankname/vim-fish" })
-packer.use({ "GutenYe/json5.vim" })
-
-packer.use({ "L3MON4D3/LuaSnip" })
-
-packer.use({ "norcalli/nvim-colorizer.lua" })
-
-packer.use({
-	"ibhagwan/fzf-lua",
-	requires = { "vijaymarupudi/nvim-fzf" },
-})
-
-packer.use({
-	"lewis6991/gitsigns.nvim",
-	requires = {
-		"nvim-lua/plenary.nvim",
-	},
-	config = function()
-		require("gitsigns").setup()
-	end,
-})
-
-packer.use({
-	"phaazon/hop.nvim",
-	config = function()
-		require("hop").setup()
-		vim.api.nvim_set_keymap("n", "s", ":HopChar1<cr>", { silent = true })
-		vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-	end,
-})
-
-packer.use({
-	"simnalamburt/vim-mundo",
-	config = function()
-		vim.api.nvim_set_keymap("n", "<leader>u", "<cmd>MundoToggle<cr>", { silent = true })
-		vim.g.mundo_preview_bottom = 1
-		vim.g.mundo_width = 40
-		vim.g.mundo_preview_height = 20
-	end,
-})
-
-packer.use({
-	"monaqa/dial.nvim",
-	event = "BufRead",
-	config = function()
-		local dial = require("dial")
-		vim.cmd([[
-				nmap <C-a> <Plug>(dial-increment)
-				nmap <C-x> <Plug>(dial-decrement)
-				vmap <C-a> <Plug>(dial-increment)
-				vmap <C-x> <Plug>(dial-decrement)
-				vmap g<C-a> <Plug>(dial-increment-additional)
-				vmap g<C-x> <Plug>(dial-decrement-additional)
-			]])
-
-		dial.augends["custom#boolean"] = dial.common.enum_cyclic({
-			name = "boolean",
-			strlist = { "true", "false" },
-		})
-		table.insert(dial.config.searchlist.normal, "custom#boolean")
-
-		-- For Languages which prefer True/False, e.g. python.
-		dial.augends["custom#Boolean"] = dial.common.enum_cyclic({
-			name = "Boolean",
-			strlist = { "True", "False" },
-		})
-		table.insert(dial.config.searchlist.normal, "custom#Boolean")
-	end,
-})
-
-packer.use({
-	"ethanholz/nvim-lastplace",
-	event = "BufRead",
-	config = function()
-		require("nvim-lastplace").setup({
-			lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-			lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
-			lastplace_open_folds = true,
-		})
-	end,
-})
-
-packer.use({
-	"windwp/nvim-ts-autotag",
-	event = "InsertEnter",
-	config = function()
-		require("nvim-ts-autotag").setup()
-	end,
-})
-
-packer.use({
-	"ruifm/gitlinker.nvim",
-	event = "BufRead",
-	config = function()
-		require("gitlinker").setup({
-			opts = {
-				action_callback = require("gitlinker.actions").open_in_browser,
-			},
-		})
-	end,
-	requires = "nvim-lua/plenary.nvim",
-})
-
--- }}}
-
--- tree sitter {{{
-packer.use({
-	{ "nvim-treesitter/playground" },
-	{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat" },
-	{
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		branch = "0.5-compat",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = "maintained",
-				disable = { "haskell" },
-				-- Modules and its options go here
-				highlight = { enable = true },
-				incremental_selection = { enable = true },
-				playground = { enable = true },
-				context_commentstring = { enable = true },
-				textobjects = {
-					select = {
-						enable = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["a/"] = "@comment.outer",
-						},
-					},
-					swap = {
-						enable = true,
-						swap_next = {
-							["<leader>pl"] = "@parameter.inner",
-						},
-						swap_previous = {
-							["<leader>ph"] = "@parameter.inner",
-						},
-					},
-				},
-			})
-		end,
-	},
-})
--- }}}c
 
 -- lsp {{{
-packer.use({
-	{ "neovim/nvim-lspconfig" },
-	{ "williamboman/nvim-lsp-installer" },
-	{ "jose-elias-alvarez/nvim-lsp-ts-utils" },
-})
 local lsp_installer = require("nvim-lsp-installer")
 
 local lsp_ensure_installed = {
 	"bashls",
 	"cssls",
 	"dockerls",
-	"graphql",
 	"html",
 	"jsonls",
 	"pyright",
@@ -449,18 +220,23 @@ end
 local tsserver_on_attach = function(client, _bufnr)
 	local ts_utils = require("nvim-lsp-ts-utils")
 	ts_utils.setup({
-		-- filter diagnostics
-		filter_out_diagnostics_by_severity = {},
-		filter_out_diagnostics_by_code = {},
+		-- filter diagnostics; get more from:
+		-- https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+		filter_out_diagnostics_by_code = {
+			6196, -- "'{0}' is declared but never used."
+			6133, -- "'{0}' is declared but its value is never read.":
+			6138, -- "Property '{0}' is declared but its value is never read."
+			80001, -- "File is a CommonJS module; it may be converted to an ES module."
+		},
 	})
 	ts_utils.setup_client(client)
 end
 
--- TODO setup nvim-lsp-ts-utils
 lsp_installer.on_server_ready(function(server)
 	local opts = {}
 
-	-- (optional) Customize the options passed to the server
+	opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 	if server.name == "tsserver" then
 		opts.on_attach = tsserver_on_attach
 	end
@@ -475,17 +251,48 @@ nnoremap("gr", "<CMD>Telescope lsp_references<CR>")
 nnoremap("gy", "<CMD>Telescope lsp_type_definitions<CR>")
 nnoremap("gh", "<CMD>lua vim.lsp.buf.hover()<CR>") -- TODO give border or something
 
--- TODO project specific settings?? Can I make some mindset specific settings for TS?
+function LspFormat()
+	vim.lsp.buf.formatting_sync()
+	local tsserver_filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" }
+	if vim.tbl_contains(tsserver_filetypes, vim.bo.filetype) then
+		vim.cmd([[ TSLspOrganizeSync ]])
+	end
+end
+-- }}}
+
+-- completions {{{
+vim.cmd([[ set completeopt=menu,menuone,noselect ]])
+
+local cmp = require("cmp")
+
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
+	mapping = {
+		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<C-f>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+		["<C-e>"] = cmp.mapping({
+			i = cmp.mapping.abort(),
+			c = cmp.mapping.close(),
+		}),
+		-- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+		-- ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+		-- ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+	},
+	sources = cmp.config.sources({
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "nvim_lua" },
+	}, {
+		{ name = "buffer" },
+	}),
+})
 -- }}}
 
 -- keymaps {{{
-packer.use({
-	"folke/which-key.nvim",
-	config = function()
-		require("which-key").setup()
-	end,
-})
-
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
 	new_terminal = make_directed_maps("New terminal", "terminal"),
@@ -506,14 +313,9 @@ local main_keymap = {
 		D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "show workspace diagnostics" },
 		t = { "<cmd>TroubleToggle<cr>", "show workspace diagnostics" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
-		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
-			"Next Diagnostic",
-		},
-		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
-			"Prev Diagnostic",
-		},
+		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
+		k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+		f = { "<cmd>lua LspFormat()<cr>", "Prev Diagnostic" },
 
 		-- HACK: pop into insert mode after to trigger lsp applying settings
 		q = { "<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
@@ -591,6 +393,7 @@ which_key.register({
 -- }}}
 
 -- snippets {{{
+
 local function snip_map(from, to)
 	vim.api.nvim_set_keymap("i", from, to, {})
 	vim.api.nvim_set_keymap("s", from, to, {})
@@ -661,3 +464,18 @@ ls.snippets = {
 }
 
 -- }}}
+
+-- IDEAS:
+-- [ ] set exrc?
+-- [ ] map gf :edit <cfile><cr>
+-- [ ] set scrolloff sidescrooloff?
+-- [ ] set up sudowrite
+-- [ ] fzf close with esc
+-- [ ] map * to :Rg <c-r><c-w>
+-- [ ] aucommand ColorScheme to make buffers more distingished
+-- [x] can I query loaded plugins from packer, and compare to plugins to load? then run PackerSync on kj
+-- [ ] dax to delete xml attr: `Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'`
+-- [ ] vim orgmode
+--
+-- [ ] auto pairs?
+-- [ ] xml auto pairs?
