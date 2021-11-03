@@ -35,13 +35,17 @@ return require("packer").startup({
 			"lambdalisue/nerdfont.vim",
 		})
 
+		use({
+			-- notes / wiki
+			"lervag/wiki.vim",
+			"dkarter/bullets.vim",
+			"godlygeek/tabular",
+		})
+
 		use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 		use({ "aymericbeaumet/vim-symlink" })
-		use({ "dkarter/bullets.vim" })
-		use({ "godlygeek/tabular" })
 		use({ "itchyny/lightline.vim" })
 		use({ "kyazdani42/nvim-web-devicons" })
-		use({ "lervag/wiki.vim" })
 		use({ "moll/vim-bbye" })
 		use({ "nvim-lua/plenary.nvim" })
 		use({ "nvim-lua/popup.nvim" })
@@ -90,7 +94,23 @@ return require("packer").startup({
 			},
 			{ "junegunn/fzf" },
 			{ "junegunn/fzf.vim" },
-			{ "ibhagwan/fzf-lua", requires = { "vijaymarupudi/nvim-fzf" } },
+			{
+				"ibhagwan/fzf-lua",
+				requires = {
+					"vijaymarupudi/nvim-fzf",
+					"kyazdani42/nvim-web-devicons",
+				},
+				config = function()
+					require("fzf-lua").setup({
+						winopts = {
+							preview = {
+								layout = "flex",
+								flip_columns = 150,
+							},
+						},
+					})
+				end,
+			},
 		})
 
 		use({ "norcalli/nvim-colorizer.lua" })
@@ -211,11 +231,10 @@ return require("packer").startup({
 
 		use({
 			{ "nvim-treesitter/playground" },
-			{ "nvim-treesitter/nvim-treesitter-textobjects", branch = "0.5-compat" },
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
 			{
 				"nvim-treesitter/nvim-treesitter",
 				run = ":TSUpdate",
-				branch = "0.5-compat",
 				config = function()
 					require("nvim-treesitter.configs").setup({
 						ensure_installed = "maintained",

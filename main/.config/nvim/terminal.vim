@@ -26,7 +26,3 @@ augroup END
 
 " escape from terminal mode
 tnoremap <ESC> <C-\><C-n>
-
-" open new term in split
-nnoremap <leader>ts <C-w><C-s>:terminal<CR>
-nnoremap <leader>tv <C-w><C-v>:terminal<CR>

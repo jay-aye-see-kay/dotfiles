@@ -86,7 +86,7 @@ end
 -- }}}
 
 -- init file setup {{{
-vim.cmd([[ source plugins.lua ]])
+source("plugins.lua")
 
 local all_config_files = "*/nvim/init.lua,*/nvim/plugins.lua"
 local plugin_file = "*/nvim/plugins.lua"
@@ -182,9 +182,9 @@ augroup("fzfDefaultEscapeBehavior", {
 -- }}}
 
 -- old vimscript code that hasn't been converted {{{
-vim.cmd([[ source file-tree.vim ]])
-vim.cmd([[ source terminal.vim ]])
-vim.cmd([[ source functions.vim ]])
+source("file-tree.vim")
+source("terminal.vim")
+source("functions.vim")
 -- }}}
 
 -- lsp {{{
@@ -223,7 +223,9 @@ local tsserver_on_attach = function(client, _bufnr)
 		-- filter diagnostics; get more from:
 		-- https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
 		filter_out_diagnostics_by_code = {
+			6192, -- "All imports in import declaration are unused."
 			6196, -- "'{0}' is declared but never used."
+			6198, -- "All destructured elements are unused."
 			6133, -- "'{0}' is declared but its value is never read.":
 			6138, -- "Property '{0}' is declared but its value is never read."
 			80001, -- "File is a CommonJS module; it may be converted to an ES module."
@@ -239,6 +241,14 @@ lsp_installer.on_server_ready(function(server)
 
 	if server.name == "tsserver" then
 		opts.on_attach = tsserver_on_attach
+	elseif server.name == "sumneko_lua" then
+		opts.settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+				workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+				telemetry = { enable = false },
+			},
+		}
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
@@ -250,6 +260,9 @@ nnoremap("gd", "<CMD>Telescope lsp_definitions<CR>")
 nnoremap("gr", "<CMD>Telescope lsp_references<CR>")
 nnoremap("gy", "<CMD>Telescope lsp_type_definitions<CR>")
 nnoremap("gh", "<CMD>lua vim.lsp.buf.hover()<CR>") -- TODO give border or something
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	border = "single",
+})
 
 function LspFormat()
 	vim.lsp.buf.formatting_sync()
@@ -257,6 +270,22 @@ function LspFormat()
 	if vim.tbl_contains(tsserver_filetypes, vim.bo.filetype) then
 		vim.cmd([[ TSLspOrganizeSync ]])
 	end
+end
+
+function QuietLsp()
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = false,
+		underline = false,
+		virtual_text = false,
+	})
+end
+
+function LoudenLsp()
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		signs = true,
+		underline = true,
+		virtual_text = true,
+	})
 end
 -- }}}
 
@@ -292,6 +321,83 @@ cmp.setup({
 })
 -- }}}
 
+-- notes/wiki {{{
+vim.g.markdown_syntax_conceal = 0
+vim.g.markdown_fenced_languages = {
+	"bash=sh",
+	"c",
+	"cpp",
+	"css",
+	"elm",
+	"fish",
+	"go",
+	"html",
+	"java",
+	"javascript",
+	"js=javascript",
+	"json",
+	"lua",
+	"python",
+	"ruby",
+	"rust",
+	"sh",
+	"ts=typescript",
+	"typescript",
+	"yaml",
+}
+
+vim.g.bullets_checkbox_markers = " .oOx"
+vim.g.wiki_root = "~/notes"
+vim.g.markdown_folding = true
+
+nnoremap("glt", "<cmd>ToggleCheckbox<cr>") -- TODO: create or toggle checkbox
+
+local function get_logbook_info(days_from_today)
+	local date_cmd = "date"
+	if days_from_today then
+		date_cmd = date_cmd .. " -d '" .. days_from_today .. " day'"
+	end
+
+	local path_fmt = "%Y/%m/%d-%A.md"
+	local title_fmt = "# %A %d %b %Y"
+	local path_cmd = date_cmd .. " +'" .. path_fmt .. "'"
+	local title_cmd = date_cmd .. " +'" .. title_fmt .. "'"
+
+	local logbook_base_path = "~/notes/logbook/"
+	return {
+		path = logbook_base_path .. vim.fn.systemlist(path_cmd)[1],
+		title = vim.fn.systemlist(title_cmd)[1],
+	}
+end
+
+local function template_if_new(file_path, template_str)
+	local template_cmd =
+		-- if no file then... create one with template_str as contents
+		"[ -e " .. file_path .. " ] || " .. "echo '" .. template_str .. "' > " .. file_path
+	vim.fn.system(template_cmd)
+end
+
+local function open_logbook(days_from_today)
+	local logbook = get_logbook_info(days_from_today)
+	template_if_new(logbook.path, logbook.title)
+	vim.cmd("edit " .. logbook.path)
+end
+
+function LogbookToday()
+	open_logbook()
+end
+function LogbookYesterday()
+	open_logbook(-1)
+end
+function LogbookTomorrow()
+	open_logbook(1)
+end
+
+vim.cmd([[command! LogbookToday :call v:lua.LogbookToday()]])
+vim.cmd([[command! LogbookYesterday :call v:lua.LogbookYesterday()]])
+vim.cmd([[command! LogbookTomorrow :call v:lua.LogbookTomorrow()]])
+-- }}}
+
 -- keymaps {{{
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
@@ -301,11 +407,14 @@ local directed_keymaps = {
 	tomorrows_notepad = make_directed_maps("Tomorrow's notepad", "LogbookTomorrow"),
 	file_explorer = make_directed_maps("File explorer", "Fern . -reveal=%"),
 	roaming_file_explorer = make_directed_maps("File explorer (focused on file's directory)", "Fern %:h -reveal=%"),
+	vim_config = make_directed_maps("Vim config", "edit $MYVIMRC"),
+	vim_plugins = make_directed_maps("Vim plugins", "edit " .. vim.fn.stdpath("config") .. "/plugins.lua"),
 }
-local grep_notes_cmd = "<Cmd>lua require('telescope.builtin').grep_string({ cwd = '~/notes' })<CR>"
+local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/notes' })<CR><CR>"
+
 local main_keymap = {
 	lsp = {
-		name = "+Lsp",
+		name = "+lsp",
 		s = { "<cmd>SymbolsOutline<cr>", "SymbolsOutline" },
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename symbol" },
@@ -318,8 +427,8 @@ local main_keymap = {
 		f = { "<cmd>lua LspFormat()<cr>", "Prev Diagnostic" },
 
 		-- HACK: pop into insert mode after to trigger lsp applying settings
-		q = { "<cmd>call v:lua.Quiet_lsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
-		l = { "<cmd>call v:lua.Louden_lsp()<cr>i <bs><esc>", "show lsp diagnostics" },
+		q = { "<cmd>call v:lua.QuietLsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
+		l = { "<cmd>call v:lua.LoudenLsp()<cr>i <bs><esc>", "show lsp diagnostics" },
 	},
 	finder = {
 		name = "+find",
@@ -363,9 +472,16 @@ local main_keymap = {
 			name = "+Tomorrow' notepad",
 		}),
 	}),
+	vim_config = merge(directed_keymaps.vim_config, {
+		name = "+vim config",
+		p = merge(directed_keymaps.vim_plugins, {
+			name = "+vim plugins",
+		}),
+	}),
 }
 
 local which_key = require("which-key")
+vim.opt.timeoutlen = 250
 
 which_key.register({
 	e = main_keymap.explorer,
@@ -373,7 +489,9 @@ which_key.register({
 	g = main_keymap.git,
 	l = main_keymap.lsp,
 	t = main_keymap.terminal,
-	-- n = main_keymap.notes, -- TODO not setup yet
+	n = main_keymap.notes,
+	v = main_keymap.vim_config,
+	p = main_keymap.vim_plugins,
 }, {
 	prefix = "<leader>",
 })
@@ -466,16 +584,21 @@ ls.snippets = {
 -- }}}
 
 -- IDEAS:
+-- [x] setup notes again
+-- [ ] fixup fzf-lua's history command (it's upside down)
+-- [ ] get cmp keybinds just right
 -- [ ] set exrc?
 -- [ ] map gf :edit <cfile><cr>
 -- [ ] set scrolloff sidescrooloff?
 -- [ ] set up sudowrite
--- [ ] fzf close with esc
--- [ ] map * to :Rg <c-r><c-w>
--- [ ] aucommand ColorScheme to make buffers more distingished
+-- [x] fzf close with esc
+-- [ ] map * to :Rg <c-r><c-w> (then <space>fa to live grep)
 -- [x] can I query loaded plugins from packer, and compare to plugins to load? then run PackerSync on kj
--- [ ] dax to delete xml attr: `Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'`
--- [ ] vim orgmode
+-- [ ] vim orgmode set up
+--
+-- [ ] aucommand ColorScheme to make buffers more distingished
+-- [ ] some kind of bufferline setup, make sure it has lsp status in it
 --
 -- [ ] auto pairs?
 -- [ ] xml auto pairs?
+-- [ ] dax to delete xml attr: `Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'`
