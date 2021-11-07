@@ -41,11 +41,6 @@ critical_mem = 95
 critical_swap = 95
 
 [[block]]
-block = "load"
-interval = 1
-format = "{1m}"
-
-[[block]]
 block = "cpu"
 interval = 1
 
