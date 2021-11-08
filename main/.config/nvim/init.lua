@@ -251,6 +251,13 @@ lsp_installer.on_server_ready(function(server)
 		-- table.insert(old_cmd, "--tsserver-path /home/jack/.yarn/bin/tsserver")
 		-- opts.cmd = old_cmd
 		--
+	elseif server.name == "jsonls" then
+		opts.filetypes = { "json", "jsonc" }
+		opts.settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+			},
+		}
 	elseif server.name == "sumneko_lua" then
 		opts.settings = {
 			Lua = {
@@ -609,7 +616,7 @@ ls.snippets = {
 -- [x] fzf close with esc
 -- [x] map * to :Rg <c-r><c-w> (then <space>fa to live grep)
 -- [x] can I query loaded plugins from packer, and compare to plugins to load? then run PackerSync on kj
--- [ ] vim orgmode set up
+-- [x] vim orgmode set up (it's on the other branch)
 --
 -- [ ] aucommand ColorScheme to make buffers more distingished
 -- [ ] some kind of bufferline setup, make sure it has lsp status in it

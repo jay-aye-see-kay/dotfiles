@@ -208,6 +208,7 @@ return require("packer").startup({
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/nvim-lsp-installer" },
 			{ "jose-elias-alvarez/nvim-lsp-ts-utils" },
+			{ "b0o/schemastore.nvim" }, -- schemas for jsonls
 		})
 
 		-- completions
