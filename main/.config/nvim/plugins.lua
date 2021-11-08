@@ -223,7 +223,18 @@ return require("packer").startup({
 		use({
 			"folke/which-key.nvim",
 			config = function()
-				require("which-key").setup()
+				require("which-key").setup({
+					plugins = {
+						spelling = { enabled = true },
+					},
+					window = {
+						winblend = 15,
+					},
+					layout = {
+						spacing = 4,
+						align = "center",
+					},
+				})
 			end,
 		})
 
