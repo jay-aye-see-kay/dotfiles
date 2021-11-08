@@ -72,6 +72,13 @@ return require("packer").startup({
 		})
 
 		use({
+			"luukvbaal/stabilize.nvim",
+			config = function()
+				require("stabilize").setup()
+			end,
+		})
+
+		use({
 			-- custom lang setup
 			"kevinoid/vim-jsonc",
 			"blankname/vim-fish",
