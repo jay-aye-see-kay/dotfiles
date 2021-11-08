@@ -176,6 +176,10 @@ vim.o.smartcase = true
 vim.o.termguicolors = true
 vim.cmd([[ colorscheme nvcode ]])
 
+vim.opt.scrolloff = 4
+vim.opt.sidescrolloff = 4
+vim.opt.wrap = false
+
 augroup("fzfDefaultEscapeBehavior", {
 	{ "FileType", "fzf", "tnoremap <buffer> <ESC> <ESC>" },
 })
@@ -399,6 +403,8 @@ vim.cmd([[command! LogbookTomorrow :call v:lua.LogbookTomorrow()]])
 -- }}}
 
 -- keymaps {{{
+nnoremap("<c-s>", "<cmd>w<cr>")
+
 local directed_keymaps = {
 	git_status = make_directed_maps("Git Status", "Gedit :"),
 	new_terminal = make_directed_maps("New terminal", "terminal"),
@@ -442,7 +448,9 @@ local main_keymap = {
 		l = { "<Cmd>FzfLua blines<CR>", "🔭 buffer lines" },
 		w = { "<Cmd>Telescope spell_suggest<CR>", "🔭 spelling suggestions" },
 		s = { "<Cmd>Telescope symbols<CR>", "🔭 unicode and emoji symbols" },
-		a = { "<Cmd>Rg<CR>", "FZF full text search" },
+		a = { "<Cmd>FzfLua live_grep<CR>", "FZF full text search" },
+		u = { "<Cmd>FzfLua grep_cword<CR>", "FZF word under cursor" },
+		U = { "<Cmd>FzfLua grep_cWORD<CR>", "FZF WORD under cursor" },
 		n = { grep_notes_cmd, "🔭 personal notes" },
 	},
 	git = merge(directed_keymaps.git_status, {
@@ -587,17 +595,18 @@ ls.snippets = {
 -- [x] setup notes again
 -- [ ] fixup fzf-lua's history command (it's upside down)
 -- [ ] get cmp keybinds just right
--- [ ] set exrc?
+-- [ ] set exrc? or similar
 -- [ ] map gf :edit <cfile><cr>
--- [ ] set scrolloff sidescrooloff?
+-- [x] set scrolloff sidescrooloff?
 -- [ ] set up sudowrite
 -- [x] fzf close with esc
--- [ ] map * to :Rg <c-r><c-w> (then <space>fa to live grep)
+-- [x] map * to :Rg <c-r><c-w> (then <space>fa to live grep)
 -- [x] can I query loaded plugins from packer, and compare to plugins to load? then run PackerSync on kj
 -- [ ] vim orgmode set up
 --
 -- [ ] aucommand ColorScheme to make buffers more distingished
 -- [ ] some kind of bufferline setup, make sure it has lsp status in it
+-- [ ] something to delete buffers (close and remove)
 --
 -- [ ] auto pairs?
 -- [ ] xml auto pairs?
