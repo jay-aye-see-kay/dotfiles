@@ -482,9 +482,10 @@ local main_keymap = {
 	}),
 	vim_config = merge(directed_keymaps.vim_config, {
 		name = "+vim config",
-		p = merge(directed_keymaps.vim_plugins, {
-			name = "+vim plugins",
-		}),
+	}),
+	vim_plugins = merge(directed_keymaps.vim_plugins, {
+		name = "+vim plugins",
+		s = { "<cmd>PackerSync<cr>", "packer sync" },
 	}),
 }
 
