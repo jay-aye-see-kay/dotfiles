@@ -56,6 +56,14 @@ return require("packer").startup({
 				})
 			end,
 		})
+		use({
+			"akinsho/org-bullets.nvim",
+			config = function()
+				require("org-bullets").setup({
+					symbols = { "◉", "○", "✸", "✿" },
+				})
+			end,
+		})
 
 		use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 		use({ "aymericbeaumet/vim-symlink" })
