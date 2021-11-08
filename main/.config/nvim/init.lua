@@ -245,6 +245,12 @@ lsp_installer.on_server_ready(function(server)
 
 	if server.name == "tsserver" then
 		opts.on_attach = tsserver_on_attach
+
+		-- WIP: use global tsserver instead of workspace's
+		-- local old_cmd = server._default_options.cmd
+		-- table.insert(old_cmd, "--tsserver-path /home/jack/.yarn/bin/tsserver")
+		-- opts.cmd = old_cmd
+		--
 	elseif server.name == "sumneko_lua" then
 		opts.settings = {
 			Lua = {
