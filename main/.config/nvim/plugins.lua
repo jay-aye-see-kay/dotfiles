@@ -229,6 +229,8 @@ return require("packer").startup({
 			{ "onsails/lspkind-nvim" },
 		})
 
+		use({ "github/copilot.vim" })
+
 		use({
 			"folke/which-key.nvim",
 			config = function()

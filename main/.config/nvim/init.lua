@@ -307,6 +307,11 @@ end
 -- }}}
 
 -- completions {{{
+vim.g.copilot_node_command = "/usr/bin/node"
+vim.g.copilot_no_tab_map = true
+vim.cmd([[ imap <silent><script><expr> <C-k> copilot#Accept() ]])
+-- can I enable/disable copilot with a toggle keybind?
+
 vim.cmd([[ set completeopt=menu,menuone,noselect ]])
 
 local cmp = require("cmp")
