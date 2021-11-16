@@ -69,6 +69,7 @@ return require("packer").startup({
 			"tpope/vim-sleuth",
 			"tpope/vim-surround",
 			"tpope/vim-unimpaired",
+			"wellle/targets.vim",
 		})
 
 		use({
