@@ -226,6 +226,7 @@ return require("packer").startup({
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/nvim-cmp" },
 			{ "saadparwaiz1/cmp_luasnip" },
+			{ "onsails/lspkind-nvim" },
 		})
 
 		use({

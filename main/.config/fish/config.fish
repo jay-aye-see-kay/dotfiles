@@ -61,6 +61,8 @@ alias sizes="du -csh * | sort -h"
 alias whoslistening="ss -lntu"
 alias vwt="$EDITOR -c LogbookToday"
 alias shopping_list="$EDITOR $HOME/notes/shopping-lists/(date --iso-8601).md"
+alias vimrc="$EDITOR -O $HOME/dotfiles/main/.config/nvim/init.lua $HOME/dotfiles/main/.config/nvim/plugins.lua"
+alias fishrc="$EDITOR $HOME/dotfiles/main/.config/fish/config.fish"
 
 abbr -a -- _ sudo
 abbr -a -- \~ "cd ~"

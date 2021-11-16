@@ -334,7 +334,11 @@ cmp.setup({
 		{ name = "nvim_lua" },
 	}, {
 		{ name = "buffer" },
+		{ name = "path" },
 	}),
+	formatting = {
+		format = require("lspkind").cmp_format(),
+	},
 })
 -- }}}
 
