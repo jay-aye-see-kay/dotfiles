@@ -338,6 +338,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 	}, {
+		{ name = "path" },
 		{
 			name = "buffer",
 			opts = {
@@ -346,7 +347,6 @@ cmp.setup({
 				end,
 			},
 		},
-		{ name = "path" },
 	}),
 	formatting = {
 		format = require("lspkind").cmp_format(),
@@ -355,7 +355,6 @@ cmp.setup({
 -- }}}
 
 -- notes/wiki {{{
-vim.g.markdown_syntax_conceal = 0
 vim.g.markdown_fenced_languages = {
 	"bash=sh",
 	"c",
@@ -380,7 +379,7 @@ vim.g.markdown_fenced_languages = {
 }
 
 vim.g.bullets_checkbox_markers = " .oOx"
-vim.g.wiki_root = "~/notes"
+vim.g.wiki_root = "~/Documents/notes"
 vim.g.markdown_folding = true
 
 nnoremap("glt", "<cmd>ToggleCheckbox<cr>") -- TODO: create or toggle checkbox
@@ -391,12 +390,12 @@ local function get_logbook_info(days_from_today)
 		date_cmd = date_cmd .. " -d '" .. days_from_today .. " day'"
 	end
 
-	local path_fmt = "%Y/%m/%d-%A.md"
+	local path_fmt = "%Y-%m-%d-%A.md"
 	local title_fmt = "# %A %d %b %Y"
 	local path_cmd = date_cmd .. " +'" .. path_fmt .. "'"
 	local title_cmd = date_cmd .. " +'" .. title_fmt .. "'"
 
-	local logbook_base_path = "~/notes/logbook/"
+	local logbook_base_path = vim.g.wiki_root .. "/logbook/"
 	return {
 		path = logbook_base_path .. vim.fn.systemlist(path_cmd)[1],
 		title = vim.fn.systemlist(title_cmd)[1],
@@ -621,7 +620,7 @@ ls.snippets = {
 
 -- }}}
 
--- IDEAS:
+-- IDEAS: {{{
 -- [x] setup notes again
 -- [ ] fixup fzf-lua's history command (it's upside down)
 -- [ ] get cmp keybinds just right
@@ -641,3 +640,4 @@ ls.snippets = {
 -- [ ] auto pairs?
 -- [ ] xml auto pairs?
 -- [ ] dax to delete xml attr: `Plug 'kana/vim-textobj-user' | Plug 'whatyouhide/vim-textobj-xmlattr'`
+-- }}}
