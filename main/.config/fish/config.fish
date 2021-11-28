@@ -63,6 +63,7 @@ alias vwt="$EDITOR -c LogbookToday"
 alias shopping_list="$EDITOR $HOME/notes/shopping-lists/(date --iso-8601).md"
 alias vimrc="$EDITOR -O $HOME/dotfiles/main/.config/nvim/init.lua $HOME/dotfiles/main/.config/nvim/plugins.lua"
 alias fishrc="$EDITOR $HOME/dotfiles/main/.config/fish/config.fish"
+alias vg="$EDITOR -c \"Git | wincmd k | q\""
 
 abbr -a -- _ sudo
 abbr -a -- \~ "cd ~"
