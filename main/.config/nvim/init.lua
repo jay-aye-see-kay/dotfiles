@@ -576,8 +576,19 @@ local js_snippets = {
 		i(2),
 		t(")"),
 	}),
-	-- standard function
+	-- React.useEffect()
+	vsc("ue", "useEffect(() => {\n\t${1}\n}, [${0}])"),
+	-- basics + keywords
+	vsc("c", "const ${1} = ${0}"),
+	vsc("l", "let ${1} = ${0}"),
+	vsc("r", "return ${0}"),
+	vsc("e", "export ${0}"),
+	vsc("aw", "await ${0}"),
+	vsc("as", "async ${0}"),
+	-- function
 	vsc("f", "function ${1}(${2}) {\n\t${3}\n}"),
+	-- anonymous function
+	vsc("af", "(${1}) => $0"),
 	-- skeleton function
 	vsc("sf", "function ${1}(${2}): ${3:void} {\n\t${0:throw new Error('Not implemented')}\n}"),
 	-- throw
@@ -585,10 +596,10 @@ local js_snippets = {
 	-- comments
 	vsc("jsdoc", "/**\n * ${0}\n */"),
 	vsc("/", "/* ${0} */"),
+	vsc("/**", "/** ${0} */"),
+	vsc("eld", "/* eslint-disable-next-line ${0} */"),
 	-- template string variable
 	vsc({ trig = "v", wordTrig = false }, "\\${${1}}"),
-	-- anonymous function
-	vsc("af", "(${1}) => $0"),
 	-- verbose undefined checks
 	vsc("=u", "=== undefined"),
 	vsc("!u", "!== undefined"),
