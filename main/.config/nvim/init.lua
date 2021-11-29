@@ -223,18 +223,7 @@ end
 -- tsserver set up
 local tsserver_on_attach = function(client, _bufnr)
 	local ts_utils = require("nvim-lsp-ts-utils")
-	ts_utils.setup({
-		-- filter diagnostics; get more from:
-		-- https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
-		filter_out_diagnostics_by_code = {
-			6192, -- "All imports in import declaration are unused."
-			6196, -- "'{0}' is declared but never used."
-			6198, -- "All destructured elements are unused."
-			6133, -- "'{0}' is declared but its value is never read.":
-			6138, -- "Property '{0}' is declared but its value is never read."
-			80001, -- "File is a CommonJS module; it may be converted to an ES module."
-		},
-	})
+	ts_utils.setup({})
 	ts_utils.setup_client(client)
 end
 
@@ -245,12 +234,6 @@ lsp_installer.on_server_ready(function(server)
 
 	if server.name == "tsserver" then
 		opts.on_attach = tsserver_on_attach
-
-		-- WIP: use global tsserver instead of workspace's
-		-- local old_cmd = server._default_options.cmd
-		-- table.insert(old_cmd, "--tsserver-path /home/jack/.yarn/bin/tsserver")
-		-- opts.cmd = old_cmd
-		--
 	elseif server.name == "jsonls" then
 		opts.filetypes = { "json", "jsonc" }
 		opts.settings = {
@@ -276,7 +259,7 @@ end)
 nnoremap("gd", "<CMD>Telescope lsp_definitions<CR>")
 nnoremap("gr", "<CMD>Telescope lsp_references<CR>")
 nnoremap("gy", "<CMD>Telescope lsp_type_definitions<CR>")
-nnoremap("gh", "<CMD>lua vim.lsp.buf.hover()<CR>") -- TODO give border or something
+nnoremap("gh", "<CMD>lua vim.lsp.buf.hover()<CR>")
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "single",
 })
@@ -444,7 +427,7 @@ local directed_keymaps = {
 	vim_config = make_directed_maps("Vim config", "edit $MYVIMRC"),
 	vim_plugins = make_directed_maps("Vim plugins", "edit " .. vim.fn.stdpath("config") .. "/plugins.lua"),
 }
-local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/notes' })<CR><CR>"
+local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/Documents/notes' })<CR><CR>"
 
 local main_keymap = {
 	lsp = {
@@ -585,6 +568,7 @@ local js_snippets = {
 	vsc("e", "export ${0}"),
 	vsc("aw", "await ${0}"),
 	vsc("as", "async ${0}"),
+	vsc("d", "debugger"),
 	-- function
 	vsc("f", "function ${1}(${2}) {\n\t${3}\n}"),
 	-- anonymous function
