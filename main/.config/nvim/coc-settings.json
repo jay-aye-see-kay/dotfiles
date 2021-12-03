@@ -1,6 +1,0 @@
-{
-  "sumneko-lua.enableNvimLuaDev": true,
-  "java.home": "/usr/lib/jvm/java-16-openjdk",
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false
-}
