@@ -2,12 +2,11 @@
 set -U fish_greeting # suppress default greeting
 starship init fish | source
 fzf_key_bindings
+fnm env --use-on-cd --log-level quiet | source
 
 zoxide init fish | source
-function fzf-z -d "fuzzy search recent dirs"
-    _ZO_FZF_OPTS='--height 40% --layout=reverse' zi
-end
-bind \cg fzf-z
+set -x _ZO_FZF_OPTS "--height 40% --layout=reverse"
+bind \cg zi
 
 set -x ASDF_CONFIG_FILE "$HOME/.config/asdfrc"
 if [ -e /opt/asdf-vm/asdf.fish ]
