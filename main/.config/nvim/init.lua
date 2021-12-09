@@ -292,8 +292,17 @@ end
 -- completions {{{
 vim.g.copilot_node_command = "/usr/bin/node"
 vim.g.copilot_no_tab_map = true
+vim.g.copilot_enabled = false
 vim.cmd([[ imap <silent><script><expr> <C-k> copilot#Accept() ]])
--- can I enable/disable copilot with a toggle keybind?
+
+function ToggleCopilot()
+	if vim.fn["copilot#Enabled"]() == 1 then
+		vim.cmd([[ Copilot disable ]])
+	else
+		vim.cmd([[ Copilot enable ]])
+	end
+	vim.cmd([[ Copilot status ]])
+end
 
 vim.cmd([[ set completeopt=menu,menuone,noselect ]])
 
@@ -442,6 +451,7 @@ local main_keymap = {
 		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
 		k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
 		f = { "<cmd>lua LspFormat()<cr>", "Prev Diagnostic" },
+		c = { "<cmd>call v:lua.ToggleCopilot()<cr>", "Toggle Copilot" },
 
 		-- HACK: pop into insert mode after to trigger lsp applying settings
 		q = { "<cmd>call v:lua.QuietLsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
