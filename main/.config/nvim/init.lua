@@ -287,6 +287,16 @@ function LoudenLsp()
 		virtual_text = true,
 	})
 end
+
+function DisableAutocomplete()
+	require("cmp").setup.buffer({
+		completion = { autocomplete = false },
+	})
+end
+
+function EnableAutocomplete()
+	require("cmp").setup.buffer({})
+end
 -- }}}
 
 -- completions {{{
@@ -441,21 +451,24 @@ local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/Documents/no
 local main_keymap = {
 	lsp = {
 		name = "+lsp",
-		s = { "<cmd>SymbolsOutline<cr>", "SymbolsOutline" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "rename symbol" },
-		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "show document diagnostics" },
-		D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "show workspace diagnostics" },
-		t = { "<cmd>TroubleToggle<cr>", "show workspace diagnostics" },
+		s = { "<cmd>SymbolsOutline<cr>", "Symbols outline" },
+		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
+		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename symbol" },
+		d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Show document diagnostics" },
+		D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Show workspace diagnostics" },
+		t = { "<cmd>TroubleToggle<cr>", "Show workspace diagnostics" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
-		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-		k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next diagnostic" },
+		k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev diagnostic" },
 		f = { "<cmd>lua LspFormat()<cr>", "Prev Diagnostic" },
 		c = { "<cmd>call v:lua.ToggleCopilot()<cr>", "Toggle Copilot" },
 
 		-- HACK: pop into insert mode after to trigger lsp applying settings
-		q = { "<cmd>call v:lua.QuietLsp()<cr>i <bs><esc>", "hide lsp diagnostics" },
-		l = { "<cmd>call v:lua.LoudenLsp()<cr>i <bs><esc>", "show lsp diagnostics" },
+		q = { "<cmd>call v:lua.QuietLsp()<cr>i <bs><esc>", "Hide lsp diagnostics" },
+		Q = { "<cmd>call v:lua.LoudenLsp()<cr>i <bs><esc>", "Show lsp diagnostics" },
+
+		n = { "<cmd>call v:lua.DisableAutocomplete()<cr>", "Disable autocomplete" },
+		N = { "<cmd>call v:lua.EnableAutocomplete()<cr>", "Enable autocomplete" },
 	},
 	finder = {
 		name = "+find",
