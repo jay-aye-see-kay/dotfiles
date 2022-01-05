@@ -46,3 +46,20 @@ bind d scrollpage 0.5
 
 " nofocus on tab enter so I can rely on J/K to change tabs
 autocmd TabEnter .* unfocus
+
+" leave f to follow link, but use F<x> to follow in other ways
+unbind F
+" follow many
+bind Fm hint -qb
+" follow to background
+bind Fb hint -b 
+" follow to to other window
+bind Fw hint -w 
+" follow into private window
+bind Fp hint -wp
+" yank link to clipboard
+bind Fyl hint -y
+" yank link's text to clipboard
+bind Fyt hint -p
+" follow into private window
+bind Fs hint -wp
