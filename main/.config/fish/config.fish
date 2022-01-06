@@ -6,7 +6,6 @@ fnm env --use-on-cd --log-level quiet | source
 
 zoxide init fish | source
 set -x _ZO_FZF_OPTS "--height 40% --layout=reverse"
-bind \cg zi
 
 set -x ASDF_CONFIG_FILE "$HOME/.config/asdfrc"
 if [ -e /opt/asdf-vm/asdf.fish ]
