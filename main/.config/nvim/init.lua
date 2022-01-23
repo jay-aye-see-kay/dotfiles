@@ -458,8 +458,8 @@ local main_keymap = {
 		D = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Show workspace diagnostics" },
 		t = { "<cmd>TroubleToggle<cr>", "Show workspace diagnostics" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
-		j = { "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>", "Next diagnostic" },
-		k = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>", "Prev diagnostic" },
+		j = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next diagnostic" },
+		k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev diagnostic" },
 		f = { "<cmd>lua LspFormat()<cr>", "Prev Diagnostic" },
 		c = { "<cmd>call v:lua.ToggleCopilot()<cr>", "Toggle Copilot" },
 
