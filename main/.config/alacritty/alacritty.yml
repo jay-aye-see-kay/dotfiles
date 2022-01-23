@@ -35,8 +35,6 @@ key_bindings:
   - { key: Plus, mods: Control|Shift, action: IncreaseFontSize }
   - { key: Minus, mods: Control|Shift, action: DecreaseFontSize }
 
-background_opacity: 0.9
-
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as
