@@ -6,11 +6,6 @@ fnm env --use-on-cd --log-level quiet | source
 
 zoxide init fish | source
 set -x _ZO_FZF_OPTS "--height 40% --layout=reverse"
-
-set -x ASDF_CONFIG_FILE "$HOME/.config/asdfrc"
-if [ -e /opt/asdf-vm/asdf.fish ]
-    source /opt/asdf-vm/asdf.fish
-end
 # }}} END shell utils setup
 
 
@@ -58,7 +53,7 @@ alias rg="rg --hidden"
 alias sizes="du -csh * | sort -h"
 alias whoslistening="ss -lntu"
 alias vwt="$EDITOR -c LogbookToday"
-alias shopping_list="$EDITOR $HOME/notes/shopping-lists/(date --iso-8601).md"
+alias shopping_list="$EDITOR $HOME/Documents/shopping-lists/(date --iso-8601).md"
 alias vimrc="$EDITOR -O $HOME/dotfiles/main/.config/nvim/init.lua $HOME/dotfiles/main/.config/nvim/plugins.lua"
 alias fishrc="$EDITOR $HOME/dotfiles/main/.config/fish/config.fish"
 alias vg="$EDITOR -c \"Git | wincmd k | q\""
