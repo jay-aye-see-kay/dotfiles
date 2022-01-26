@@ -66,7 +66,6 @@ return require("packer").startup({
 			"tpope/vim-markdown",
 			"tpope/vim-repeat",
 			"tpope/vim-rhubarb",
-			"tpope/vim-sleuth",
 			"tpope/vim-surround",
 			"tpope/vim-unimpaired",
 			"wellle/targets.vim",

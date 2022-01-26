@@ -136,11 +136,14 @@ augroup("only_show_cursorline_on_focued_window", {
 	{ "WinLeave", "*", "setlocal nocursorline" },
 })
 
--- prefer spaces over tabs, vim-sleuth handles files with tabs
+-- prefer spaces over tabs, unless working on MSH files
 vim.cmd([[ set tabstop=2 ]])
 vim.cmd([[ set softtabstop=2 ]])
 vim.cmd([[ set shiftwidth=2 ]])
 vim.cmd([[ set expandtab ]])
+augroup("msh_tabs", {
+	{ "BufEnter", "*/code/msh/*", "set noexpandtab" },
+})
 
 augroup("highlight_on_yank", {
 	{ "TextYankPost", "*", "silent! lua vim.highlight.on_yank()" },
@@ -370,6 +373,7 @@ vim.g.markdown_fenced_languages = {
 	"javascript",
 	"js=javascript",
 	"json",
+	"lisp",
 	"lua",
 	"python",
 	"ruby",
