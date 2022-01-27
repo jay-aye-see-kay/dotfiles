@@ -1,9 +1,5 @@
 ignore-empty-password
 
-clock
-timestr=%R
-datestr=%a, %e of %B
-
 image=$HOME/Pictures/lock.jpg
 
 color=999999

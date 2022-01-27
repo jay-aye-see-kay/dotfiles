@@ -75,9 +75,10 @@ bindsym Shift+Print exec grim -g "$(slurp)" $HOME/$(date +'%Y-%m-%d-%H%M%S_scree
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec ~/.config/sway/scripts/swayidle.sh
-bindsym $mod+Shift+i exec ~/.config/sway/scripts/swayidle.sh
-bindsym $mod+i exec ~/.config/sway/scripts/swayidle.sh kill
+exec swayidle -w \
+         timeout 300 'swaylock -f' \
+         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+         before-sleep 'swaylock -f'
 
 ### Key bindings
 #
