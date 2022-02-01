@@ -287,11 +287,24 @@ return require("packer").startup({
 				"nvim-treesitter/nvim-treesitter",
 				run = ":TSUpdate",
 				config = function()
+					local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+					parser_config.org = {
+						-- see: https://github.com/nvim-orgmode/orgmode#setup
+						install_info = {
+							url = "https://github.com/milisims/tree-sitter-org",
+							revision = "f110024d539e676f25b72b7c80b0fd43c34264ef",
+							files = { "src/parser.c", "src/scanner.cc" },
+						},
+						filetype = "org",
+					}
+
 					require("nvim-treesitter.configs").setup({
 						ensure_installed = "maintained",
 						disable = { "haskell" },
-						-- Modules and its options go here
-						highlight = { enable = true },
+						highlight = {
+							enable = true,
+							additional_vim_regex_highlighting = { "org" },
+						},
 						incremental_selection = { enable = true },
 						playground = { enable = true },
 						context_commentstring = { enable = true },
@@ -319,6 +332,23 @@ return require("packer").startup({
 					})
 				end,
 			},
+		})
+
+		use({
+			"nvim-orgmode/orgmode",
+			config = function()
+				require("orgmode").setup({
+					org_agenda_files = { "~/Documents/org/*" },
+					org_default_notes_file = "~/Documents/org/refile.org",
+					org_todo_keywords = { "TODO(t)", "NEXT(n)", "INPROGRESS(p)", "|", "DONE(d)" },
+					org_todo_keyword_faces = {
+						TODO = ":foreground #CE9178 :weight bold :underline on",
+						NEXT = ":foreground #DCDCAA :weight bold :underline on",
+						INPROGRESS = ":foreground #729CB3 :weight bold :underline on",
+						DONE = ":foreground #81B88B :weight bold :underline on",
+					},
+				})
+			end,
 		})
 
 		use({ "folke/lua-dev.nvim" })
