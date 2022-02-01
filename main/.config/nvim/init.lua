@@ -452,6 +452,16 @@ local directed_keymaps = {
 }
 local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/Documents/notes' })<CR><CR>"
 
+--- git files, falling back onto all files in cwd if not in a git repo
+local function project_files()
+	local ok = pcall(require("telescope.builtin").git_files)
+	if not ok then
+		require("telescope.builtin").find_files()
+	end
+end
+
+local telescope_fns = require("telescope.builtin")
+
 local main_keymap = {
 	lsp = {
 		name = "+lsp",
@@ -476,20 +486,35 @@ local main_keymap = {
 	},
 	finder = {
 		name = "+find",
-		b = { "<Cmd>FzfLua buffers<CR>", "🔭 buffers" },
-		f = { "<Cmd>FzfLua files<CR>", "🔭 files" },
-		g = { "<Cmd>FzfLua git_files<CR>", "🔭 git files" },
-		h = { "<Cmd>FzfLua help_tags<CR>", "🔭 help tags" },
-		c = { "<Cmd>FzfLua commands<CR>", "🔭 commands" },
-		q = { "<Cmd>FzfLua quickfix<CR>", "🔭 quickfix" },
-		o = { "<Cmd>FzfLua oldfiles<CR>", "🔭 oldfiles" },
-		l = { "<Cmd>FzfLua blines<CR>", "🔭 buffer lines" },
-		w = { "<Cmd>Telescope spell_suggest<CR>", "🔭 spelling suggestions" },
-		s = { "<Cmd>Telescope symbols<CR>", "🔭 unicode and emoji symbols" },
+		b = {
+			function()
+				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+			end,
+			"🔭 buffers",
+		},
+		B = {
+			function()
+				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true, cwd_only = true })
+			end,
+			"🔭 buffers (cwd only)",
+		},
+		f = { telescope_fns.find_files, "🔭 files" },
+		g = { project_files, "🔭 git files" },
+		h = { telescope_fns.help_tags, "🔭 help tags" },
+		c = { telescope_fns.commands, "🔭 commands" },
+		o = { telescope_fns.oldfiles, "🔭 oldfiles" },
+		l = { telescope_fns.current_buffer_fuzzy_find, "🔭 buffer lines" },
+		w = { telescope_fns.spell_suggest, "🔭 spelling suggestions" },
+		s = { telescope_fns.symbols, "🔭 unicode and emoji symbols" },
 		a = { "<Cmd>FzfLua live_grep<CR>", "FZF full text search" },
 		u = { "<Cmd>FzfLua grep_cword<CR>", "FZF word under cursor" },
 		U = { "<Cmd>FzfLua grep_cWORD<CR>", "FZF WORD under cursor" },
-		n = { grep_notes_cmd, "🔭 personal notes" },
+		n = {
+			function()
+				require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
+			end,
+			"🔭 search all notes",
+		},
 	},
 	git = merge(directed_keymaps.git_status, {
 		name = "+git",
@@ -510,7 +535,12 @@ local main_keymap = {
 	}),
 	notes = merge(directed_keymaps.todays_notepad, {
 		name = "+notes",
-		f = { grep_notes_cmd, "🔭 search all notes" },
+		f = {
+			function()
+				require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
+			end,
+			"🔭 search all notes",
+		},
 		y = merge(directed_keymaps.yesterdays_notepad, {
 			name = "+Yesterday' notepad",
 		}),
@@ -546,6 +576,7 @@ which_key.register({
 which_key.register({
 	name = "quick keymaps",
 	b = main_keymap.finder.b, -- buffers
+	B = main_keymap.finder.B, -- buffers (cwd only)
 	g = main_keymap.finder.g, -- git_files
 	f = main_keymap.finder.f, -- find_files
 	o = main_keymap.finder.o, -- old_files

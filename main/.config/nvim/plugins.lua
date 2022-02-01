@@ -90,15 +90,43 @@ return require("packer").startup({
 			{
 				"nvim-telescope/telescope.nvim",
 				config = function()
+					local actions = require("telescope.actions")
+					local action_layout = require("telescope.actions.layout")
 					require("telescope").setup({
 						defaults = {
 							layout_config = { prompt_position = "top" },
 							sorting_strategy = "ascending",
 							layout_strategy = "flex",
+							mappings = {
+								i = {
+									["<C-g>"] = action_layout.toggle_preview,
+									["<C-x>"] = false,
+									["<C-s>"] = actions.select_horizontal,
+									["<esc>"] = actions.close,
+								},
+							},
+						},
+						pickers = {
+							buffers = {
+								mappings = {
+									i = {
+										["<C-x>"] = actions.delete_buffer,
+									},
+								},
+							},
+						},
+						extensions = {
+							fzf = {
+								fuzzy = true,
+								override_generic_sorter = true,
+								override_file_sorter = true,
+							},
 						},
 					})
+					require("telescope").load_extension("fzf")
 				end,
 			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 			{ "junegunn/fzf" },
 			{ "junegunn/fzf.vim" },
 			{
