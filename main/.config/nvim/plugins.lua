@@ -328,6 +328,14 @@ return require("packer").startup({
 			end,
 		})
 
+		use({
+			"danymat/neogen",
+			config = function()
+				require("neogen").setup({ enabled = true })
+			end,
+			requires = "nvim-treesitter/nvim-treesitter",
+		})
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if packer_bootstrap then
