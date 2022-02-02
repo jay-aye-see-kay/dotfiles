@@ -493,8 +493,14 @@ local directed_keymaps = {
 	vim_plugins = make_directed_maps("Vim plugins", "edit " .. vim.fn.stdpath("config") .. "/plugins.lua"),
 }
 
+--- grep through old markdown notes
 local grep_notes = function()
 	require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
+end
+
+--- grep through new orgmode notes (still need to learn if orgmode's advanced search is better)
+local grep_org_files = function()
+	require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/org" })
 end
 
 --- git files, falling back onto all files in cwd if not in a git repo
@@ -598,6 +604,7 @@ local main_keymap = {
 		name = "+org",
 		c = "Org capture",
 		a = "Org agenda",
+		f = { grep_org_files, "Grep org files" },
 	},
 }
 
