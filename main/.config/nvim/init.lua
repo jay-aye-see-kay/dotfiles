@@ -367,6 +367,12 @@ augroup("orgmode-setup", {
 	{ "FileType", "org", "setlocal concealcursor=nc" },
 })
 
+local function org_capture_task()
+	local Templates = require("orgmode.capture.templates")
+	local task_template = Templates:new():get_list()["t"]
+	require("orgmode").action("capture.open_template", task_template)
+end
+
 vim.g.markdown_fenced_languages = {
 	"bash=sh",
 	"c",
@@ -417,6 +423,59 @@ end
 vim.cmd([[command! LogbookToday :call v:lua.LogbookToday()]])
 vim.cmd([[command! LogbookYesterday :call v:lua.LogbookYesterday()]])
 vim.cmd([[command! LogbookTomorrow :call v:lua.LogbookTomorrow()]])
+
+function WhichkeyOrgmode()
+	require("which-key").register({
+		name = "orgmode keymap lables",
+		["<leader>"] = {
+			o = {
+				o = "open at point",
+				r = "refile",
+				t = "set tags",
+				e = "export",
+				A = "archive tag",
+				K = "move subtree up",
+				J = "move subtree down",
+				["'"] = "edit in special buffer",
+				["$"] = "archive subtree",
+				[","] = "change priority",
+				["*"] = "toggle heading",
+				i = {
+					name = "+change things",
+					d = "change date under cursor",
+					h = "insert heading respect content",
+					T = "insert todo heading",
+					t = "insert todo heading respect content",
+					s = "change schedule",
+					["."] = "change time stamp",
+					["!"] = "change time stamp inactive",
+				},
+				x = {
+					name = "+clocking",
+					i = "clock in",
+					o = "clock out",
+					q = "cancel active clock",
+					j = "goto clocked in header",
+					e = "set effort for current header",
+				},
+			},
+		},
+		c = {
+			i = {
+				d = "ORG change date",
+				R = "ORG priority up",
+				r = "ORG priority down",
+				t = "ORG change TODO state",
+				T = "ORG cycle TODO state back",
+			},
+		},
+	}, {
+		buffer = vim.api.nvim_get_current_buf(),
+	})
+end
+augroup("whichkeyOrgmode", {
+	{ "FileType", "org", "lua WhichkeyOrgmode()" },
+})
 -- }}}
 
 -- keymaps {{{
@@ -535,6 +594,11 @@ local main_keymap = {
 		name = "+misc",
 		s = { require("sidebar-nvim").toggle, "toggle sidebar" },
 	},
+	org = {
+		name = "+org",
+		c = "Org capture",
+		a = "Org agenda",
+	},
 }
 
 local which_key = require("which-key")
@@ -550,6 +614,7 @@ which_key.register({
 	v = main_keymap.vim_config,
 	p = main_keymap.vim_plugins,
 	m = main_keymap.misc,
+	o = main_keymap.org,
 }, {
 	prefix = "<leader>",
 })
@@ -564,7 +629,7 @@ which_key.register({
 	a = main_keymap.finder.a, -- Rg
 	["."] = main_keymap.explorer["."], -- Fern .
 	[">"] = main_keymap.explorer.e["."], -- Fern . (relative to file)
-	c = { "<leader>oct", "Org capture task" },
+	c = { org_capture_task, "Capture task" },
 }, {
 	prefix = ",",
 })

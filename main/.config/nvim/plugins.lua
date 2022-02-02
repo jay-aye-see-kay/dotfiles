@@ -337,10 +337,10 @@ return require("packer").startup({
 
 		--- evaluating this at vim launch time sucks, but there doesn't seem to be
 		--- another way right now, and I don't normally leave vim running overnight
-		local todays_journal_file = "~/Documents/org/journal/" .. os.date("%Y-%m-%d-%A") .. ".org"
 		use({
 			"nvim-orgmode/orgmode",
 			config = function()
+				local todays_journal_file = "~/Documents/org/journal/" .. os.date("%Y-%m-%d-%A") .. ".org"
 				require("orgmode").setup({
 					org_agenda_files = { "~/Documents/org/*", "~/Documents/org/journal/*" },
 					org_default_notes_file = todays_journal_file,
