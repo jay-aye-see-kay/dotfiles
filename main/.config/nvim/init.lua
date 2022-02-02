@@ -549,6 +549,10 @@ local main_keymap = {
 		name = "+vim plugins",
 		s = { "<cmd>PackerSync<cr>", "packer sync" },
 	}),
+	misc = {
+		name = "+misc",
+		s = { require("sidebar-nvim").toggle, "toggle sidebar" },
+	},
 }
 
 local which_key = require("which-key")
@@ -563,6 +567,7 @@ which_key.register({
 	n = main_keymap.notes,
 	v = main_keymap.vim_config,
 	p = main_keymap.vim_plugins,
+	m = main_keymap.misc,
 }, {
 	prefix = "<leader>",
 })
