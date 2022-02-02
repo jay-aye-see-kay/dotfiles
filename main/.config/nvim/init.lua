@@ -451,7 +451,10 @@ local directed_keymaps = {
 	vim_config = make_directed_maps("Vim config", "edit $MYVIMRC"),
 	vim_plugins = make_directed_maps("Vim plugins", "edit " .. vim.fn.stdpath("config") .. "/plugins.lua"),
 }
-local grep_notes_cmd = "<Cmd>lua require('fzf-lua').grep({ cwd = '~/Documents/notes' })<CR><CR>"
+
+local grep_notes = function()
+	require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
+end
 
 --- git files, falling back onto all files in cwd if not in a git repo
 local function project_files()
@@ -487,12 +490,7 @@ local main_keymap = {
 	},
 	finder = {
 		name = "+find",
-		b = {
-			function()
-				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
-			end,
-			"🔭 buffers",
-		},
+		b = { grep_notes, "🔭 buffers" },
 		B = {
 			function()
 				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true, cwd_only = true })
@@ -510,12 +508,7 @@ local main_keymap = {
 		a = { "<Cmd>FzfLua live_grep<CR>", "FZF full text search" },
 		u = { "<Cmd>FzfLua grep_cword<CR>", "FZF word under cursor" },
 		U = { "<Cmd>FzfLua grep_cWORD<CR>", "FZF WORD under cursor" },
-		n = {
-			function()
-				require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
-			end,
-			"🔭 search all notes",
-		},
+		n = { grep_notes, "🔭 search all notes" },
 	},
 	git = merge(directed_keymaps.git_status, {
 		name = "+git",
