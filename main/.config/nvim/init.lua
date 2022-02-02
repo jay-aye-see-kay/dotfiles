@@ -599,6 +599,19 @@ local main_keymap = {
 	misc = {
 		name = "+misc",
 		s = { require("sidebar-nvim").toggle, "toggle sidebar" },
+		p = {
+			function()
+				vim.api.nvim_win_set_width(0, 60)
+				vim.api.nvim_win_set_option(0, "winfixwidth", true)
+			end,
+			"pin window to edge",
+		},
+		P = {
+			function()
+				vim.api.nvim_win_set_option(0, "winfixwidth", false)
+			end,
+			"unpin window",
+		},
 	},
 	org = {
 		name = "+org",
