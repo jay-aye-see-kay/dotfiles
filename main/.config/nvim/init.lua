@@ -98,9 +98,9 @@ augroup("init_file_setup", {
 })
 -- TODO move somewhere?
 augroup("natural_movement_in_text_files", {
-	{ "FileType", "text,markdown", "nnoremap j gj" },
-	{ "FileType", "text,markdown", "nnoremap k gk" },
-	{ "FileType", "text,markdown", "setlocal wrap" },
+	{ "FileType", "text,markdown,org", "nnoremap j gj" },
+	{ "FileType", "text,markdown,org", "nnoremap k gk" },
+	{ "FileType", "text,markdown,org", "setlocal wrap" },
 })
 -- }}}
 
@@ -721,7 +721,7 @@ ls.snippets = {
 	},
 	org = {
 		-- todo
-		vsc("t", "* [ ] ${0}"),
+		vsc("t", "- [ ] ${0}"),
 		-- code blocks
 		vsc("c", "#+BEGIN_SRC ${1}\n${0}\n#+END_SRC\n"),
 		vsc("cj", "#+BEGIN_SRC json\n${0}\n#+END_SRC\n"),

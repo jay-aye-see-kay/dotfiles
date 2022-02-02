@@ -369,6 +369,11 @@ return require("packer").startup({
 							description = "Urgent task",
 							template = "\n* TODO [#A] %?\n  DEADLINE: %t\n  CREATED: %U",
 						},
+						i = {
+							description = "Idea",
+							template = "\n** %?\n",
+							target = "~/Documents/org/ideas.org",
+						},
 					},
 				})
 			end,
