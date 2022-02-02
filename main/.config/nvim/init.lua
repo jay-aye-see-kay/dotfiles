@@ -712,6 +712,15 @@ ls.snippets = {
 		vsc("cp", "```python\n${1}\n```"),
 		vsc("cs", "```sh\n${1}\n```"),
 	},
+	org = {
+		-- todo
+		vsc("t", "* [ ] ${0}"),
+		-- code blocks
+		vsc("c", "#+BEGIN_SRC ${1}\n${0}\n#+END_SRC\n"),
+		vsc("cj", "#+BEGIN_SRC json\n${0}\n#+END_SRC\n"),
+		vsc("ct", "#+BEGIN_SRC typescript\n${0}\n#+END_SRC\n"),
+		vsc("cp", "#+BEGIN_SRC python\n${0}\n#+END_SRC\n"),
+	},
 	javascript = js_snippets,
 	typescript = js_snippets,
 	javascriptreact = js_snippets,

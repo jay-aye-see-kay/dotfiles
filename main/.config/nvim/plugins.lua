@@ -354,20 +354,20 @@ return require("packer").startup({
 					org_agenda_templates = {
 						u = {
 							description = "Unfiled task",
-							template = "\n* TODO %?\n %u",
+							template = "\n* TODO %?\n  CREATED: %U",
 							target = "~/Documents/org/refile.org",
 						},
 						j = {
 							description = "Journal note",
-							template = "\n%?\n",
+							template = "\n%?",
 						},
 						t = {
 							description = "Task",
-							template = "\n* TODO %?\n  %u",
+							template = "\n* TODO %?\n  CREATED: %U",
 						},
 						T = {
 							description = "Urgent task",
-							template = "\n* TODO [#A] %?\n  DEADLINE: %t",
+							template = "\n* TODO [#A] %?\n  DEADLINE: %t\n  CREATED: %U",
 						},
 					},
 				})
