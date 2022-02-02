@@ -335,18 +335,40 @@ return require("packer").startup({
 			},
 		})
 
+		--- evaluating this at vim launch time sucks, but there doesn't seem to be
+		--- another way right now, and I don't normally leave vim running overnight
+		local todays_journal_file = "~/Documents/org/journal/" .. os.date("%Y-%m-%d-%A") .. ".org"
 		use({
 			"nvim-orgmode/orgmode",
 			config = function()
 				require("orgmode").setup({
-					org_agenda_files = { "~/Documents/org/*" },
-					org_default_notes_file = "~/Documents/org/refile.org",
+					org_agenda_files = { "~/Documents/org/*", "~/Documents/org/journal/*" },
+					org_default_notes_file = todays_journal_file,
 					org_todo_keywords = { "TODO(t)", "NEXT(n)", "INPROGRESS(p)", "|", "DONE(d)" },
 					org_todo_keyword_faces = {
 						TODO = ":foreground #CE9178 :weight bold :underline on",
 						NEXT = ":foreground #DCDCAA :weight bold :underline on",
 						INPROGRESS = ":foreground #729CB3 :weight bold :underline on",
 						DONE = ":foreground #81B88B :weight bold :underline on",
+					},
+					org_agenda_templates = {
+						u = {
+							description = "Unfiled task",
+							template = "\n* TODO %?\n %u",
+							target = "~/Documents/org/refile.org",
+						},
+						j = {
+							description = "Journal note",
+							template = "\n%?\n",
+						},
+						t = {
+							description = "Task",
+							template = "\n* TODO %?\n  %u",
+						},
+						T = {
+							description = "Urgent task",
+							template = "\n* TODO [#A] %?\n  DEADLINE: %t",
+						},
 					},
 				})
 			end,
@@ -359,6 +381,7 @@ return require("packer").startup({
 				require("fidget").setup({})
 			end,
 		})
+		use({ "stevearc/dressing.nvim" })
 
 		use({
 			"danymat/neogen",
@@ -373,7 +396,7 @@ return require("packer").startup({
 			config = function()
 				require("sidebar-nvim").setup({
 					side = "right",
-					sections = { "buffers", "git", "diagnostics", "symbols" },
+					sections = { "buffers", "git", "diagnostics" },
 					buffers = {
 						ignored_buffers = { "SidebarNvim_.*" },
 					},

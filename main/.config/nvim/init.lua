@@ -361,6 +361,12 @@ cmp.setup({
 -- }}}
 
 -- notes/wiki {{{
+augroup("orgmode-setup", {
+	{ "FileType", "org", "setlocal foldlevel=9" },
+	{ "FileType", "org", "setlocal conceallevel=2" },
+	{ "FileType", "org", "setlocal concealcursor=nc" },
+})
+
 vim.g.markdown_fenced_languages = {
 	"bash=sh",
 	"c",
@@ -391,35 +397,11 @@ vim.g.markdown_folding = true
 
 nnoremap("glt", "<cmd>ToggleCheckbox<cr>") -- TODO: create or toggle checkbox
 
-local function get_logbook_info(days_from_today)
-	local date_cmd = "date"
-	if days_from_today then
-		date_cmd = date_cmd .. " -d '" .. days_from_today .. " day'"
-	end
-
-	local path_fmt = "%Y-%m-%d-%A.md"
-	local title_fmt = "# %A %d %b %Y"
-	local path_cmd = date_cmd .. " +'" .. path_fmt .. "'"
-	local title_cmd = date_cmd .. " +'" .. title_fmt .. "'"
-
-	local logbook_base_path = vim.g.wiki_root .. "/logbook/"
-	return {
-		path = logbook_base_path .. vim.fn.systemlist(path_cmd)[1],
-		title = vim.fn.systemlist(title_cmd)[1],
-	}
-end
-
-local function template_if_new(file_path, template_str)
-	local template_cmd =
-		-- if no file then... create one with template_str as contents
-		"[ -e " .. file_path .. " ] || " .. "echo '" .. template_str .. "' > " .. file_path
-	vim.fn.system(template_cmd)
-end
-
 local function open_logbook(days_from_today)
-	local logbook = get_logbook_info(days_from_today)
-	template_if_new(logbook.path, logbook.title)
-	vim.cmd("edit " .. logbook.path)
+	local date_offset = (days_from_today or 0) * 24 * 60 * 60
+	local filename = os.date("%Y-%m-%d-%A", os.time() + date_offset) .. ".org"
+	local todays_journal_file = "~/Documents/org/journal/" .. filename
+	vim.cmd("edit " .. todays_journal_file)
 end
 
 function LogbookToday()
@@ -490,7 +472,12 @@ local main_keymap = {
 	},
 	finder = {
 		name = "+find",
-		b = { grep_notes, "🔭 buffers" },
+		b = {
+			function()
+				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+			end,
+			"🔭 buffers (cwd only)",
+		},
 		B = {
 			function()
 				require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true, cwd_only = true })
@@ -529,12 +516,7 @@ local main_keymap = {
 	}),
 	notes = merge(directed_keymaps.todays_notepad, {
 		name = "+notes",
-		f = {
-			function()
-				require("telescope.builtin").live_grep({ cwd = "$HOME/Documents/notes" })
-			end,
-			"🔭 search all notes",
-		},
+		f = { grep_notes, "🔭 search all notes" },
 		y = merge(directed_keymaps.yesterdays_notepad, {
 			name = "+Yesterday' notepad",
 		}),
@@ -582,6 +564,7 @@ which_key.register({
 	a = main_keymap.finder.a, -- Rg
 	["."] = main_keymap.explorer["."], -- Fern .
 	[">"] = main_keymap.explorer.e["."], -- Fern . (relative to file)
+	c = { "<leader>oct", "Org capture task" },
 }, {
 	prefix = ",",
 })
