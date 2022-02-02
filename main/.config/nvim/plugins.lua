@@ -97,6 +97,7 @@ return require("packer").startup({
 							layout_config = { prompt_position = "top" },
 							sorting_strategy = "ascending",
 							layout_strategy = "flex",
+							dynamic_preview_title = true,
 							mappings = {
 								i = {
 									["<C-g>"] = action_layout.toggle_preview,
