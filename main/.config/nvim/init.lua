@@ -93,8 +93,6 @@ local plugin_file = "*/nvim/plugins.lua"
 augroup("init_file_setup", {
 	{ "BufNewFile,BufRead", all_config_files, "setlocal foldmethod=marker" },
 	{ "BufWritePre", all_config_files, "Neoformat stylua" },
-	{ "BufWritePost", all_config_files, "source %" },
-	{ "BufWritePost", plugin_file, "PackerCompile" },
 })
 -- TODO move somewhere?
 augroup("natural_movement_in_text_files", {
@@ -489,8 +487,6 @@ local directed_keymaps = {
 	tomorrows_notepad = make_directed_maps("Tomorrow's notepad", "LogbookTomorrow"),
 	file_explorer = make_directed_maps("File explorer", "Fern . -reveal=%"),
 	roaming_file_explorer = make_directed_maps("File explorer (focused on file's directory)", "Fern %:h -reveal=%"),
-	vim_config = make_directed_maps("Vim config", "edit $MYVIMRC"),
-	vim_plugins = make_directed_maps("Vim plugins", "edit " .. vim.fn.stdpath("config") .. "/plugins.lua"),
 }
 
 --- grep through old markdown notes
@@ -589,13 +585,15 @@ local main_keymap = {
 			name = "+Tomorrow' notepad",
 		}),
 	}),
-	vim_config = merge(directed_keymaps.vim_config, {
+	vim_config = {
 		name = "+vim config",
-	}),
-	vim_plugins = merge(directed_keymaps.vim_plugins, {
-		name = "+vim plugins",
-		s = { "<cmd>PackerSync<cr>", "packer sync" },
-	}),
+		c = {
+			"<cmd>tabedit $MYVIMRC | vsplit " .. vim.fn.stdpath("config") .. "/plugins.lua<cr>",
+			"Edit config in new tab",
+		},
+		r = { "<cmd>source $MYVIMRC | PackerCompile<cr>", "Reload config" },
+		s = { "<cmd>PackerSync<cr>", "Packer sync" },
+	},
 	misc = {
 		name = "+misc",
 		s = { require("sidebar-nvim").toggle, "toggle sidebar" },
@@ -632,7 +630,6 @@ which_key.register({
 	t = main_keymap.terminal,
 	n = main_keymap.notes,
 	v = main_keymap.vim_config,
-	p = main_keymap.vim_plugins,
 	m = main_keymap.misc,
 	o = main_keymap.org,
 }, {
