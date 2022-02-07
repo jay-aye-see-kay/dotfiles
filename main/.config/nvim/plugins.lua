@@ -342,9 +342,13 @@ return require("packer").startup({
 			config = function()
 				local todays_journal_file = "~/Documents/org/journal/" .. os.date("%Y-%m-%d-%A") .. ".org"
 				require("orgmode").setup({
-					org_agenda_files = { "~/Documents/org/*", "~/Documents/org/journal/*" },
+					org_agenda_files = {
+						"~/Documents/org/*",
+						"~/Documents/org/journal/*",
+						"~/Documents/org/projects/*",
+					},
 					org_default_notes_file = todays_journal_file,
-					org_todo_keywords = { "TODO(t)", "NEXT(n)", "INPROGRESS(p)", "|", "DONE(d)" },
+					org_todo_keywords = { "TODO(t)", "INPROGRESS(p)", "WAITING(w)", "|", "DONE(d)", "CANCELLED(c)" },
 					org_todo_keyword_faces = {
 						TODO = ":foreground #CE9178 :weight bold :underline on",
 						NEXT = ":foreground #DCDCAA :weight bold :underline on",
