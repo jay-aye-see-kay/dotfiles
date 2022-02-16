@@ -13,6 +13,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local packer_config = {
+  max_jobs = 10,
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "single" })
