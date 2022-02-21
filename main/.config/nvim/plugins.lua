@@ -341,11 +341,11 @@ return require("packer").startup({
 		use({
 			"nvim-orgmode/orgmode",
 			config = function()
-				local todays_journal_file = "~/Documents/org/journal/" .. os.date("%Y-%m-%d-%A") .. ".org"
+				local todays_journal_file = "~/Documents/org/logbook/" .. os.date("%Y-%m-%d-%A") .. ".org"
 				require("orgmode").setup({
 					org_agenda_files = {
 						"~/Documents/org/*",
-						"~/Documents/org/journal/*",
+						"~/Documents/org/logbook/*",
 						"~/Documents/org/projects/*",
 					},
 					org_default_notes_file = todays_journal_file,
@@ -362,8 +362,8 @@ return require("packer").startup({
 							template = "\n* TODO %?\n  CREATED: %U",
 							target = "~/Documents/org/refile.org",
 						},
-						j = {
-							description = "Journal note",
+						l = {
+							description = "Logbook note",
 							template = "\n%?",
 						},
 						t = {

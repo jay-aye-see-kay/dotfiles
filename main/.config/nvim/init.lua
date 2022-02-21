@@ -404,7 +404,7 @@ nnoremap("glt", "<cmd>ToggleCheckbox<cr>") -- TODO: create or toggle checkbox
 local function open_logbook(days_from_today)
 	local date_offset = (days_from_today or 0) * 24 * 60 * 60
 	local filename = os.date("%Y-%m-%d-%A", os.time() + date_offset) .. ".org"
-	local todays_journal_file = "~/Documents/org/journal/" .. filename
+	local todays_journal_file = "~/Documents/org/logbook/" .. filename
 	vim.cmd("edit " .. todays_journal_file)
 end
 
