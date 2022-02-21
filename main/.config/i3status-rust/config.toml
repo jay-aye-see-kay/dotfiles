@@ -5,14 +5,7 @@ icons = "awesome5"
 block = "sound"
 
 [[block]]
-block = "music"
-player = "spotify"
-buttons = ["play", "next"]
-marquee = false
-
-[[block]]
 block = "networkmanager"
-on_click = "alacritty -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
 ap_format = "{ssid^12} ({strength})"
