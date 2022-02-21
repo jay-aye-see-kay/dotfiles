@@ -202,6 +202,7 @@ local lsp_ensure_installed = {
 	"html",
 	"jsonls",
 	"pyright",
+	"rnix",
 	"rust_analyzer",
 	"solargraph",
 	"sumneko_lua",
