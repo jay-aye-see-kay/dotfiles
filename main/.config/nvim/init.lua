@@ -718,6 +718,10 @@ ls.snippets = {
 		vsc("filename", "$TM_FILENAME"),
 		vsc("filepath", "$TM_FILEPATH"),
 		vsc({ trig = "v", wordTrig = false }, "\\${${1}}"),
+		vsc({ trig = "(", wordTrig = false }, "(${1})${0}"),
+		vsc({ trig = "{", wordTrig = false }, "{${1}}${0}"),
+		vsc({ trig = "[", wordTrig = false }, "[${1}]${0}"),
+		vsc({ trig = "<", wordTrig = false }, "<${1}>${0}"),
 	},
 	markdown = {
 		-- task
