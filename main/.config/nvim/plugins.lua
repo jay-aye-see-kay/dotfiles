@@ -183,6 +183,7 @@ return require("packer").startup({
 
 		use({
 			"monaqa/dial.nvim",
+      tag = "v0.2.0",
 			event = "BufRead",
 			config = function()
 				local dial = require("dial")
