@@ -386,27 +386,6 @@ return require("packer").startup({
 		})
 		use({ "stevearc/dressing.nvim" })
 
-		use({
-			"danymat/neogen",
-			config = function()
-				require("neogen").setup({ enabled = true })
-			end,
-			requires = "nvim-treesitter/nvim-treesitter",
-		})
-
-		use({
-			"sidebar-nvim/sidebar.nvim",
-			config = function()
-				require("sidebar-nvim").setup({
-					side = "right",
-					sections = { "buffers", "git", "diagnostics" },
-					buffers = {
-						ignored_buffers = { "SidebarNvim_.*" },
-					},
-				})
-			end,
-		})
-
 		-- Automatically set up your configuration after cloning packer.nvim
 		-- Put this at the end after all plugins
 		if packer_bootstrap then

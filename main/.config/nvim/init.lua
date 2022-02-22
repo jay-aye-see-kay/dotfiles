@@ -597,7 +597,6 @@ local main_keymap = {
 	},
 	misc = {
 		name = "+misc",
-		s = { require("sidebar-nvim").toggle, "toggle sidebar" },
 		p = {
 			function()
 				vim.api.nvim_win_set_width(0, 60)
