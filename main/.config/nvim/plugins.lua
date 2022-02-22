@@ -290,22 +290,12 @@ return require("packer").startup({
 				"nvim-treesitter/nvim-treesitter",
 				run = ":TSUpdate",
 				config = function()
-					local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-					parser_config.org = {
-						-- see: https://github.com/nvim-orgmode/orgmode#setup
-						install_info = {
-							url = "https://github.com/milisims/tree-sitter-org",
-							revision = "f110024d539e676f25b72b7c80b0fd43c34264ef",
-							files = { "src/parser.c", "src/scanner.cc" },
-						},
-						filetype = "org",
-					}
-
 					require("nvim-treesitter.configs").setup({
 						ensure_installed = "maintained",
 						disable = { "haskell" },
 						highlight = {
 							enable = true,
+							disable = { "org" },
 							additional_vim_regex_highlighting = { "org" },
 						},
 						incremental_selection = { enable = true },
@@ -341,8 +331,10 @@ return require("packer").startup({
 		--- another way right now, and I don't normally leave vim running overnight
 		use({
 			"nvim-orgmode/orgmode",
+			requires = "nvim-treesitter/nvim-treesitter",
 			config = function()
 				local todays_journal_file = "~/Documents/org/logbook/" .. os.date("%Y-%m-%d-%A") .. ".org"
+				require("orgmode").setup_ts_grammar()
 				require("orgmode").setup({
 					org_agenda_files = {
 						"~/Documents/org/*",
