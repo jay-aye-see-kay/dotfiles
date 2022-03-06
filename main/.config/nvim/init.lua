@@ -361,7 +361,6 @@ cmp.setup({
 
 -- notes/wiki {{{
 augroup("orgmode-setup", {
-	{ "FileType", "org", "setlocal foldlevel=9" },
 	{ "FileType", "org", "setlocal conceallevel=2" },
 	{ "FileType", "org", "setlocal concealcursor=nc" },
 })
