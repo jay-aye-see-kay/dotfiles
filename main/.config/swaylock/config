@@ -4,7 +4,6 @@ image=$HOME/Pictures/lock.jpg
 
 color=999999
 
-indicator
 indicator-caps-lock
 indicator-radius=80
 indicator-thickness=18
