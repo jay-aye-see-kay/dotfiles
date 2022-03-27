@@ -11,7 +11,6 @@ SETUVAR _fish_abbr__7E_:cd\x20\x7e
 SETUVAR _fish_abbr___:sudo
 SETUVAR _fish_abbr_e:nvim
 SETUVAR _fish_abbr_g:git
-SETUVAR _fish_abbr_l:lvim
 SETUVAR _fish_abbr_v:nvim
 SETUVAR _fish_abbr_y:yarn
 SETUVAR fish_color_autosuggestion:4c566a
