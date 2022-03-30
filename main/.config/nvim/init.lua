@@ -710,7 +710,7 @@ local js_snippets = {
 	vsc("!u", "!== undefined"),
 }
 
-ls.snippets = {
+ls.add_snippets(nil, {
 	all = {
 		s("date", { i(1, os.date("%Y-%m-%d")) }),
 		s("uuid", { f(uuid, {}) }),
@@ -745,7 +745,7 @@ ls.snippets = {
 	typescript = js_snippets,
 	javascriptreact = js_snippets,
 	typescriptreact = js_snippets,
-}
+})
 
 -- }}}
 
