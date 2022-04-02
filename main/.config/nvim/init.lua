@@ -127,7 +127,7 @@ vim.cmd([[ set nojoinspaces ]]) -- Use one space, not two, after punctuation.
 vim.cmd([[ set undofile ]])
 
 -- increase oldfile saved ( default is !,'100,<50,s10,h )
-vim.cmd([["set shada=!,'1000,<50,s10,h"]])
+vim.cmd([[ set shada=!,'1000,<50,s10,h ]])
 
 augroup("only_show_cursorline_on_focued_window", {
 	{ "VimEnter,WinEnter,BufWinEnter ", "*", "setlocal cursorline" },

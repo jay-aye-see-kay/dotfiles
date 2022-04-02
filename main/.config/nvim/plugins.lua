@@ -13,7 +13,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local packer_config = {
-  max_jobs = 10,
+	max_jobs = 10,
 	display = {
 		open_fn = function()
 			return require("packer.util").float({ border = "single" })
@@ -183,7 +183,7 @@ return require("packer").startup({
 
 		use({
 			"monaqa/dial.nvim",
-      tag = "v0.2.0",
+			tag = "v0.2.0",
 			event = "BufRead",
 			config = function()
 				local dial = require("dial")
