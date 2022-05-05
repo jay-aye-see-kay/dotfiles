@@ -48,3 +48,8 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;; --------------------------------------------------------------
+(package! vscode-dark-plus-theme)
+(package! org-modern)
+(package! org-variable-pitch)

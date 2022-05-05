@@ -5,58 +5,41 @@
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+;; clients, file templates and snippets.
+(setq user-full-name "Jack Rose"
+      user-mail-address "user@jackrose.co.nz")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
 ;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "Fira Code" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 16))
-;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely Doom issues!
+(setq doom-font (font-spec :family "Fira Mono" :size 22)
+      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 22 :weight 'light))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq doom-theme 'vscode-dark-plus)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/org/")
 
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
 
-;; Whenever you reconfigure a package, make sure to wrap your config in an
-;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
-;;
-;;   (after! PACKAGE
-;;     (setq x y))
-;;
-;; The exceptions to this rule:
-;;
-;;   - Setting file/directory variables (like `org-directory')
-;;   - Setting variables which explicitly tell you to set them before their
-;;     package is loaded (see 'C-h v VARIABLE' to look up their documentation).
-;;   - Setting doom variables (which start with 'doom-' or '+').
-;;
-;; Here are some additional functions/macros that will help you configure Doom.
+
+;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
 ;; - `use-package!' for configuring packages
@@ -69,8 +52,36 @@
 ;; To get information about any of these functions/macros, move the cursor over
 ;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
 ;; This will open documentation for it, including demos of how they are used.
-;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
-;; etc).
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; FIXME how do I disable this everywhere?
+(setq rainbow-delimiters-mode nil)
+;; (add-variable-watcher rainbow-delimiters-mode
+;;   (unless ra)(setq rainbow-delimiters-mode nil))
+
+(global-org-modern-mode)
+(setq org-journal-file-format "%F-%A.org"
+      org-journal-dir "~/Documents/org/logbook/")
+
+(add-hook 'org-mode-hook 'org-variable-pitch-minor-mode)
+
+;; Set faces for heading levels
+(setq vscode-dark-plus-scale-org-faces nil)
+(set-face-attribute 'org-default nil :weight 'light)
+(dolist (face '((org-level-1 . 1.5)
+                (org-level-2 . 1.3)
+                (org-level-3 . 1.15)
+                (org-level-4 . 1.1)
+                (org-level-5 . 1.1)
+                (org-level-6 . 1.1)
+                (org-level-7 . 1.1)
+                (org-level-8 . 1.1)))
+  (set-face-attribute (car face) nil :weight 'light :height (cdr face)))
+
+;; TODO why aren't the font sizes above getting applied?
+;; TODO how can I make org body font light?
+;; TODO what is the font face used by the TODOs? It's not getting the same font size as the heading it's in
+;; TODO can I add spacing around org headings, so paragraphs aren't so close together?
+;; TODO disable company mode in org files
