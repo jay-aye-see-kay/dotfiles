@@ -22,13 +22,21 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "Fira Mono" :size 22)
-      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 22 :weight 'light))
+;; (setq doom-font (font-spec :family "Fira Mono" :size 22)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 22 :weight 'light))
+;; (setq doom-font (font-spec :family "Fira Mono" :size 22)
+;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 22 :weight 'light))
+(setq doom-font (font-spec :size 16)
+     doom-variable-pitch-font (font-spec :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'vscode-dark-plus)
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -85,3 +93,18 @@
 ;; TODO what is the font face used by the TODOs? It's not getting the same font size as the heading it's in
 ;; TODO can I add spacing around org headings, so paragraphs aren't so close together?
 ;; TODO disable company mode in org files
+
+;; lsp hover settings
+(setq
+ lsp-eldoc-enable-hover nil
+ lsp-ui-sideline-show-hover t
+ lsp-ui-sideline-show-code-actions t
+ lsp-ui-sideline-show-hover nil
+ lsp-ui-sideline-show-diagnostics nil
+ lsp-ui-sideline-show-symbol t
+)
+
+(setq
+ lsp-headerline-breadcrumb-enable t
+ lsp-headerline-breadcrumb-enable-diagnostics nil
+)

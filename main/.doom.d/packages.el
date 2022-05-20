@@ -53,3 +53,4 @@
 (package! vscode-dark-plus-theme)
 (package! org-modern)
 (package! org-variable-pitch)
+(package! prettier)
